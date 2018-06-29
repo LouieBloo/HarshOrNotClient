@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { UserDetails, TokenPayload, TokenResponse } from '../../models/auth';
+import { UserDetails, TokenPayload, TokenResponse, RegisterDetails } from '../../models/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -32,7 +32,7 @@ export class AuthService {
   public logout():void{
     this.token = '';
     window.localStorage.removeItem('mean-token');
-    this.router.navigateByUrl('/logggedOut');
+    this.router.navigateByUrl('/login');
   }
 
   public getUserDetails():UserDetails{
@@ -57,7 +57,7 @@ export class AuthService {
     }
   }
 
-  public request(method: 'post'|'get',url,params:any): Observable<any>{
+  public request(method: 'post'|'get',url,params?:any): Observable<any>{
     let base;
     if(method === 'post'){
       base = this.http.post(environment.api + url,params);
@@ -80,5 +80,9 @@ export class AuthService {
 
   public login(user:TokenPayload):Observable<any>{
     return this.request('post','/users/login',user);
+  }
+
+  public register(registerDetails:RegisterDetails):Observable<any>{
+    return this.request('post','/users/register',registerDetails);
   }
 }
