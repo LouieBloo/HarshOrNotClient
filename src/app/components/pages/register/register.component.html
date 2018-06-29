@@ -1,0 +1,62 @@
+<form class="form" role="form" #registerForm="ngForm" (submit)="submit()">
+  <div class="row justify-content-center">
+      <div class="col-md-6">
+        <h2>Register New User</h2>
+        <hr>
+
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input class="form-control" name="name" type="text" id="name" required minlength="2" maxlength="60" [(ngModel)]="registerDetails.name" #name="ngModel">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                <div *ngIf="name.errors.required">Name Required</div>
+                <div *ngIf="name.errors.minlength">Min 2 chars</div>
+                <div *ngIf="name.errors.maxlength">Max 60 chars</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input class="form-control" name="email" type="email" id="email" required [(ngModel)]="registerDetails.email" #email="ngModel" email>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">Invalid Email</div>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input class="form-control" name="password" type="password" id="password" required minlength="8" maxlength="36" [(ngModel)]="registerDetails.password" #password="ngModel">
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">Password between 8 and 35 characters</div>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input class="form-control" name="age" type="number" id="age" min="18" max="130" step="1" required [(ngModel)]="registerDetails.age">
+        </div>
+        <div class="form-group">
+            <label>Sex:</label>
+            <div class="form-check">
+                <input class="form-check-input" name="gender" type="radio" id="male" value="Male" [(ngModel)]="registerDetails.gender">
+                <label class="form-check-label" for="male">Male</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" name="gender" type="radio" id="female" value="Female" checked [(ngModel)]="registerDetails.gender">
+                <label class="form-check-label" for="female">Female</label>
+            </div>
+        </div>
+       
+        <div class="form-group">
+            <label>I'm looking for:</label>
+            <div class="form-check">
+                <input class="form-check-input" name="preference" type="radio" id="pref-male" value="Male" checked [(ngModel)]="registerDetails.preference">
+                <label class="form-check-label" for="pref-male">Men</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" name="preference" type="radio" id="pref-female" value="Female" [(ngModel)]="registerDetails.preference">
+                <label class="form-check-label" for="pref-female">Women</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Submit" [disabled]='!registerForm.valid'>
+        </div>
+      </div>
+  </div>
+  
+</form>
