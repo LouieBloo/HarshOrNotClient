@@ -17,8 +17,6 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(){
-    console.log("Submitted...");
-    console.log(this.registerDetails);
     this.auth.register(this.registerDetails).subscribe(response=>{
       console.log("Response..");
       console.log(response);

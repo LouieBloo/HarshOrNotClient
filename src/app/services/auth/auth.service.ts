@@ -60,7 +60,12 @@ export class AuthService {
   public request(method: 'post'|'get',url,params?:any): Observable<any>{
     let base;
     if(method === 'post'){
-      base = this.http.post(environment.api + url,params);
+      if(this.isLoggedIn()){
+        base = this.http.post(environment.api + url,params,{headers:{Authorization: `Bearer ${this.getToken()}`}});//add token to every post request
+      }
+      else{
+        base = this.http.post(environment.api + url,params);
+      }
     }else{
       base = this.http.get(environment.api + url,{headers:{Authorization: `Bearer ${this.getToken()}`}});
     }

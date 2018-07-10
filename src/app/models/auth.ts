@@ -24,3 +24,4 @@ export interface RegisterDetails{
   gender:string;
   preference:string;
 }
+
