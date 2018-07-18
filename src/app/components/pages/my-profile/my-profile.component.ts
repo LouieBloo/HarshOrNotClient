@@ -11,7 +11,7 @@ import { UpdateProfileService } from '../../../services/user/profiles/update/upd
 })
 export class MyProfileComponent implements OnInit {
 
-  user:User = {name:"",email:"",gender:"",preference:""};
+  user:User = {name:"",email:"",gender:"",preference:"",location:{zip:""}};
   alert:string;
 
   constructor(private userService:FetchProfileService,private userUpdate:UpdateProfileService) { }
@@ -19,6 +19,10 @@ export class MyProfileComponent implements OnInit {
   ngOnInit() {
     this.userService.fetchMyself().subscribe(response =>{
       this.user = response;
+      if(response.location == null){
+        this.user.location = {zip:""};//need to set this incase the user has never had a location
+      }
+      console.log(response);
     });
   }
 
@@ -26,7 +30,15 @@ export class MyProfileComponent implements OnInit {
     this.alert = "Updating...";
     this.userUpdate.updatePreferences(this.user).subscribe(response=>{
       console.log(response);
+      if(response.error != null){
+        console.log("Error!");
+        this.alert = response.error;
+        return;
+      }
       this.alert = "Done!";
+      this.user = response;
+      console.log("updated ok...");
+      //this.user.location.zip = response.zip;
     });
   }
 

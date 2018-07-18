@@ -26,8 +26,9 @@
             <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">Password between 8 and 35 characters</div>
         </div>
         <div class="form-group">
-            <label for="age">Age:</label>
-            <input class="form-control" name="age" type="number" id="age" min="18" max="130" step="1" required [(ngModel)]="registerDetails.age">
+            <label for="birthday">Birthday:<small class="text-muted"> must be 18 years old or older</small></label>
+            <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01" value="2000-01-01" appEightteenOrOlder [(ngModel)]="registerDetails.birthday" #birthday="ngModel" required />
+            <div *ngIf="birthday.invalid" class="alert alert-danger">Must be 18 or older</div>
         </div>
         <div class="form-group">
             <label>I am a:</label>

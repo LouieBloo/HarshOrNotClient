@@ -20,7 +20,7 @@ export interface RegisterDetails{
   name:string;
   email:string;
   password:string;
-  age:number;
+  birthday:string;
   gender:string;
   preference:string;
 }

@@ -2,7 +2,10 @@ export interface User{
     name:string;
     email:string;
     bio?:string;
-    age?:number;
+    birthday?:number;
     gender:string;
     preference:string;
+    location?:any;
+
+    error?:string;
   }

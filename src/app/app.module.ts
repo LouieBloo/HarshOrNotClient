@@ -10,6 +10,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { MyProfileComponent } from './components/pages/my-profile/my-profile.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { LoginComponent } from './components/pages/login/login.component';
+import { EightteenOrOlderDirective } from './directives/age/eightteen-or-older.directive'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginComponent } from './components/pages/login/login.component';
     HeaderComponent,
     MyProfileComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    EightteenOrOlderDirective
   ],
   imports: [
     BrowserModule,
