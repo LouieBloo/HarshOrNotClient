@@ -22,6 +22,7 @@ export interface RegisterDetails{
   password:string;
   birthday:string;
   gender:string;
+  bodyType:string;
   preference:string;
 }
 

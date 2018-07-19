@@ -5,26 +5,27 @@
       <div class="card-body">
         <p class="card-text"><strong>Name:</strong><span> {{user?.name}}</span></p>
         <p class="card-text"><strong>Email:</strong><span> {{user?.email}}</span><small class="text-muted"> private</small></p>
-        <p class="card-text"><strong>Birthday:</strong><span> {{user?.birthday | date : "shortDate"}}</span></p>
+        <p class="card-text"><strong>Birthday:</strong><span> {{user?.birthday | date : "shortDate"}}</span><small class="text-muted"> private except for age</small></p>
         <p class="card-text"><strong>Gender:</strong><span> {{user?.gender}}</span></p>
+        <p class="card-text"><strong>Body Type:</strong><span> {{user?.bodyType}}</span></p>
       </div>
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4 mt-4 mt-md-0">
       <div class="card">
         <div class="card-header bg-success text-white">Preferences</div>
         <div class="card-body">
-          <form class="form" role="form" #updateForm="ngForm" (submit)="update()">
+          <form class="form" role="form" #updateForm="ngForm" (submit)="updatePreferences()">
             <div class="form-group">
                 <label><strong>I am looking for a:</strong></label>
                 <div class="form-check">
-                    <input class="form-check-input" name="preference" type="radio" id="pref-male" value="Male" checked [(ngModel)]="user.preference">
-                    <label class="form-check-label" for="pref-male">Man</label>
+                  <input class="form-check-input" name="preference" type="radio" id="pref-male" value="Male" checked [(ngModel)]="user.preference">
+                  <label class="form-check-label" for="pref-male">Man</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="preference" type="radio" id="pref-female" value="Female" [(ngModel)]="user.preference">
-                    <label class="form-check-label" for="pref-female">Woman</label>
+                  <input class="form-check-input" name="preference" type="radio" id="pref-female" value="Female" [(ngModel)]="user.preference">
+                  <label class="form-check-label" for="pref-female">Woman</label>
                 </div>
             </div>
             <div class="form-group">
@@ -32,8 +33,17 @@
               <textarea class="form-control" id="bio" maxlength="1000" name="bio" [(ngModel)]="user.bio"></textarea>
             </div>
             <div class="form-group">
-                <label for="zip"><strong>Zip I'm In: </strong></label>
-                <input class="form-control" type="text" pattern="[0-9]{5}" id="zip" name="zip" required minlength="5" maxlength="5" [(ngModel)]="user.location.zip"/>
+              <label for="zip"><strong>Zip I'm in: </strong></label>
+              <input class="form-control" type="text" pattern="[0-9]{5}" id="zip" name="zip" required minlength="5" maxlength="5" [(ngModel)]="user.location.zip"/>
+            </div>
+            <div class="form-group">
+              <label for="range"><strong>Maximum distance: {{user.range}} miles</strong></label>
+              <!-- <input type="range" min="1" max="150" value="30" class="form-control" id="range" name="range" [(ngModel)]="user.range" required> -->
+              <nouislider [min]="1" [max]="150" [step]="1" name="range" [(ngModel)]="user.range"></nouislider>
+            </div>
+            <div class="form-group">
+              <label for="range"><strong>Age Range: {{ageRange[0]}}-{{ageRange[1]}} years old</strong></label>
+              <nouislider [connect]="true" [min]="18" [max]="100" [step]="1" name="ageRange" [(ngModel)]="ageRange"></nouislider>
               </div>
             <div class="form-group">
               <input type="submit" class="btn btn-primary" value="Update" [disabled]='!updateForm.valid'>

@@ -6,6 +6,8 @@ export interface User{
     gender:string;
     preference:string;
     location?:any;
-
+    bodyType:string;
+    range:number;
+    ageRange:any;
     error?:string;
   }

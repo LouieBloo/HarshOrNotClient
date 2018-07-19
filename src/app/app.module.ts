@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { NouisliderModule } from 'ng2-nouislider';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/pages/home/home.component';
@@ -11,6 +12,7 @@ import { MyProfileComponent } from './components/pages/my-profile/my-profile.com
 import { RegisterComponent } from './components/pages/register/register.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { EightteenOrOlderDirective } from './directives/age/eightteen-or-older.directive'
+
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { EightteenOrOlderDirective } from './directives/age/eightteen-or-older.d
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NouisliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

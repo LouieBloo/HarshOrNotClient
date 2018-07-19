@@ -9,7 +9,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  registerDetails:RegisterDetails = {name:"",email:"",password:"",birthday:"2000-01-01",gender:"Female",preference:"Male"};
+  registerDetails:RegisterDetails = {name:"",email:"",password:"",birthday:"2000-01-01",gender:"Female",preference:"Male",bodyType:""};
   
   constructor(private auth:AuthService) { }
 
@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.registerDetails);
     this.auth.register(this.registerDetails).subscribe(response=>{
       console.log("Response..");
       console.log(response);
