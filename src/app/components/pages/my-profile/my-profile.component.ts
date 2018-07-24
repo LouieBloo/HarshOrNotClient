@@ -24,6 +24,7 @@ export class MyProfileComponent implements OnInit {
       if(response.location == null){
         this.user.location = {zip:""};//need to set this incase the user has never had a location
       }
+
       this.mapAgeRangeFromAPI(response);
       console.log(response);
     });
@@ -35,8 +36,8 @@ export class MyProfileComponent implements OnInit {
     this.mapAgeRangeToAPI();
     this.userUpdate.updatePreferences(this.user).subscribe(response=>{
 
+      console.log('finsished');
       console.log(response);
-
       if(response.error != null){
         this.alert = JSON.stringify(response.error);
         return;
