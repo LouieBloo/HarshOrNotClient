@@ -11,7 +11,9 @@ import { AppRoutingModule } from './/app-routing.module';
 import { MyProfileComponent } from './components/pages/my-profile/my-profile.component';
 import { RegisterComponent } from './components/pages/register/register.component';
 import { LoginComponent } from './components/pages/login/login.component';
-import { EightteenOrOlderDirective } from './directives/age/eightteen-or-older.directive'
+import { EightteenOrOlderDirective } from './directives/age/eightteen-or-older.directive';
+import { UpdatePhotosComponent } from './components/users/photos/update-photos/update-photos.component';
+import { UpdatePhotoSingleComponent } from './components/users/photos/update-photos/update-photo-single/update-photo-single.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { EightteenOrOlderDirective } from './directives/age/eightteen-or-older.d
     MyProfileComponent,
     RegisterComponent,
     LoginComponent,
-    EightteenOrOlderDirective
+    EightteenOrOlderDirective,
+    UpdatePhotosComponent,
+    UpdatePhotoSingleComponent
   ],
   imports: [
     BrowserModule,

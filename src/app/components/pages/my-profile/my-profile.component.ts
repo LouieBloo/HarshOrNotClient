@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../models/user';
 import { FetchProfileService } from '../../../services/user/profiles/fetch/fetch-profile.service';
@@ -26,6 +26,7 @@ export class MyProfileComponent implements OnInit {
       }
 
       this.mapAgeRangeFromAPI(response);
+
       console.log(response);
     });
   }

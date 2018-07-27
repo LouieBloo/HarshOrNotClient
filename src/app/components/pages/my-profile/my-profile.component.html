@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-3">
     <div class="card">
-      <div class="card-header bg-primary text-white">About Me</div>
+      <div class="card-header bg-secondary text-white">About Me</div>
       <div class="card-body">
         <p class="card-text"><strong>Name:</strong><span> {{user?.name}}</span></p>
         <p class="card-text"><strong>Email:</strong><span> {{user?.email}}</span><small class="text-muted"> private</small></p>
@@ -54,5 +54,13 @@
       </div>
     </div>
 
+    <div class="col-md-5 mt-4 mt-md-0">
+      <div class="card">
+        <div class="card-header bg-primary text-white">Photos</div>
+        <div class="card-body">
+          <app-update-photos></app-update-photos>
+        </div>
+      </div>
+    </div>
     
 </div>
