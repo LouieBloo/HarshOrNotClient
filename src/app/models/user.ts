@@ -13,6 +13,3 @@ export interface User{
   _id?:string;
 }
 
-export interface Photos{
-  photos:[string];
-}

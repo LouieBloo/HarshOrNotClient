@@ -1,0 +1,29 @@
+.img-highlighted{
+    background-color:orangered;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width:160px;
+    height:160px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.img-background{
+    width:150px;
+    height:150px;
+    border-radius: 50%;
+    position: absolute;
+    background-color:#e6e6e6;
+}
+
+.profilePhoto img{
+    max-width: 150px;
+    max-height: 150px;
+
+    z-index: 5;
+}
+.profilePhoto{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+}

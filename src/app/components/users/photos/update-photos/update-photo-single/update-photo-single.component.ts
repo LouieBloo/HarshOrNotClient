@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output ,EventEmitter} from '@angular/core';
+import { AuthService } from '../../../../../services/auth/auth.service';
+import { ModifyPhotoStatuses } from '../../../../../models/photos';
 
 @Component({
   selector: 'app-update-photo-single',
@@ -8,10 +10,20 @@ import { Component, OnInit, Input } from '@angular/core';
 export class UpdatePhotoSingleComponent implements OnInit {
 
   @Input() photoSrc:string;
+  
+  @Input() status?:ModifyPhotoStatuses;
 
-  constructor() { }
+  @Output() clickedEmitter = new EventEmitter<ModifyPhotoStatuses>();
+  @Output() voted = new EventEmitter<boolean>();
+
+  constructor(private auth:AuthService) { 
+  }
 
   ngOnInit() {
+  }
+
+  clicked(){
+    this.clickedEmitter.emit(this.status);
   }
 
 }

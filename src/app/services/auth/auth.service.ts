@@ -14,12 +14,16 @@ import{ environment } from '../../../environments/environment';
 export class AuthService {
 
   private token: string;
+  private _id:string;
 
   constructor(private http: HttpClient,private router: Router) { }
 
-  private saveToken(token:string):void{
+  private saveToken(token:string,_id:string):void{
     localStorage.setItem('mean-token',token);
     this.token = token;
+
+    localStorage.setItem('_id',_id);
+    this._id = _id;
   }
 
   private getToken():string{
@@ -27,6 +31,13 @@ export class AuthService {
       this.token = localStorage.getItem('mean-token');
     }
     return this.token;
+  }
+
+  public getUserID():string{
+    if(!this._id){
+      this._id = localStorage.getItem('_id');
+    }
+    return this._id;
   }
 
   public logout():void{
@@ -73,7 +84,7 @@ export class AuthService {
     const request = base.pipe(
       map((data:TokenResponse)=>{
         if(data.token){
-          this.saveToken(data.token);
+          this.saveToken(data.token,data._id);
         }
 
         return data;

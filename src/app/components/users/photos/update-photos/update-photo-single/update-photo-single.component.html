@@ -1,1 +1,4 @@
-<img src={{photoSrc}}>
+<div class="row justify-content-center align-items-center">
+  <app-single-photo (click)="clicked()" [photoSrc]="photoSrc" [highlighted]="status.highlighted"></app-single-photo>
+  <div class="img-hover"></div>
+</div>

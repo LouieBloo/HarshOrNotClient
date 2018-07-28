@@ -8,6 +8,7 @@ export interface UserDetails{
 
 export interface TokenResponse{
   token:string;
+  _id:string;
 }
 
 export interface TokenPayload{
