@@ -1,4 +1,5 @@
-<div class="row justify-content-center align-items-center">
+<div class="row justify-content-center align-items-center mt-4 mt-md-0">
   <app-single-photo (click)="clicked()" [photoSrc]="photoSrc" [highlighted]="status.highlighted"></app-single-photo>
+  <div class="number"><h4>{{status?.index+1}}</h4></div>
   <div class="img-hover"></div>
 </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { Photos } from '../../../models/user';
+import { Photos } from '../../../models/photos';
 import { Observable } from '../../../../../node_modules/rxjs';
 
 @Injectable({
@@ -17,11 +17,27 @@ export class PhotosService {
     );
   }
 
-  uploadNewPhoto(params):Observable<any>{
+  uploadNewPhoto(params):Observable<Photos>{
     return this.auth.request(
       "post",
       '/users/photos/upload',
       params
+    )
+  }
+
+  deletePhoto(photoKey):Observable<Photos>{
+    return this.auth.request(
+      "post",
+      '/users/photos/delete',
+      {key:photoKey}
+    )
+  }
+
+  swapPhotos(key1,key2):Observable<Photos>{
+    return this.auth.request(
+      "post",
+      '/users/photos/swap',
+      {key1:key1,key2:key2}
     )
   }
 }

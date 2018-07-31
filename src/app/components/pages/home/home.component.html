@@ -1,5 +1,11 @@
-<p>
-  home works!
-</p>
-
-<button (click)="searchButtonClicked()">Search</button>
+<div class="row">
+  <div class="col-12">
+    <div *ngIf="showLocationAlert" class="alert alert-warning">You need to set your location before your profile becomes discoverable</div>
+    <div class="row">
+      <div class="col-12 text-center">
+          <h1>Hello there {{user?.name}}</h1>
+      </div>
+    </div>
+  </div>
+  
+</div>

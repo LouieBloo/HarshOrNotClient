@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
-import { AutomatedSearchService } from '../../../services/user/search/automated/automated-search.service';
+import { User } from '../../../models/user';
+import { WelcomeService } from '../../../services/user/home/welcome/welcome.service';
 
 
 @Component({
@@ -10,16 +11,22 @@ import { AutomatedSearchService } from '../../../services/user/search/automated/
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private automatedSearch:AutomatedSearchService) { }
+  user:User;
+
+  showLocationAlert:boolean;
+
+  constructor(private welcomeService:WelcomeService) { }
 
   ngOnInit() {
-    
+    this.welcomeService.getWelcomeInfo().subscribe(result =>{
+      this.user = result;
+      if(this.user.location == null || this.user.location.zip == null){
+        this.showLocationAlert = true;
+      }
+    })
   }
 
   searchButtonClicked(){
-    this.automatedSearch.search(0,20).subscribe((result)=>{
-      console.log(result);
-    })
   }
 
 }

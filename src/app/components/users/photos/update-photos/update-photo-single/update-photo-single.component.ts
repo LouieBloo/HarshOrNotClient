@@ -14,8 +14,7 @@ export class UpdatePhotoSingleComponent implements OnInit {
   @Input() status?:ModifyPhotoStatuses;
 
   @Output() clickedEmitter = new EventEmitter<ModifyPhotoStatuses>();
-  @Output() voted = new EventEmitter<boolean>();
-
+  
   constructor(private auth:AuthService) { 
   }
 
