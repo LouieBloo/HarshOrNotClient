@@ -11,5 +11,6 @@ export interface User{
   ageRange:any;
   error?:string;
   _id?:string;
+  mainPhoto?:string;
 }
 

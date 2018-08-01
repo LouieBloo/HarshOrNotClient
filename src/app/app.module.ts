@@ -15,6 +15,7 @@ import { EightteenOrOlderDirective } from './directives/age/eightteen-or-older.d
 import { UpdatePhotosComponent } from './components/users/photos/update-photos/update-photos.component';
 import { UpdatePhotoSingleComponent } from './components/users/photos/update-photos/update-photo-single/update-photo-single.component';
 import { SinglePhotoComponent } from './components/users/photos/show-photos/single-photo/single-photo.component';
+import { SearchComponent } from './components/pages/search/search.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { SinglePhotoComponent } from './components/users/photos/show-photos/sing
     EightteenOrOlderDirective,
     UpdatePhotosComponent,
     UpdatePhotoSingleComponent,
-    SinglePhotoComponent
+    SinglePhotoComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,49 @@
+<div class="row">
+    <form class="form col-12" role="form" #searchForm="ngForm" (submit)="submit()">
+      <div class="row">
+        <div class="col col-md-2">
+            <label>Their sex:</label>
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" name="gender" type="radio" id="gender-male" value="Male" checked [ngModel]="searchQuery?.gender" (ngModelChange)="searchQuery.gender=$event">
+                <label class="custom-control-label" for="gender-male">Man</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" name="gender" type="radio" id="gender-female" value="Female" [ngModel]="searchQuery?.gender" (ngModelChange)="searchQuery.gender=$event">
+                <label class="custom-control-label" for="gender-female">Woman</label>
+            </div>
+        </div>
+        <div class="col col-md-2">
+            <label>Their preference:</label>
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" name="preference" type="radio" id="pref-male" value="Male" checked [ngModel]="searchQuery?.preference" (ngModelChange)="searchQuery.preference=$event">
+                <label class="custom-control-label" for="pref-male">Men</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input class="custom-control-input" name="preference" type="radio" id="pref-female" value="Female" [ngModel]="searchQuery?.preference" (ngModelChange)="searchQuery.preference=$event">
+                <label class="custom-control-label" for="pref-female">Women</label>
+            </div>
+        </div>
+        <div class="col col-md-2">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" name="useRange" id="useRange" [(ngModel)]="searchQuery.useRange">
+              <label class="custom-control-label" for="useRange">Limit by range:</label>
+            </div>
+            <div *ngIf="searchQuery.useRange">
+              <label for="range"><strong>Maximum distance: {{searchQuery?.range || 0}} miles</strong></label>
+              <!-- <input type="range" min="1" max="150" value="30" class="form-control" id="range" name="range" [(ngModel)]="user.range" required> -->
+              <nouislider [min]="1" [max]="150" [step]="1" name="range" [(ngModel)]="searchQuery.range"></nouislider>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+          <label for="range"><strong>Age Range: {{ageRange[0]}}-{{ageRange[1]}} years old</strong></label>
+          <nouislider [connect]="true" [min]="18" [max]="100" [step]="1" name="ageRange" [(ngModel)]="ageRange"></nouislider>
+        </div> -->
+       
+      </div>
+      <div class="row mt-4">
+          <div class="form-group col">
+              <input type="submit" class="btn btn-primary" value="Submit">
+          </div>
+      </div>
+    </form>
+</div>

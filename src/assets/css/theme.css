@@ -1,7 +1,7 @@
-.asdfaeef{
-    background: black;
-}
-
 body {
     font-family: 'Oswald', sans-serif !important;
+}
+
+.pointerCursor{
+    cursor: pointer;
 }
