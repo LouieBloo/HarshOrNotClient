@@ -43,14 +43,18 @@
         </div>
        
         <div class="form-group">
-            <label>I am looking for a:</label>
+            <label>I am looking for:</label>
             <div class="form-check">
                 <input class="form-check-input" name="preference" type="radio" id="pref-male" value="Male" checked [(ngModel)]="registerDetails.preference">
-                <label class="form-check-label" for="pref-male">Man</label>
+                <label class="form-check-label" for="pref-male">Men</label>
             </div>
             <div class="form-check">
                 <input class="form-check-input" name="preference" type="radio" id="pref-female" value="Female" [(ngModel)]="registerDetails.preference">
-                <label class="form-check-label" for="pref-female">Woman</label>
+                <label class="form-check-label" for="pref-female">Women</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" name="preference" type="radio" id="pref-both" value="Both" [(ngModel)]="registerDetails.preference">
+                <label class="form-check-label" for="pref-both">Both</label>
             </div>
         </div>
 

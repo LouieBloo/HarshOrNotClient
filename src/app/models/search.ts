@@ -3,7 +3,8 @@ export interface SearchQuery{
     gender?:string;
     preference?:string;
     location?:any;
-    bodyType?:string;
+    bodyType?:string[];
+    bodyTypeRaw?:any;//used to make using input checkboxes easier, api wants [string] but checkboxes are single objects
     range?:number;
     useRange?:boolean,
     ageRange?:any;

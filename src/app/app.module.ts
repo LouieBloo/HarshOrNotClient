@@ -16,6 +16,8 @@ import { UpdatePhotosComponent } from './components/users/photos/update-photos/u
 import { UpdatePhotoSingleComponent } from './components/users/photos/update-photos/update-photo-single/update-photo-single.component';
 import { SinglePhotoComponent } from './components/users/photos/show-photos/single-photo/single-photo.component';
 import { SearchComponent } from './components/pages/search/search.component';
+import { ListUserProfilesComponent } from './components/users/profiles/show/list-user-profiles/list-user-profiles.component';
+import { ListUserProfileSingleComponent } from './components/users/profiles/show/list-user-profiles/list-user-profile-single/list-user-profile-single.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { SearchComponent } from './components/pages/search/search.component';
     UpdatePhotosComponent,
     UpdatePhotoSingleComponent,
     SinglePhotoComponent,
-    SearchComponent
+    SearchComponent,
+    ListUserProfilesComponent,
+    ListUserProfileSingleComponent
   ],
   imports: [
     BrowserModule,
