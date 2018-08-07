@@ -1,9 +1,4 @@
 <div class="row">
-    <div class="col-12">
-        <p>Search for anyone!</p>
-    </div>
-</div>
-<div class="row">
     <form class="form col-12" role="form" #searchForm="ngForm" (submit)="submit()">
         <div class="row" id="searchFilters">
             <div class="col mt-3 mt-sm-0">
@@ -63,13 +58,22 @@
                     <input type="checkbox" class="custom-control-input" name="useRange" id="useRange" [(ngModel)]="searchQuery.useRange">
                     <label class="custom-control-label" for="useRange">Limit by range:</label>
                 </div>
-                <div *ngIf="searchQuery.useRange">
-                    <label for="range"><strong>Maximum distance: {{searchQuery?.range || 0}} miles</strong></label>
-                    <!-- <input type="range" min="1" max="150" value="30" class="form-control" id="range" name="range" [(ngModel)]="user.range" required> -->
-                    <nouislider [min]="1" [max]="150" [step]="1" name="range" [(ngModel)]="searchQuery.range"></nouislider>
+                <div *ngIf="searchQuery.useRange" class="row mt-3">
+                    <div class="col-12">
+                        <label class="custom-control-lable" for="range" id="range"><strong>{{searchQuery?.range || 0}} miles</strong></label>
+                        <!-- <input type="range" min="1" max="150" value="30" class="form-control" id="range" name="range" [(ngModel)]="user.range" required> -->
+                        <nouislider [min]="1" [max]="150" [step]="1" name="range" [(ngModel)]="searchQuery.range"></nouislider>
+                    </div>
+                    
                 </div>
             </div>
-        
+
+            <div class="col mt-3 mt-sm-0">
+                <label for="range"><strong>Age Range:</strong></label>
+                <label class="custom-control-lable">{{ageRange[0]}}-{{ageRange[1]}} years old</label>
+                <nouislider [connect]="true" [min]="18" [max]="100" [step]="1" name="ageRange" [(ngModel)]="ageRange"></nouislider>
+            </div>
+
         <!-- <div class="form-group">
           <label for="range"><strong>Age Range: {{ageRange[0]}}-{{ageRange[1]}} years old</strong></label>
           <nouislider [connect]="true" [min]="18" [max]="100" [step]="1" name="ageRange" [(ngModel)]="ageRange"></nouislider>
@@ -89,5 +93,7 @@
 <hr>
 
 <div class="row">
-    <app-list-user-profiles [inputUsers]="searchResults"></app-list-user-profiles>
+    <div class="col-12">
+        <app-list-user-profiles [inputUsers]="searchResults"></app-list-user-profiles>
+    </div>
 </div>

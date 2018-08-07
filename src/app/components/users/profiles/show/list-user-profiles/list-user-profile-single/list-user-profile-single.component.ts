@@ -15,4 +15,10 @@ export class ListUserProfileSingleComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges(){
+    if(this.user.preference){
+      this.user.preference = this.user.preference.replace("Female","women").replace("Male","men").replace("Both","women and men");
+    }
+  }
+
 }

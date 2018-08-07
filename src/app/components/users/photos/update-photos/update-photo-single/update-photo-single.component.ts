@@ -19,6 +19,7 @@ export class UpdatePhotoSingleComponent implements OnInit {
   }
 
   ngOnInit() {
+    
   }
 
   clicked(){

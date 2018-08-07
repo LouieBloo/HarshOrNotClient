@@ -1,4 +1,10 @@
 #searchFilters{
-    max-width:750px;
+    max-width:1080px;
     margin:auto;
+}
+
+#range{
+    display: block;
+    text-align: center;
+    
 }

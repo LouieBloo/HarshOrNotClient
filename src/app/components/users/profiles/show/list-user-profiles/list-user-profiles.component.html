@@ -1,3 +1,13 @@
-<div *ngFor="let user of inputUsers; let i = index">
-  <app-list-user-profile-single [user]="user"></app-list-user-profile-single>
+<div class="row">
+    <div *ngFor="let user of inputUsers; let i = index" class="col-12 col-lg-3 col-md-4 col-sm-4 pd-2 mt-4 mt-md-0">
+      <app-list-user-profile-single [user]="user"></app-list-user-profile-single>
+    </div>
+</div>
+
+<div *ngIf="!inputUsers || inputUsers.length <= 0" class="row">
+  <div class="col-12">
+    <div>
+      <p class="text-center text-muted">no users found</p>
+    </div>
+  </div>
 </div>

@@ -4,6 +4,7 @@ import { User } from '../../../models/user';
 import { FetchProfileService } from '../../../services/user/profiles/fetch/fetch-profile.service';
 import { UpdateProfileService } from '../../../services/user/profiles/update/update-profile.service';
 import { NouisliderModule } from 'ng2-nouislider';
+import { AgeRangeService } from '../../../services/sanitation/user/ageRange/age-range.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -16,7 +17,7 @@ export class MyProfileComponent implements OnInit {
   alert:string;
   ageRange = [18,100];//we have to duplicate this so our noui component works with a double slider :(
 
-  constructor(private userService:FetchProfileService,private userUpdate:UpdateProfileService) { }
+  constructor(private userService:FetchProfileService,private userUpdate:UpdateProfileService,private ageRangeConverter:AgeRangeService) { }
 
   ngOnInit() {
     this.userService.fetchMyself().subscribe(response =>{
@@ -25,7 +26,7 @@ export class MyProfileComponent implements OnInit {
         this.user.location = {zip:""};//need to set this incase the user has never had a location
       }
 
-      this.mapAgeRangeFromAPI(response);
+      this.ageRange = this.ageRangeConverter.mapAgeRangeFromAPI(this.user);
 
       console.log(response);
     });
@@ -34,7 +35,7 @@ export class MyProfileComponent implements OnInit {
   updatePreferences(){
     this.alert = "Updating...";
 
-    this.mapAgeRangeToAPI();
+    this.user.ageRange = this.ageRangeConverter.mapAgeRangeToAPI(this.ageRange);
     this.userUpdate.updatePreferences(this.user).subscribe(response=>{
 
       console.log('finsished');
@@ -46,16 +47,10 @@ export class MyProfileComponent implements OnInit {
       this.alert = "Done!";
 
       this.user = response;
-      this.mapAgeRangeFromAPI(response);
+      this.ageRange = this.ageRangeConverter.mapAgeRangeFromAPI(this.user);
+
     });
   }
 
-  //since the noui range uses an array, we have to map it to our ageRange objects min and max properties
-  mapAgeRangeFromAPI(data){
-    this.ageRange = [data.ageRange.min,data.ageRange.max];//have to set this manually
-  }
-  //set the correct age range for the api
-  mapAgeRangeToAPI(){
-    this.user.ageRange ={min:this.ageRange[0],max:this.ageRange[1]}
-  }
+ 
 }

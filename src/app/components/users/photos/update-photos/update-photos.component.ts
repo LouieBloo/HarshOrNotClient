@@ -47,7 +47,7 @@ export class UpdatePhotosComponent implements OnInit {
       this.photoService.uploadNewPhoto(uploadData).subscribe(result=>{
         this.photos = result;
         this.tempImgSrc = null;
-
+        
         this.clearPhotoStatuses();
         this.checkDeleteAndSwapStatuses();
         this.error = "";
