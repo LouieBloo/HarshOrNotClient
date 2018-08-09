@@ -15,4 +15,8 @@ export class FetchProfileService {
   public fetchMyself():Observable<User>{
     return this.auth.request("post","/users/profiles/mine");
   }
+
+  public fetchUser(userID:string):Observable<User>{
+    return this.auth.request("post","/users/profiles/view",{_id:userID});
+  }
 }

@@ -18,6 +18,8 @@ import { SinglePhotoComponent } from './components/users/photos/show-photos/sing
 import { SearchComponent } from './components/pages/search/search.component';
 import { ListUserProfilesComponent } from './components/users/profiles/show/list-user-profiles/list-user-profiles.component';
 import { ListUserProfileSingleComponent } from './components/users/profiles/show/list-user-profiles/list-user-profile-single/list-user-profile-single.component';
+import { ViewSingleProfileComponent } from './components/users/profiles/view/view-single-profile/view-single-profile.component';
+import { DateComponent } from './components/pages/date/date.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { ListUserProfileSingleComponent } from './components/users/profiles/show
     SinglePhotoComponent,
     SearchComponent,
     ListUserProfilesComponent,
-    ListUserProfileSingleComponent
+    ListUserProfileSingleComponent,
+    ViewSingleProfileComponent,
+    DateComponent,
   ],
   imports: [
     BrowserModule,

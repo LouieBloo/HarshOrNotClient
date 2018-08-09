@@ -6,6 +6,7 @@ import { RegisterComponent } from './components/pages/register/register.componen
 import { LoginComponent } from './components/pages/login/login.component';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { SearchComponent } from './components/pages/search/search.component';
+import { DateComponent } from './components/pages/date/date.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'register',component:RegisterComponent},
   {path: 'login',component:LoginComponent},
   {path: 'search',component:SearchComponent},
+  {path: 'date',component:DateComponent},
 ];
 
 @NgModule({
