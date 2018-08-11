@@ -1,45 +1,53 @@
-  
-  <div class="row justify-content-center align-items-center">
-    <div class="col-12 col-lg-4 col-md-6 col-sm-6" *ngFor="let src of photos?.photoURLS; let i = index">
-      <app-update-photo-single [photoSrc]="src" [status]="photoStatuses[i]" (clickedEmitter)="photoClicked($event)"></app-update-photo-single>
-    </div>
-    <div class="col-12 text-center mt-2 mb-2" *ngIf="photos?.photos.length > 0"><small class="text-muted">Click photos to delete and swap positions</small></div>
+<div class="row justify-content-center align-items-center">
+  <div class="col-12 col-lg-4 col-md-6 col-sm-6" *ngFor="let src of photos?.photoURLS; let i = index">
+    <app-update-photo-single [photoSrc]="src" [status]="photoStatuses[i]" (clickedEmitter)="photoClicked($event)"></app-update-photo-single>
   </div>
-
-  <div class="row mt-4" *ngIf="showDeleteButton">
-    <div class="col-12">
-      <button (click)="deletePhotoButtonClicked()" class="btn btn-danger float-right  fadeInDown animated">Delete</button>
-    </div>
+  <div class="col-12 text-center mt-2 mb-2" *ngIf="photos?.photos.length > 0">
+    <small class="text-muted">Click photos to delete and swap positions</small>
   </div>
+</div>
 
-  <div class="row mt-4" *ngIf="showSwapButton">
-      <div class="col-12">
-        <button (click)="swapPhotoButtonClicked()" class="btn btn-success float-right">Swap</button>
+<div class="row mt-4" *ngIf="showDeleteButton">
+  <div class="col-12">
+    <button (click)="deletePhotoButtonClicked()" class="btn btn-danger float-right  fadeInDown animated">Delete</button>
+  </div>
+</div>
+
+<div class="row mt-4" *ngIf="showSwapButton">
+  <div class="col-12">
+    <button (click)="swapPhotoButtonClicked()" class="btn btn-success float-right">Swap</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <h4>Upload new photos:
+      <small class="text-muted">{{photos?.photoURLS?.length || 0}}/{{maximumNumberOfPhotos}}</small>
+    </h4>
+
+    <form *ngIf="photos?.photos.length < maximumNumberOfPhotos" role="form" #uploadForm="ngForm" (submit)="submitUpload()">
+      <div class="form-group">
+        <input type='file' (change)="fileChangeEvent($event)">
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1 / 1"
+          [resizeToWidth]="1500"
+          format="png"
+          (imageCroppedFile)="imageCroppedFile($event)"
+          (imageLoaded)="imageLoaded()"
+          (loadImageFailed)="loadImageFailed()"
+          style="max-height: 60vh"
+          [style.display]="cropperReady ? null : 'none'">
+        </image-cropper>
       </div>
-    </div>
-  
-  <div class="row">
-    <div class="col-12">
-      <h4>Upload new photos: <small class="text-muted">{{photos?.photoURLS?.length || 0}}/{{maximumNumberOfPhotos}}</small></h4>
-
-      <div class="row">
-        <div class="col-12">
-          <app-single-photo *ngIf="tempImgSrc" [photoSrc]="tempImgSrc"></app-single-photo>
-        </div>
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Upload">
       </div>
+      <div *ngIf="error" class="alert alert-success">{{error}}</div>
+    </form>
 
-      <form *ngIf="photos?.photos.length < maximumNumberOfPhotos" role="form" #uploadForm="ngForm" (submit)="submitUpload()">
-        <div class="form-group">
-          <input type='file' (change)="newPhotoFile($event)">
-        </div>
-        <div class="form-group">
-          <input type="submit" class="btn btn-primary" value="Upload">
-        </div>
-        <div *ngIf="error" class="alert alert-success">{{error}}</div>
-      </form>
+    <div *ngIf="photos?.photos.length >= maximumNumberOfPhotos" class="alert alert-warning">Maximum 5 photos. Delete one to add more</div>
 
-      <div *ngIf="photos?.photos.length >= maximumNumberOfPhotos"class="alert alert-warning">Maximum 5 photos. Delete one to add more</div>
-      
-    </div>
   </div>
-  
+</div>

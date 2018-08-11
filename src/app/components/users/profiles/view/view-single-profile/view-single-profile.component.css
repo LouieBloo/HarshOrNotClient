@@ -1,0 +1,25 @@
+#card{
+    max-width:750px;
+    margin:auto;
+
+    /* border-style: solid; */
+}
+
+#profileImage{
+    max-width:100%;
+    display:block;
+    margin:auto;
+}
+
+#userName{
+    text-transform:capitalize;
+}
+
+span{
+    color:#0400a0;
+}
+
+#distance{
+    font-size:65%;
+    color:black;
+}

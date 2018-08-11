@@ -12,6 +12,6 @@ export interface User{
   error?:string;
   _id?:string;
   photo?:string;
-  photos?:[string]
+  photos?:string[]
 }
 

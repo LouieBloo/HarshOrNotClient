@@ -21,7 +21,9 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
+    "ng-simple-slideshow": "^1.2.3",
     "ng2-nouislider": "^1.7.11",
+    "ngx-image-cropper": "^1.0.1",
     "nouislider": "^11.1.0",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
