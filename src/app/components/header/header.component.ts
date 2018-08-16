@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
+import { trigger, transition, animate, style } from '../../../../node_modules/@angular/animations';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,11 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  isCollapsed:boolean = true;
+
+  @ViewChild('menu') menu;
+
+
   constructor(private auth:AuthService) { }
 
   ngOnInit() {
@@ -15,6 +21,19 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.auth.logout();
+  }
+
+  //fired when the big menu button is clicked on mobile
+  menuToggleClicked(){
+    this.isCollapsed = !this.isCollapsed;
+  }
+
+  //fired when any list item on the menu is clicked
+  menuItemClicked(){
+    if(!this.isCollapsed){
+      this.isCollapsed = true;
+      this.menu.nativeElement.className = this.menu.nativeElement.className.replace("show","");
+    }
   }
 
 }

@@ -5,3 +5,9 @@ body {
 .pointerCursor{
     cursor: pointer;
 }
+
+
+.arrow{
+    border-top:2px solid #ef4705 !important;
+    border-left:2px solid #ef4705 !important;
+}

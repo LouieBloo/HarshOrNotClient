@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" routerLink="/">Harsh</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation" (click)="menuToggleClicked()">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse"  id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div #menu class="collapse navbar-collapse"  id="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" >
+    <ul class="navbar-nav mr-auto" (click)="menuItemClicked()">
       <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
         <a class="nav-link" routerLink="/">Home</a>
       </li>

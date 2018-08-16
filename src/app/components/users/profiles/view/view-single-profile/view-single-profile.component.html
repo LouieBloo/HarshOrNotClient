@@ -2,11 +2,11 @@
   <div class="col-12">
       <div class="row justify-content-center">
         <div style="width:100%;">
-          <slideshow *ngIf="user?.photos" [height]="'400px'" [backgroundSize]="'contain'" [showArrows]="true" [imageUrls]="user?.photos" [lazyLoad]="user?.photos?.length > 1" [showDots]="true"></slideshow>
+          <slideshow *ngIf="user?.photos" [height]="'400px'" [backgroundSize]="'contain'" [showArrows]="true" [imageUrls]="user?.photos" [lazyLoad]="user?.photos?.length > 1" [showDots]="false"></slideshow>
           <!-- <img id="profileImage" src="{{user?.photos[2]}}"> -->
         </div>
       </div>
-      <div class="row">
+      <div *ngIf="user" class="row">
         <div class="col-12">
           <h4 id="userName" class="d-flex align-items-center">{{user?.name}} <span class="ml-2">{{user?.age}}</span>
             <div *ngIf="user?.gender == 'Female'; then femaleSign else maleSign"></div>
@@ -15,6 +15,7 @@
             <span id="distance" class="ml-2 text-muted">{{user?.distance}} meters away</span>
           </h4>
           <p class="text-muted">likes {{user?.preference}}</p>
+          <h5>Bio:</h5>
           <p>{{user?.bio}}</p>
         </div>
       </div>
