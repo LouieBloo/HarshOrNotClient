@@ -2,7 +2,10 @@
   <div class="col-12" id="card">
     <div class="row">
       <div class="col-12" id="imgContainer">
-        <img [src]="user?.photo?.replace('filter','480x350')">
+        <img *ngIf="user?.photo?.length > 0" [src]="user?.photo?.replace('filter','480x350')">
+        <div *ngIf="user?.photo?.length <= 0" style="text-align: center;">
+          <i class="fas fa-user-circle" style="font-size:195px;"></i>
+        </div>
       </div>
     </div>
     

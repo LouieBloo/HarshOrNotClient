@@ -1,25 +1,63 @@
 <div class="row justify-content-center" id="card">
   <div class="col-12">
-      <div class="row justify-content-center">
-        <div style="width:100%;">
-          <slideshow *ngIf="user?.photos" [height]="'400px'" [backgroundSize]="'contain'" [showArrows]="true" [imageUrls]="user?.photos" [lazyLoad]="user?.photos?.length > 1" [showDots]="false"></slideshow>
-          <!-- <img id="profileImage" src="{{user?.photos[2]}}"> -->
+    <div class="row justify-content-center">
+      <div style="width:100%;">
+        <slideshow *ngIf="user?.photos" [height]="'400px'" [backgroundSize]="'contain'" [showArrows]="true" [imageUrls]="user?.photos"
+          [lazyLoad]="user?.photos?.length > 1" [showDots]="false"></slideshow>
+        <!-- <img id="profileImage" src="{{user?.photos[2]}}"> -->
+      </div>
+    </div>
+    <div *ngIf="user" class="row mt-3">
+      <div class="col-12">
+        <h4 id="userName" class="d-flex align-items-center">{{user?.name}}
+          <span class="ml-2">{{user?.age}}</span>
+          <div *ngIf="user?.gender == 'Female'; then femaleSign else maleSign"></div>
+          <ng-template #femaleSign>
+            <small class="ml-2 text-muted">
+              <i class="fas fa-venus"></i>
+            </small>
+          </ng-template>
+          <ng-template #maleSign>
+            <small class="ml-2 text-muted ">
+              <i class="fas fa-mars"></i>
+            </small>
+          </ng-template>
+          <span id="distance" class="ml-2">{{user?.distance}} meters away</span>
+        </h4>
+        <p class="text-muted">likes {{user?.preference}}</p>
+        <div class="row mb-3">
+          <div class="col-12 pd-4">
+            <strong>Bio:</strong>
+            <div id="bioBlock">
+
+              <p>{{user?.bio}}</p>
+            </div>
+
+          </div>
         </div>
       </div>
-      <div *ngIf="user" class="row">
-        <div class="col-12">
-          <h4 id="userName" class="d-flex align-items-center">{{user?.name}} <span class="ml-2">{{user?.age}}</span>
-            <div *ngIf="user?.gender == 'Female'; then femaleSign else maleSign"></div>
-            <ng-template #femaleSign><small class="ml-2 text-muted"><i class="fas fa-venus"></i></small></ng-template>
-            <ng-template #maleSign><small class="ml-2 text-muted "><i class="fas fa-mars"></i></small></ng-template>
-            <span id="distance" class="ml-2 text-muted">{{user?.distance}} meters away</span>
-          </h4>
-          <p class="text-muted">likes {{user?.preference}}</p>
-          <h5>Bio:</h5>
-          <p>{{user?.bio}}</p>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <form #feedbackForm (submit)="feedbackSubmitted()">
+          <div class="form-group">
+            <label for="feedback">
+              <strong>Feedback:</strong>
+            </label>
+            <p class="mt-0 mb-1" *ngIf="feedback?.dateAdded;">
+              <small class="text-muted">Feedback submitted on: {{feedback?.dateAdded | date}}</small>
+            </p>
+            <textarea class="form-control" name="feedback" id="feedback" rows="3" placeholder="be honest and constructive" [disabled]="!canEditForm"
+              (ngModelChange)="textAreaChanged($event);" [(ngModel)]="feedback.feedback"></textarea>
+          </div>
+          <div class="form-group text-center">
+            <input *ngIf="!feedback?.dateAdded;" type="submit" class="btn btn-primary" value="Submit" id="submitButton" [disabled]='!formValid'>
+          </div>
+          <div *ngIf="feedback?.error" class="form-group">
+            <p class="text-warning">{{feedback.error}}</p>
+          </div>
+        </form>
       </div>
-        
+    </div>
   </div>
 </div>
-

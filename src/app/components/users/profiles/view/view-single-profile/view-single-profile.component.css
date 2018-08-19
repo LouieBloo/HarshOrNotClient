@@ -25,3 +25,20 @@ span{
 }
 
 
+#bioBlock{
+    background-color:#d3b39d26;
+    padding:15px;
+
+}
+#bioBlock p{
+    margin:0px;
+}
+
+textarea::placeholder {
+    color: rgb(218, 218, 218); 
+}
+
+#submitButton{
+    width:15rem;
+}
+  

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-3">
     <div class="card">
-      <div class="card-header bg-secondary text-white">About Me</div>
+      <div class="card-header bg-secondary text-white"><i class="fas fa-smile-beam mr-2"></i>About Me</div>
       <div class="card-body">
         <p class="card-text"><strong>Name:</strong><span> {{user?.name}}</span></p>
         <p class="card-text"><strong>Email:</strong><span> {{user?.email}}</span><small class="text-muted"> private</small></p>
@@ -14,22 +14,22 @@
 
   <div class="col-md-4 mt-4 mt-md-0">
       <div class="card">
-        <div class="card-header bg-success text-white">Preferences</div>
+        <div class="card-header bg-success text-white"><i class="fas fa-sliders-h mr-2"></i>Preferences</div>
         <div class="card-body">
           <form class="form" role="form" #updateForm="ngForm" (submit)="updatePreferences()">
             <div class="form-group">
                 <label><strong>I am looking for:</strong></label>
-                <div class="form-check">
-                  <input class="form-check-input" name="preference" type="radio" id="pref-male" value="Male" checked [(ngModel)]="user.preference">
-                  <label class="form-check-label" for="pref-male">Men</label>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" name="preference" type="radio" id="pref-male" value="Male" checked [(ngModel)]="user.preference">
+                  <label class="custom-control-label" for="pref-male">Men</label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" name="preference" type="radio" id="pref-female" value="Female" [(ngModel)]="user.preference">
-                  <label class="form-check-label" for="pref-female">Women</label>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" name="preference" type="radio" id="pref-female" value="Female" [(ngModel)]="user.preference">
+                  <label class="custom-control-label" for="pref-female">Women</label>
                 </div>
-                <div class="form-check">
-                  <input class="form-check-input" name="preference" type="radio" id="pref-both" value="Both" [(ngModel)]="user.preference">
-                  <label class="form-check-label" for="pref-both">Both</label>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" name="preference" type="radio" id="pref-both" value="Both" [(ngModel)]="user.preference">
+                  <label class="custom-control-label" for="pref-both">Both</label>
                 </div>
             </div>
             <div class="form-group">
@@ -41,12 +41,12 @@
               <input class="form-control" type="text" pattern="[0-9]{5}" id="zip" name="zip" required minlength="5" maxlength="5" [(ngModel)]="user.location.zip"/>
             </div>
             <div class="form-group">
-              <label for="range"><strong>Maximum distance: {{user.range}} miles</strong></label>
+              <label for="range"><strong>Maximum distance: </strong>{{user.range}} miles</label>
               <!-- <input type="range" min="1" max="150" value="30" class="form-control" id="range" name="range" [(ngModel)]="user.range" required> -->
               <nouislider [min]="1" [max]="150" [step]="1" name="range" [(ngModel)]="user.range"></nouislider>
             </div>
             <div class="form-group">
-              <label for="range"><strong>Age Range: {{ageRange[0]}}-{{ageRange[1]}} years old</strong></label>
+              <label for="range"><strong>Age Range: </strong>{{ageRange[0]}}-{{ageRange[1]}} years old</label>
               <nouislider [connect]="true" [min]="18" [max]="100" [step]="1" name="ageRange" [(ngModel)]="ageRange"></nouislider>
             </div>
             <div class="form-group">
@@ -60,7 +60,7 @@
 
     <div class="col-md-5 mt-4 mt-md-0">
       <div class="card">
-        <div class="card-header bg-primary text-white">Photos</div>
+        <div class="card-header bg-primary text-white"><i class="fas fa-camera-retro mr-2"></i>Photos</div>
         <div class="card-body">
           <app-update-photos></app-update-photos>
         </div>

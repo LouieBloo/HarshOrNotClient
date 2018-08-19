@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-date',
@@ -9,10 +10,10 @@ export class DateComponent implements OnInit {
 
   public userID:string;
 
-  constructor() { }
+  constructor(private auth:AuthService) { }
 
   ngOnInit() {
-    this.userID = "5b6e5eca00307e17d61b0def";
+    this.userID = this.auth.getUserID();
   }
 
 
