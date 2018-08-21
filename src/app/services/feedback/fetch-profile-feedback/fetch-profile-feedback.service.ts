@@ -14,8 +14,8 @@ export class FetchProfileFeedbackService {
   constructor(private auth:AuthService) { }
 
 
-  public fetchProfileFeedback(params:ProfileFeedback):Observable<ProfileFeedback>{
-    return this.auth.request("post","/feedback/profile-feedback/get",params);
+  public fetchSingleProfileFeedback(params:ProfileFeedback):Observable<ProfileFeedback>{
+    return this.auth.request("post","/feedback/profile-feedback/getSingle",params);
   }
 
   public addProfileFeedback(params:ProfileFeedback):Observable<ProfileFeedback>{

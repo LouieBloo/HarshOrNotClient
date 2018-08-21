@@ -49,7 +49,7 @@ export class ViewSingleProfileComponent implements OnInit {
         }
       });
 
-      this.fetchFeedbackService.fetchProfileFeedback({target:this.userID}).subscribe(result=>{
+      this.fetchFeedbackService.fetchSingleProfileFeedback({target:this.userID}).subscribe(result=>{
         if(result && !result.error){
           this.feedback = result
           this.canEditForm = false;

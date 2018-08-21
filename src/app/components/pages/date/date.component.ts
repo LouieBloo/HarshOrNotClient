@@ -13,7 +13,8 @@ export class DateComponent implements OnInit {
   constructor(private auth:AuthService) { }
 
   ngOnInit() {
-    this.userID = this.auth.getUserID();
+    //this.userID = this.auth.getUserID();
+    this.userID = "5b74f2a5c0c23a0312331dd4";
   }
 
 
