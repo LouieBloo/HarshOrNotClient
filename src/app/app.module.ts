@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { NouisliderModule } from 'ng2-nouislider';
-import {SlideshowModule} from 'ng-simple-slideshow';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgxImageGalleryModule } from 'ngx-image-gallery';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/pages/home/home.component';
@@ -50,8 +50,8 @@ import { DateComponent } from './components/pages/date/date.component';
     AppRoutingModule,
     HttpClientModule,
     NouisliderModule,
-    SlideshowModule,
-    ImageCropperModule
+    ImageCropperModule,
+    NgxImageGalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

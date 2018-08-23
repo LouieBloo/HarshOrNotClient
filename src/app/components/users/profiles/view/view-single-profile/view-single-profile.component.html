@@ -2,12 +2,12 @@
   <div class="col-12">
     <div class="row justify-content-center">
       <div style="width:100%;">
-        <slideshow *ngIf="user?.photos" [height]="'400px'" [backgroundSize]="'contain'" [showArrows]="true" [imageUrls]="user?.photos"
-          [lazyLoad]="user?.photos?.length > 1" [showDots]="false"></slideshow>
-        <!-- <img id="profileImage" src="{{user?.photos[2]}}"> -->
+        <!-- <slideshow *ngIf="user?.photos" [height]="'400px'" [backgroundSize]="'contain'" [showArrows]="true" [imageUrls]="user?.photos"
+          [lazyLoad]="user?.photos?.length > 1" [showDots]="false"></slideshow> -->
+        <ngx-image-gallery class="mt-2" [ngStyle]="{'max-height.px': galleryHeight}" *ngIf="galleryImages" [images]="galleryImages" [conf]="galleryConf"></ngx-image-gallery>
       </div>
     </div>
-    <div *ngIf="user" class="row mt-3">
+    <div *ngIf="user" class="row">
       <div class="col-12">
         <h4 id="userName" class="d-flex align-items-center">{{user?.name}}
           <span class="ml-2">{{user?.age}}</span>
@@ -27,7 +27,7 @@
         <p class="text-muted">likes {{user?.preference}}</p>
         <div class="row mb-3">
           <div class="col-12 pd-4">
-            <strong>Bio:</strong>
+            <strong><i class="far fa-address-book"></i> Bio:</strong>
             <div id="bioBlock">
 
               <p>{{user?.bio}}</p>
@@ -42,7 +42,7 @@
         <form #feedbackForm (submit)="feedbackSubmitted()">
           <div class="form-group">
             <label for="feedback">
-              <strong>Feedback:</strong>
+              <strong><i class="far fa-comment"></i> Feedback:</strong>
             </label>
             <p class="mt-0 mb-1" *ngIf="feedback?.dateAdded;">
               <small class="text-muted">Feedback submitted on: {{feedback?.dateAdded | date}}</small>

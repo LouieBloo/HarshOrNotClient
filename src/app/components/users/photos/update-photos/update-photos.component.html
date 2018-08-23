@@ -30,7 +30,7 @@
         <input type='file' (change)="fileChangeEvent($event)">
         <image-cropper
           [imageChangedEvent]="imageChangedEvent"
-          [maintainAspectRatio]="true"
+          [maintainAspectRatio]="false"
           [aspectRatio]="1 / 1"
           [resizeToWidth]="1500"
           format="png"

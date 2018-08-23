@@ -2,6 +2,7 @@
     max-width:750px;
     margin:auto;
 
+    background-color: #fffbf5;
     /* border-style: solid; */
 }
 
@@ -41,4 +42,6 @@ textarea::placeholder {
 #submitButton{
     width:15rem;
 }
+
+
   

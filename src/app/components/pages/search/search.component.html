@@ -1,7 +1,7 @@
 <div class="row">
     <form class="form col-12" role="form" #searchForm="ngForm" (submit)="submit()">
         <div class="row" id="searchFilters">
-            <div class="col mt-3 mt-sm-0">
+            <div class="col-12 col-xs-4 col-sm-4 col-md-2 mt-3 mt-sm-0">
                 <label><strong>Their sex:</strong></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" name="gender" type="radio" id="gender-male" value="Male" checked [ngModel]="searchQuery?.gender" (ngModelChange)="searchQuery.gender=$event">
@@ -12,7 +12,7 @@
                     <label class="custom-control-label" for="gender-female">Woman</label>
                 </div>
             </div>
-            <div class="col mt-3 mt-sm-0">
+            <div class="col-12 col-xs-4 col-sm-4 col-md-2 mt-3 mt-sm-0">
                 <label><strong>Their preference:</strong></label>
                 <div class="custom-control custom-radio">
                     <input class="custom-control-input" name="preference" type="radio" id="pref-male" value="Male" checked [ngModel]="searchQuery?.preference" (ngModelChange)="searchQuery.preference=$event">
@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="col mt-3 mt-sm-0">
+            <div class="col-12 col-xs-4 col-sm-4 col-md-2 mt-3 mt-sm-0">
                 <label><strong>Their body type:</strong></label>
                 <div class="custom-control custom-checkbox">
                     <input class="custom-control-input" name="bodyTypeRaw" type="checkbox" id="body-althletic" value="Althletic" [ngModel]="searchQuery?.bodyTypeRaw?.althletic" (ngModelChange)="searchQuery.bodyTypeRaw.althletic=$event">
@@ -52,7 +52,7 @@
                 </div>
             </div>
             
-            <div class="col mt-3 mt-sm-0">
+            <div class="col-12 col-xs-4 col-sm-4 col-md-2 mt-3 mt-sm-0">
                 <label><strong>Location:</strong></label>
                 <div class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="useRange" id="useRange" [(ngModel)]="searchQuery.useRange">
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <div class="col mt-3 mt-sm-0">
+            <div class="col-12 col-xs-4 col-sm-4 col-md-2 mt-3 mt-sm-0">
                 <label for="range"><strong>Age Range:</strong></label>
                 <label class="custom-control-lable">{{ageRange[0]}}-{{ageRange[1]}} years old</label>
                 <nouislider [connect]="true" [min]="18" [max]="100" [step]="1" name="ageRange" [(ngModel)]="ageRange"></nouislider>

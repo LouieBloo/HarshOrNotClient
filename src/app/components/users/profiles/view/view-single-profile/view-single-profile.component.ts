@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, SimpleChanges, HostListener } from '@angular/core';
 import { FetchProfileService } from '../../../../../services/user/profiles/fetch/fetch-profile.service';
 import { User } from '../../../../../models/user';
-import {SlideshowModule} from 'ng-simple-slideshow';
 import { FetchProfileFeedbackService } from '../../../../../services/feedback/fetch-profile-feedback/fetch-profile-feedback.service';
 import { ProfileFeedback } from '../../../../../models/feedback';
+import { GALLERY_CONF, GALLERY_IMAGE } from '../../../../../../../node_modules/ngx-image-gallery';
 
 @Component({
   selector: 'app-view-single-profile',
@@ -22,6 +22,19 @@ export class ViewSingleProfileComponent implements OnInit {
   formValid:boolean = false;
   canEditForm:boolean = false;
 
+  // gallery configuration
+  galleryConf: GALLERY_CONF = {
+    showDeleteControl: false,
+    showImageTitle: false,
+    showCloseControl:false,
+    inline:true,
+    thumbnailSize:40,
+    backdropColor:"rgba(255, 178, 0, 0)",
+    reactToMouseWheel:false
+  };
+  galleryImages:GALLERY_IMAGE[];
+  galleryHeight:number = 500;
+
   constructor(
     private fetchProfileService:FetchProfileService,
     private fetchFeedbackService:FetchProfileFeedbackService
@@ -31,10 +44,17 @@ export class ViewSingleProfileComponent implements OnInit {
 
 
   ngOnInit() {
+    this.setGalleryHeight();
   }
 
   ngOnChanges(changes:SimpleChanges){
     this.fetchUserInfo();
+  }
+
+  //resize gallery when screen size changes
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.setGalleryHeight();
   }
 
   //calls the services that fetch user info and feedback
@@ -43,7 +63,15 @@ export class ViewSingleProfileComponent implements OnInit {
       this.fetchProfileService.fetchUser(this.userID).subscribe(result=>{
         if(result && !result.error){
 
-          result.photos = this.applyPhotoFilter(result.photos);
+          let bigPhotoURLs = this.applyPhotoFilter(result.photos);
+          let thumbnailPhotoURLs = this.applyThumbnailPhotoFilter(result.photos);
+
+          let tempImageArray = [];
+          for(let i = 0;i < bigPhotoURLs.length && i < thumbnailPhotoURLs.length;i++){
+            tempImageArray.push({url:bigPhotoURLs[i],thumbnailUrl:thumbnailPhotoURLs[i]});
+          }
+          this.galleryImages = tempImageArray;
+
           this.user = result;
           this.user.preference = this.user.preference.replace("Female","women").replace("Male","men").replace("Both","women and men");
         }
@@ -69,6 +97,28 @@ export class ViewSingleProfileComponent implements OnInit {
         result.push(url.replace("filter","adaptive-fit-in/750x750"));
       })
       return result;
+    }
+  }
+
+  applyThumbnailPhotoFilter(photoArr:string[]):string[]{
+    if(!photoArr || photoArr.length < 1){
+      return null;
+    }else{
+      let result = [];
+      photoArr.forEach((url)=>{
+        result.push(url.replace("filter","adaptive-fit-in/100x100"));
+      })
+      return result;
+    }
+  }
+
+  //need to dynamically control the height when the width of the page gets small
+  setGalleryHeight(){
+    if(window.innerWidth >= 500){
+      this.galleryHeight = 500;
+    }
+    else{
+      this.galleryHeight = 500 - (500- window.innerWidth);
     }
   }
 
