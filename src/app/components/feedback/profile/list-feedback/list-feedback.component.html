@@ -1,0 +1,31 @@
+<div class="row mb-4 pt-4 " id="item">
+  <div class="col-12">
+    <div class="row">
+      <div class="col-4 col-sm-2 text-center">
+        <div *ngIf="feedback?.gender == 'Female'; then femaleSign else maleSign"></div>
+        <ng-template #femaleSign>
+          <i class="fas fa-venus big"></i>
+        </ng-template>
+        <ng-template #maleSign>
+          <i class="fas fa-mars big"></i>
+        </ng-template>
+
+        <p id="age">
+          <strong>{{feedback?.age}}</strong>
+        </p>
+      </div>
+      <div class="col-8">
+        <p>{{feedback?.feedback.feedback}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- feedback?:string;
+    error?:string;
+    dateAdded?:string;
+    age?:number;
+    gender?:string;
+    bodyType?:string;
+    preference?:string; -->

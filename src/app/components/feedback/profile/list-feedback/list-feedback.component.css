@@ -1,0 +1,21 @@
+.big{
+    font-size: 5rem;
+}
+
+.fa-mars{
+    color:blue;
+}
+
+.fa-venus{
+    color:pink;
+}
+
+#item{
+    background-color:#fff5e5;
+    box-shadow:2px 4px 0px 1px #0000003b;
+}
+
+#age{
+    font-size:1.4rem;
+
+}

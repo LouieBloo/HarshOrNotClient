@@ -7,15 +7,17 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { AuthGuardService } from './services/auth-guard/auth-guard.service';
 import { SearchComponent } from './components/pages/search/search.component';
 import { DateComponent } from './components/pages/date/date.component';
+import { FeedbackComponent } from './components/pages/feedback/feedback.component';
 
 
 const routes: Routes = [
   {path: '',component:HomeComponent,canActivate:[AuthGuardService]},
-  {path: 'my-profile',component:MyProfileComponent},
+  {path: 'my-profile',component:MyProfileComponent,canActivate:[AuthGuardService]},
   {path: 'register',component:RegisterComponent},
   {path: 'login',component:LoginComponent},
-  {path: 'search',component:SearchComponent},
-  {path: 'date',component:DateComponent},
+  {path: 'search',component:SearchComponent,canActivate:[AuthGuardService]},
+  {path: 'date',component:DateComponent,canActivate:[AuthGuardService]},
+  {path: 'feedback',component:FeedbackComponent,canActivate:[AuthGuardService]}
 ];
 
 @NgModule({

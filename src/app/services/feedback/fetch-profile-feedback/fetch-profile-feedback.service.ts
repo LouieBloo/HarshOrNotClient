@@ -21,4 +21,8 @@ export class FetchProfileFeedbackService {
   public addProfileFeedback(params:ProfileFeedback):Observable<ProfileFeedback>{
     return this.auth.request("post","/feedback/profile-feedback/add",params);
   }
+
+  public getFeedbackAboutMe(limit:number):Observable<ProfileFeedback[]>{
+    return this.auth.request("post","/feedback/profile-feedback/getFeedbackAboutMe",{limit:limit});
+  }
 }

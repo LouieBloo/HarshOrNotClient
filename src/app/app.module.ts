@@ -23,6 +23,8 @@ import { ListUserProfilesComponent } from './components/users/profiles/show/list
 import { ListUserProfileSingleComponent } from './components/users/profiles/show/list-user-profiles/list-user-profile-single/list-user-profile-single.component';
 import { ViewSingleProfileComponent } from './components/users/profiles/view/view-single-profile/view-single-profile.component';
 import { DateComponent } from './components/pages/date/date.component';
+import { FeedbackComponent } from './components/pages/feedback/feedback.component';
+import { ListFeedbackComponent } from './components/feedback/profile/list-feedback/list-feedback.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { DateComponent } from './components/pages/date/date.component';
     ListUserProfileSingleComponent,
     ViewSingleProfileComponent,
     DateComponent,
+    FeedbackComponent,
+    ListFeedbackComponent,
   ],
   imports: [
     BrowserModule,
