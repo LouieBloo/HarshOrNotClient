@@ -1,31 +1,42 @@
 <div class="row mb-4 pt-4 " id="item">
   <div class="col-12">
     <div class="row">
-      <div class="col-4 col-sm-2 text-center">
-        <div *ngIf="feedback?.gender == 'Female'; then femaleSign else maleSign"></div>
-        <ng-template #femaleSign>
-          <i class="fas fa-venus big"></i>
-        </ng-template>
-        <ng-template #maleSign>
-          <i class="fas fa-mars big"></i>
-        </ng-template>
-
-        <p id="age">
-          <strong>{{feedback?.age}}</strong>
-        </p>
+      <div class="col-7 col-sm-12 order-11 order-sm-1">
+        <p class="text-right">{{feedback?.feedback?.dateAdded | date}}</p>
       </div>
-      <div class="col-8">
-        <p>{{feedback?.feedback.feedback}}</p>
+      <div class="col-5 col-sm-3 order-10">
+
+        <div class="row mb-3 mb-sm-0">
+          <div class="col-12 col-sm-10 pl-4 d-flex justify-content-center align-items-center">
+            <div *ngIf="feedback?.gender == 'Female'; then femaleSign else maleSign"></div>
+            <ng-template #femaleSign>
+              <i class="fas fa-venus big"></i>
+            </ng-template>
+            <ng-template #maleSign>
+              <i class="fas fa-mars big"></i>
+            </ng-template>
+            <span id="age" class="pl-2 pl-sm-4">
+              <strong>{{feedback?.age}}</strong>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-12 col-sm-9 d-flex align-items-center order-12">
+        <ul>
+          <li>Interested in
+            <strong>{{feedback?.preference}}</strong>
+          </li>
+          <li>Has a
+            <strong>{{feedback?.bodyType}}</strong> body</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="row mt-2 mt-sm-4">
+      <div class="col-12">
+        <p id="feedbackParagraph" class="p-4">{{feedback?.feedback.feedback}}</p>
       </div>
     </div>
   </div>
 </div>
-
-
-<!-- feedback?:string;
-    error?:string;
-    dateAdded?:string;
-    age?:number;
-    gender?:string;
-    bodyType?:string;
-    preference?:string; -->

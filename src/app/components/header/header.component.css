@@ -1,0 +1,7 @@
+.navbar-light .navbar-nav .active{
+    font-weight:500;
+}
+
+a{
+    cursor: pointer;
+}

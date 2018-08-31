@@ -1,6 +1,6 @@
 export interface ProfileFeedback{
     target:string;
-    feedback?:string;
+    feedback?:any;
     error?:string;
     dateAdded?:string;
     age?:number;

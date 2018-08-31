@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ProfileFeedback } from '../../../../models/feedback';
 
 @Component({
@@ -15,4 +15,9 @@ export class ListFeedbackComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges(){
+    if(this.feedback && this.feedback.preference){
+      this.feedback.preference = this.feedback.preference.replace("Male","Men").replace("Female","Women").replace("Both","Both Men and Women");
+    }
+  }
 }

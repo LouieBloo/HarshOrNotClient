@@ -19,3 +19,20 @@
     font-size:1.4rem;
 
 }
+
+p{
+    white-space: pre-line;
+}
+
+#feedbackParagraph{
+    background-color:white;
+}
+
+li{
+    list-style-type: circle;
+    font-size:18px;
+}
+
+ul{
+    margin-bottom: 0px;
+}

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/">Harsh</a>
+  <a class="navbar-brand" routerLink="/"><i class="far fa-compass"></i> Harsh</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation" (click)="menuToggleClicked()">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -27,13 +27,8 @@
       <li class="nav-item" [routerLinkActive]="['active']">
           <a class="nav-link" routerLink="/search">Search</a>
       </li>
-      <li class="nav-item">
-          <button class="btn btn-sm btn-warning mt-md-1" (click)="logout()">Logout</button>
-      </li>
     </ul>
-    <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
+
+    <a aria-label="logout" class="text-muted" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
   </div>
 </nav>

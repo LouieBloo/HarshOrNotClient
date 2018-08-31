@@ -25,6 +25,7 @@ import { ViewSingleProfileComponent } from './components/users/profiles/view/vie
 import { DateComponent } from './components/pages/date/date.component';
 import { FeedbackComponent } from './components/pages/feedback/feedback.component';
 import { ListFeedbackComponent } from './components/feedback/profile/list-feedback/list-feedback.component';
+import { LoadingComponent } from './components/animations/loading/loading.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { ListFeedbackComponent } from './components/feedback/profile/list-feedba
     DateComponent,
     FeedbackComponent,
     ListFeedbackComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,

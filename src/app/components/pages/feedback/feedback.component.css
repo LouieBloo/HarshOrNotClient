@@ -1,7 +1,12 @@
 #feedbackNav{
-    background-color:#fff5e5;
-    box-shadow:0 0 14px 0px #0000003b;
+    /* background-color:#fff5e5; */
+    /* background-color:white; */
+    /* box-shadow:0 0 14px 0px #0000003b; */
 }
+#feedbackNav p{
+    font-size:1.7rem;
+}
+
 
 #feedbackData{
     
@@ -11,5 +16,11 @@
     max-width:750px;
     margin:auto;
 
-    background-color:#fdd698;
+    /* background-color:#fdd698; */
+    /* box-shadow:0 0 14px 0px #0000003b; */
 }
+
+.nav-justified .nav-item{
+    flex-basis:auto;
+}
+
