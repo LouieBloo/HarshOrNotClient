@@ -42,8 +42,8 @@ export class SearchComponent implements OnInit {
   //todo, makes this better
   formatBodyType(bodyObject):string[]{
     let returnObj:string[] = [];
-    if(bodyObject.althletic){
-      returnObj.push("Althletic");
+    if(bodyObject.athletic){
+      returnObj.push("Athletic");
     }
     if(bodyObject.thin){
       returnObj.push("Thin");

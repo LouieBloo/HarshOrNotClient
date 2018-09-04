@@ -9,6 +9,8 @@ import { ProfileFeedback } from '../../../../models/feedback';
 export class ListFeedbackComponent implements OnInit {
 
   @Input() feedback:ProfileFeedback;
+
+  paragraphExpanded:boolean = false;
   
   constructor() { }
 
@@ -20,4 +22,6 @@ export class ListFeedbackComponent implements OnInit {
       this.feedback.preference = this.feedback.preference.replace("Male","Men").replace("Female","Women").replace("Both","Both Men and Women");
     }
   }
+
+
 }

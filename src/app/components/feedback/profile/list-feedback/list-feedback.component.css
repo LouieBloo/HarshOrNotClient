@@ -28,6 +28,32 @@ p{
     background-color:white;
 }
 
+.paragraphClosed{
+    height:75px;
+    overflow: hidden;
+}
+
+#paragraphScreen{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    
+    padding-left:15px;
+    padding-right:15px;
+
+    cursor: pointer;
+}
+
+#paragraphScreen p{
+    background-color:#000000c9;
+    color:white;
+    height:75px;
+    padding-top:25px;
+
+    font-size:1.25rem;
+}
+
 li{
     list-style-type: circle;
     font-size:18px;

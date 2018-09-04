@@ -35,7 +35,21 @@
     </div>
     <div class="row mt-2 mt-sm-4">
       <div class="col-12">
-        <p id="feedbackParagraph" class="p-4">{{feedback?.feedback.feedback}}</p>
+
+        <div>
+          <p id="feedbackParagraph" class="p-4" [ngClass]="{'paragraphClosed': !paragraphExpanded}">
+            {{feedback?.feedback.feedback}}
+
+          </p>
+          <div *ngIf="!paragraphExpanded" id="paragraphScreen" (click)="paragraphExpanded = true">
+            <p class="text-center">
+              Click to expand
+            </p>
+          </div>
+
+        </div>
+
+
       </div>
     </div>
   </div>
