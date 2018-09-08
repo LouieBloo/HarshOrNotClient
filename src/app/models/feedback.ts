@@ -4,8 +4,14 @@ export interface ProfileFeedback{
     feedback?:any;
     error?:string;
     dateAdded?:string;
-    age?:number;
-    gender?:string;
-    bodyType?:string;
-    preference?:string;
+    user?:{
+        age?:number;
+        gender?:string;
+        bodyType?:string;
+        preference?:string;
+    }
+    redeemed?:boolean;
+    redeemedDate?:Date;
+    costToRedeem?:number;
+    _id?:string;
 }

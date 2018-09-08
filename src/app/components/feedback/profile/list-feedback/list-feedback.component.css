@@ -24,7 +24,7 @@ p{
     white-space: pre-line;
 }
 
-#feedbackParagraph{
+.feedbackParagraph{
     background-color:white;
 }
 
@@ -33,7 +33,7 @@ p{
     overflow: hidden;
 }
 
-#paragraphScreen{
+.paragraphScreen{
     position: absolute;
     left: 0;
     top: 0;
@@ -45,7 +45,7 @@ p{
     cursor: pointer;
 }
 
-#paragraphScreen p{
+.paragraphScreen p{
     background-color:#000000c9;
     color:white;
     height:75px;
@@ -61,4 +61,8 @@ li{
 
 ul{
     margin-bottom: 0px;
+}
+
+.acceptFooter{
+    border-top:1px solid #e9ecef;
 }

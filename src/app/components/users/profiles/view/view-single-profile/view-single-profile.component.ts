@@ -63,14 +63,16 @@ export class ViewSingleProfileComponent implements OnInit {
       this.fetchProfileService.fetchUser(this.userID).subscribe(result=>{
         if(result && !result.error){
 
-          let bigPhotoURLs = this.applyPhotoFilter(result.photos);
-          let thumbnailPhotoURLs = this.applyThumbnailPhotoFilter(result.photos);
+          if(result.photos && result.photos.length > 0){
+            let bigPhotoURLs = this.applyPhotoFilter(result.photos);
+            let thumbnailPhotoURLs = this.applyThumbnailPhotoFilter(result.photos);
 
-          let tempImageArray = [];
-          for(let i = 0;i < bigPhotoURLs.length && i < thumbnailPhotoURLs.length;i++){
-            tempImageArray.push({url:bigPhotoURLs[i],thumbnailUrl:thumbnailPhotoURLs[i]});
+            let tempImageArray = [];
+            for(let i = 0;i < bigPhotoURLs.length && i < thumbnailPhotoURLs.length;i++){
+              tempImageArray.push({url:bigPhotoURLs[i],thumbnailUrl:thumbnailPhotoURLs[i]});
+            }
+            this.galleryImages = tempImageArray;
           }
-          this.galleryImages = tempImageArray;
 
           this.user = result;
           this.user.preference = this.user.preference.replace("Female","women").replace("Male","men").replace("Both","women and men");

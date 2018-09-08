@@ -2,13 +2,13 @@
   <div class="col-12">
     <div class="row">
       <div class="col-7 col-sm-12 order-11 order-sm-1">
-        <p class="text-right">{{feedback?.feedback?.dateAdded | date}}</p>
+        <p class="text-right">{{feedback?.dateAdded | date}}</p>
       </div>
       <div class="col-5 col-sm-3 order-10">
 
         <div class="row mb-3 mb-sm-0">
           <div class="col-12 col-sm-10 pl-4 d-flex justify-content-center align-items-center">
-            <div *ngIf="feedback?.gender == 'Female'; then femaleSign else maleSign"></div>
+            <div *ngIf="feedback?.user?.gender == 'Female'; then femaleSign else maleSign"></div>
             <ng-template #femaleSign>
               <i class="fas fa-venus big"></i>
             </ng-template>
@@ -16,7 +16,7 @@
               <i class="fas fa-mars big"></i>
             </ng-template>
             <span id="age" class="pl-2 pl-sm-4">
-              <strong>{{feedback?.age}}</strong>
+              <strong>{{feedback?.user?.age}}</strong>
             </span>
           </div>
         </div>
@@ -25,30 +25,67 @@
       <div class="col-12 col-sm-9 d-flex align-items-center order-12">
         <ul>
           <li>Interested in
-            <strong>{{feedback?.preference}}</strong>
+            <strong>{{feedback?.user?.preference}}</strong>
           </li>
           <li>Has a
-            <strong>{{feedback?.bodyType}}</strong> body</li>
+            <strong>{{feedback?.user?.bodyType}}</strong> body</li>
         </ul>
       </div>
 
     </div>
     <div class="row mt-2 mt-sm-4">
       <div class="col-12">
+        <div *ngIf="feedback?.redeemed == true || !isAboutMe; then clickToExpand else clickToRedeem"></div>
+        <ng-template #clickToExpand>
+          <div>
+            <p class="p-4 feedbackParagraph" [ngClass]="{'paragraphClosed': !paragraphExpanded}">
+              {{feedback?.feedback}}
 
-        <div>
-          <p id="feedbackParagraph" class="p-4" [ngClass]="{'paragraphClosed': !paragraphExpanded}">
-            {{feedback?.feedback.feedback}}
-
-          </p>
-          <div *ngIf="!paragraphExpanded" id="paragraphScreen" (click)="paragraphExpanded = true">
-            <p class="text-center">
-              Click to expand
             </p>
+            <div *ngIf="!paragraphExpanded" class="paragraphScreen" (click)="paragraphExpanded = true">
+              <p class="text-center">
+                Click to expand
+              </p>
+            </div>
           </div>
+        </ng-template>
 
-        </div>
+        <ng-template #clickToRedeem>
+          <div>
+            <p class="p-4 feedbackParagraph paragraphClosed">
 
+            </p>
+            <div class="paragraphScreen">
+              <p class="text-center" data-toggle="modal" [attr.data-target]="'#' + feedback?._id">
+                Click to redeem
+              </p>
+
+            </div>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="{{feedback?._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Redeem feedback</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          Are you sure you want to redeem this profile feedback for <strong>{{feedback?.costToRedeem}} points</strong>?
+        </p>
+      </div>
+      <div class="text-center p-4 acceptFooter">
+            <button type="button" class="btn btn-primary" (click)="redeemClicked()">Redeem Baby!</button>
 
       </div>
     </div>
