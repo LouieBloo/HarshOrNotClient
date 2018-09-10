@@ -30,7 +30,7 @@ export class FetchProfileFeedbackService {
     return this.auth.request("post","/feedback/profile-feedback/getFeedbackIGave",{limit:limit});
   }
 
-  public unlockProfileFeedback(feedbackID:string):Observable<ProfileFeedback[]>{
+  public unlockProfileFeedback(feedbackID:string):Observable<ProfileFeedback>{
     return this.auth.request("post","/feedback/profile-feedback/unlockFeedback",{feedbackID:feedbackID});
   }
 }

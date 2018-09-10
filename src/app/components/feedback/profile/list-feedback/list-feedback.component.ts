@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { ProfileFeedback } from '../../../../models/feedback';
 import { FetchProfileFeedbackService } from '../../../../services/feedback/fetch-profile-feedback/fetch-profile-feedback.service';
 
@@ -12,6 +12,8 @@ export class ListFeedbackComponent implements OnInit {
   @Input() feedback:ProfileFeedback;
   isAboutMe:boolean = true;
   paragraphExpanded:boolean = false;
+
+  @ViewChild('closeModalButton') closeModalButton: ElementRef;
   
   constructor(private feedbackService:FetchProfileFeedbackService) { }
 
@@ -19,6 +21,22 @@ export class ListFeedbackComponent implements OnInit {
   }
 
   ngOnChanges(){
+    this.feedbackUpdated();
+  }
+
+  redeemClicked(){
+    this.feedbackService.unlockProfileFeedback(this.feedback._id).subscribe(result=>{
+      console.log(result);
+      if(!result.error){
+        this.feedback = result;
+        this.feedbackUpdated();
+
+        this.closeModalButton.nativeElement.click();
+      }
+    })
+  }
+
+  feedbackUpdated(){
     if(this.feedback && this.feedback.user){
       this.feedback.user.preference = this.feedback.user.preference.replace("Male","Men").replace("Female","Women").replace("Both","Both Men and Women");
 
@@ -28,12 +46,5 @@ export class ListFeedbackComponent implements OnInit {
         this.isAboutMe = false;
       }
     }
-  }
-
-  redeemClicked(){
-    console.log(this.feedback);
-    this.feedbackService.unlockProfileFeedback(this.feedback._id).subscribe(result=>{
-      console.log(result);
-    })
   }
 }

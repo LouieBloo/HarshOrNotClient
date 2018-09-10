@@ -34,17 +34,17 @@
 
     </div>
     <div class="row mt-2 mt-sm-4">
-      <div class="col-12">
+      <div class="col-12 pb-3">
         <div *ngIf="feedback?.redeemed == true || !isAboutMe; then clickToExpand else clickToRedeem"></div>
         <ng-template #clickToExpand>
           <div>
-            <p class="p-4 feedbackParagraph" [ngClass]="{'paragraphClosed': !paragraphExpanded}">
+            <p class="p-4 feedbackParagraph mb-0" [ngClass]="{'readMoreClosed': !paragraphExpanded}">
               {{feedback?.feedback}}
 
             </p>
-            <div *ngIf="!paragraphExpanded" class="paragraphScreen" (click)="paragraphExpanded = true">
-              <p class="text-center">
-                Click to expand
+            <div *ngIf="!paragraphExpanded" class="readMoreButton" (click)="paragraphExpanded = true">
+              <p class="text-center backgroundWhite  pt-3 pb-3 mb-0">
+                <i class="fas fa-chevron-down mr-3"></i>Read More
               </p>
             </div>
           </div>
@@ -52,12 +52,12 @@
 
         <ng-template #clickToRedeem>
           <div>
-            <p class="p-4 feedbackParagraph paragraphClosed">
+            <p class="p-4 feedbackParagraph redeemClosed mb-0">
 
             </p>
-            <div class="paragraphScreen">
-              <p class="text-center" data-toggle="modal" [attr.data-target]="'#' + feedback?._id">
-                Click to redeem
+            <div class="redeemScreen">
+              <p class="text-center backgroundGreen" data-toggle="modal" [attr.data-target]="'#' + feedback?._id">
+                  <i class="fas fa-lock mr-3"></i>Click to redeem
               </p>
 
             </div>
@@ -75,7 +75,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalCenterTitle">Redeem feedback</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModalButton>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

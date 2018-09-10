@@ -28,12 +28,35 @@ p{
     background-color:white;
 }
 
-.paragraphClosed{
+.readMoreClosed{
+    height:200px;
+    overflow: hidden;
+}
+
+.redeemClosed{
     height:75px;
     overflow: hidden;
 }
 
-.paragraphScreen{
+.readMoreButton{
+    position: absolute;
+    left: 0;
+    bottom: 15px;
+    width: 100%;
+    
+    padding-left:15px;
+    padding-right:15px;
+
+    cursor: pointer;
+}
+
+.readMoreButton p{
+    
+    color:black;
+    font-size:1.25rem;
+}
+
+.redeemScreen{
     position: absolute;
     left: 0;
     top: 0;
@@ -45,13 +68,21 @@ p{
     cursor: pointer;
 }
 
-.paragraphScreen p{
-    background-color:#000000c9;
+.redeemScreen p{
+    
     color:white;
     height:75px;
     padding-top:25px;
 
     font-size:1.25rem;
+}
+
+.backgroundWhite{
+    background-color:#ffffffe3;
+}
+
+.backgroundGreen{
+    background-color:#001f40e0;
 }
 
 li{
