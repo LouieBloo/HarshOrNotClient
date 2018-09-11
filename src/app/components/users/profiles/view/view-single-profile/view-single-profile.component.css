@@ -6,6 +6,10 @@
     /* border-style: solid; */
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 #profileImage{
     max-width:100%;
     display:block;
@@ -33,6 +37,7 @@ span{
 }
 #bioBlock p{
     margin:0px;
+    white-space: pre-line;
 }
 
 textarea::placeholder {
@@ -41,6 +46,10 @@ textarea::placeholder {
 
 #submitButton{
     width:15rem;
+}
+
+#submitWouldYouDateButton{
+    margin:auto;
 }
 
 

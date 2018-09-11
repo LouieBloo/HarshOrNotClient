@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { User } from '../../../../../../models/user';
+import { Router } from '../../../../../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-list-user-profile-single',
@@ -10,7 +11,7 @@ export class ListUserProfileSingleComponent implements OnInit {
 
   @Input() user:User;
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,4 +22,9 @@ export class ListUserProfileSingleComponent implements OnInit {
     }
   }
 
+  @HostListener('click') onClick(){
+    if(this.user && this.user._id){
+      this.router.navigateByUrl('/profile/' + this.user._id);
+    }
+  }
 }

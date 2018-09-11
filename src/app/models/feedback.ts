@@ -4,6 +4,7 @@ export interface ProfileFeedback{
     feedback?:any;
     error?:string;
     dateAdded?:string;
+    wouldYouDate?:string;
     user?:{
         age?:number;
         gender?:string;
@@ -15,3 +16,4 @@ export interface ProfileFeedback{
     costToRedeem?:number;
     _id?:string;
 }
+

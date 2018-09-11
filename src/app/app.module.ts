@@ -26,6 +26,7 @@ import { DateComponent } from './components/pages/date/date.component';
 import { FeedbackComponent } from './components/pages/feedback/feedback.component';
 import { ListFeedbackComponent } from './components/feedback/profile/list-feedback/list-feedback.component';
 import { LoadingComponent } from './components/animations/loading/loading.component';
+import { ProfileComponent } from './components/pages/profile/profile.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { LoadingComponent } from './components/animations/loading/loading.compon
     FeedbackComponent,
     ListFeedbackComponent,
     LoadingComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

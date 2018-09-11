@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, HostListener } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { FetchProfileService } from '../../../../../services/user/profiles/fetch/fetch-profile.service';
 import { User } from '../../../../../models/user';
 import { FetchProfileFeedbackService } from '../../../../../services/feedback/fetch-profile-feedback/fetch-profile-feedback.service';
@@ -21,6 +21,7 @@ export class ViewSingleProfileComponent implements OnInit {
   feedback:ProfileFeedback={target:"",feedback:""};
   formValid:boolean = false;
   canEditForm:boolean = false;
+  @ViewChild('closeModalButton') closeModalButton: ElementRef;
 
   // gallery configuration
   galleryConf: GALLERY_CONF = {
@@ -81,7 +82,9 @@ export class ViewSingleProfileComponent implements OnInit {
 
       this.fetchFeedbackService.fetchSingleProfileFeedback({target:this.userID}).subscribe(result=>{
         if(result && !result.error){
+          console.log(result);
           this.feedback = result
+          this.feedback.wouldYouDate = this.changeWouldYouDateText(this.feedback.wouldYouDate);
           this.canEditForm = false;
         }else{
           this.canEditForm = true;
@@ -130,7 +133,10 @@ export class ViewSingleProfileComponent implements OnInit {
     this.fetchFeedbackService.addProfileFeedback(this.feedback).subscribe(result=>{
       if(result && !result.error){
         this.feedback = result;
+        this.feedback.wouldYouDate = this.changeWouldYouDateText(this.feedback.wouldYouDate);
         this.canEditForm = false;
+
+        this.closeModalButton.nativeElement.click();
       }else{
 
       }
@@ -145,5 +151,13 @@ export class ViewSingleProfileComponent implements OnInit {
       return;
     }
     this.formValid= false;
+  }
+
+  changeWouldYouDateText(text){
+    if(text){
+      return text.replace("NoBut","Not my type but they look great!");
+    }
+
+    return "";
   }
 }

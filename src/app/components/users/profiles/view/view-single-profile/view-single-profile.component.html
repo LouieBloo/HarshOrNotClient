@@ -39,7 +39,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <form #feedbackForm (submit)="feedbackSubmitted()">
+        <form #feedbackForm="ngForm" >
           <div class="form-group">
             <label for="feedback">
               <strong><i class="far fa-comment"></i> Feedback:</strong>
@@ -50,14 +50,58 @@
             <textarea class="form-control" name="feedback" id="feedback" rows="3" placeholder="be honest and constructive" [disabled]="!canEditForm"
               (ngModelChange)="textAreaChanged($event);" [(ngModel)]="feedback.feedback"></textarea>
           </div>
+          <div *ngIf="feedback?.wouldYouDate && feedback?.dateAdded" class="row">
+            <div class="col-12">
+                <strong><i class="far fa-kiss-wink-heart"></i> Would You Date:</strong>
+                <p>{{feedback?.wouldYouDate}}</p>
+            </div>
+          </div>
           <div class="form-group text-center">
-            <input *ngIf="!feedback?.dateAdded;" type="submit" class="btn btn-primary" value="Submit" id="submitButton" [disabled]='!formValid'>
+            <input *ngIf="!feedback?.dateAdded;" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#wouldYouDateModal" value="Submit" id="submitButton" [disabled]='!formValid'>
           </div>
           <div *ngIf="feedback?.error" class="form-group">
             <p class="text-warning">{{feedback.error}}</p>
           </div>
         </form>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- (submit)="feedbackSubmitted()" -->
+
+<!-- Would you date modal -->
+<div class="modal fade" id="wouldYouDateModal" tabindex="-1" role="dialog" aria-labelledby="wouldYouDateModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <form #wouldYouDateForm="ngForm" (submit)="feedbackSubmitted()" >
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Would you date this person?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModalButton>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-12">
+              <div class="custom-control custom-radio">
+                  <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-yes" value="Yes" [ngModel]="feedback.wouldYouDate" (ngModelChange)="feedback.wouldYouDate=$event" required>
+                  <label class="custom-control-label pointer" for="pref-yes">Yes I Would!</label>
+              </div>
+              <div class="custom-control custom-radio">
+                  <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-noBut" value="NoBut" [ngModel]="feedback.wouldYouDate" (ngModelChange)="feedback.wouldYouDate=$event" required>
+                  <label class="custom-control-label pointer" for="pref-noBut">Not my type but they look great!</label>
+              </div>
+              <div class="custom-control custom-radio">
+                  <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-no" value="No" [ngModel]="feedback.wouldYouDate" (ngModelChange)="feedback.wouldYouDate=$event" required>
+                  <label class="custom-control-label pointer" for="pref-no">Nope</label>
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer ">
+            <input id="submitWouldYouDateButton" type="submit" class="btn btn-primary" value="Submit Feedback" [disabled]='!wouldYouDateForm.valid' >
+          </div>
+      </form>
+      
     </div>
   </div>
 </div>
