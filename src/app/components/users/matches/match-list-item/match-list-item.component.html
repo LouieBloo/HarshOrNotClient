@@ -1,0 +1,28 @@
+<div class="row mt-2 mb-4" (click)="matchClicked()" id="main">
+  <div class="col-4 col-sm-2">
+    <img [src]="match?.target?.photos[0]?.replace('filter','fit-in/100x100')">
+  </div>
+  <div class="col-8 col-sm-10">
+    <div id="bio">
+      <h5 class="">{{match?.target?.name}}
+        <span>{{match?.target?.age}}</span>
+        <div *ngIf="match?.target?.gender == 'Female'; then femaleSign else maleSign"></div>
+        <ng-template #femaleSign>
+          <small class="ml-2 text-muted">
+            <i class="fas fa-venus"></i>
+          </small>
+        </ng-template>
+        <ng-template #maleSign>
+          <small class="ml-2 text-muted">
+            <i class="fas fa-mars"></i>
+          </small>
+        </ng-template>
+      </h5>
+      <ul>
+        <li>likes {{match?.target?.preference}}</li>
+        <li>Has a {{match?.target?.bodyType}} body</li>
+        <li>Last active on </li>
+      </ul>
+    </div>
+  </div>
+</div>

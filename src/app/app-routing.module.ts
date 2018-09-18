@@ -9,6 +9,7 @@ import { SearchComponent } from './components/pages/search/search.component';
 import { DateComponent } from './components/pages/date/date.component';
 import { FeedbackComponent } from './components/pages/feedback/feedback.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
+import { MatchesComponent } from './components/pages/matches/matches.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'search',component:SearchComponent,canActivate:[AuthGuardService]},
   {path: 'date',component:DateComponent,canActivate:[AuthGuardService]},
   {path: 'feedback',component:FeedbackComponent,canActivate:[AuthGuardService]},
-  {path: 'profile/:id',component:ProfileComponent,canActivate:[AuthGuardService]}
+  {path: 'profile/:id',component:ProfileComponent,canActivate:[AuthGuardService]},
+  {path: 'matches',component:MatchesComponent,canActivate:[AuthGuardService]}
 ];
 
 @NgModule({

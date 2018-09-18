@@ -1,0 +1,44 @@
+<div class="row" id="mainRow" >
+  <div class="col-12">
+
+    <div class="row" id="queue">
+      <div class="col-12">
+        <h4>
+          <i class="far fa-question-circle"></i> Match Queue:</h4>
+        <div class="row" id="queueRow">
+          <div class="col-12">
+            <p>Nothin yet!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Queue-->
+
+    <div class="row" id="queue">
+      <div class="col-12 col-sm-8">
+        <h4>
+          <i class="fas fa-heart"></i> Matches:</h4>
+        <div class="row" id="queueRow">
+          <div class="col-12">
+
+            <div *ngFor="let match of matches; let i = index">
+              <app-match-list-item [match]="match"></app-match-list-item>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-4">
+        <h4>Denials ¯\_(ツ)_/¯:</h4>
+        <div class="row" id="queueRow">
+          <div class="col-12">
+              <p>¯\_(ツ)_/¯</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End Queue-->
+
+  </div>
+</div>

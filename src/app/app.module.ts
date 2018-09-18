@@ -27,6 +27,8 @@ import { FeedbackComponent } from './components/pages/feedback/feedback.componen
 import { ListFeedbackComponent } from './components/feedback/profile/list-feedback/list-feedback.component';
 import { LoadingComponent } from './components/animations/loading/loading.component';
 import { ProfileComponent } from './components/pages/profile/profile.component';
+import { MatchesComponent } from './components/pages/matches/matches.component';
+import { MatchListItemComponent } from './components/users/matches/match-list-item/match-list-item.component';
 
 
 @NgModule({
@@ -50,6 +52,8 @@ import { ProfileComponent } from './components/pages/profile/profile.component';
     ListFeedbackComponent,
     LoadingComponent,
     ProfileComponent,
+    MatchesComponent,
+    MatchListItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,3 +17,18 @@ export interface ProfileFeedback{
     _id?:string;
 }
 
+export interface ProfileMatch{
+    target?:{
+        age?:number;
+        gender?:string;
+        bodyType?:string;
+        preference?:string;
+        photos?:string[];
+        _id?:string;
+    };
+    wouldYouDate?:string;
+    wouldTheyDate?:string;
+    dateAdded?:Date;
+    dateCompleted?:Date;
+    error?:string;
+}
