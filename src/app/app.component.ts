@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
+import { LastOnlineService } from './services/statistics/last-online/last-online.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,12 @@ import { AuthService } from './services/auth/auth.service';
 })
 export class AppComponent {
 
-  title = 'Harsh or Not';
+  title = 'Harsh';
 
-  constructor(public auth:AuthService){}
+  constructor(public auth:AuthService,private lastOnlineService:LastOnlineService){}
+
+  @HostListener('click')
+  clickInside() {
+    this.lastOnlineService.pageClicked();
+  }
 }

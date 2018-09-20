@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatchesService } from '../../../services/user/matches/matches.service';
-import { ProfileMatch } from '../../../models/feedback';
+import { Match } from '../../../models/match';
 
 @Component({
   selector: 'app-matches',
@@ -10,7 +10,7 @@ import { ProfileMatch } from '../../../models/feedback';
 export class MatchesComponent implements OnInit {
 
 
-  matches:ProfileMatch[];
+  matches:Match[];
 
   constructor(private matchesService:MatchesService) { }
 

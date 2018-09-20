@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ProfileMatch } from '../../../models/feedback';
+import { Match } from '../../../models/match';
 import { AuthService } from '../../auth/auth.service';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class MatchesService {
 
   constructor(private auth:AuthService) { }
 
-  getMatches():Observable<ProfileMatch[]>{
+  getMatches():Observable<Match[]>{
     return this.auth.request(
       "post",
       '/users/matches/getMatches'

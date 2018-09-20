@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { trigger, transition, animate, style } from '../../../../node_modules/@angular/animations';
+import { trigger, transition, animate, style } from '@angular/animations';
 
 @Component({
   selector: 'app-header',

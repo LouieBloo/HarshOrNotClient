@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AllSearchService } from '../../../services/user/search/all/all-search.service';
 import { SearchQuery } from '../../../models/search';
 import { NouisliderModule } from 'ng2-nouislider';
-import { Router } from '../../../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { User } from '../../../models/user';
 import { AgeRangeService } from '../../../services/sanitation/user/ageRange/age-range.service';
 

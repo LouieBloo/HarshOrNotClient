@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProfileMatch } from '../../../../models/feedback';
-import { Router } from '../../../../../../node_modules/@angular/router';
+import { Match } from '../../../../models/match';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-match-list-item',
@@ -9,7 +9,7 @@ import { Router } from '../../../../../../node_modules/@angular/router';
 })
 export class MatchListItemComponent implements OnInit {
 
-  @Input()match:ProfileMatch;
+  @Input()match:Match;
 
   constructor(private router:Router) { }
 

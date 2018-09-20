@@ -3,7 +3,7 @@ import { FetchProfileService } from '../../../../../services/user/profiles/fetch
 import { User } from '../../../../../models/user';
 import { FetchProfileFeedbackService } from '../../../../../services/feedback/fetch-profile-feedback/fetch-profile-feedback.service';
 import { ProfileFeedback } from '../../../../../models/feedback';
-import { GALLERY_CONF, GALLERY_IMAGE } from '../../../../../../../node_modules/ngx-image-gallery';
+import { GALLERY_CONF, GALLERY_IMAGE } from 'ngx-image-gallery';
 
 @Component({
   selector: 'app-view-single-profile',
