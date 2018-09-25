@@ -16,4 +16,18 @@ export class MatchesService {
       '/users/matches/getMatches'
     );
   }
+
+  getDenials():Observable<Match[]>{
+    return this.auth.request(
+      "post",
+      '/users/matches/getDenials'
+    );
+  }
+
+  getMatchQueue():Observable<Match[]>{
+    return this.auth.request(
+      "post",
+      '/users/matches/getMatchQueue'
+    );
+  }
 }

@@ -1,4 +1,4 @@
-<div class="row" id="mainRow" >
+<div class="row" id="mainRow">
   <div class="col-12">
 
     <div class="row" id="queue">
@@ -7,7 +7,11 @@
           <i class="far fa-question-circle"></i> Match Queue:</h4>
         <div class="row" id="queueRow">
           <div class="col-12">
-            <p>Nothin yet!</p>
+            <p *ngIf="!matchQueue">Nothin yet!</p>
+            <div *ngFor="let queue of matchQueue; let i = index">
+
+                <app-match-list-item [match]="queue"></app-match-list-item>
+              </div>
           </div>
         </div>
       </div>
@@ -20,8 +24,9 @@
           <i class="fas fa-heart"></i> Matches:</h4>
         <div class="row" id="queueRow">
           <div class="col-12">
-
+            <p *ngIf="!matches">Nothin yet!</p>
             <div *ngFor="let match of matches; let i = index">
+
               <app-match-list-item [match]="match"></app-match-list-item>
             </div>
 
@@ -33,7 +38,11 @@
         <h4>Denials ¯\_(ツ)_/¯:</h4>
         <div class="row" id="queueRow">
           <div class="col-12">
-              <p>¯\_(ツ)_/¯</p>
+            <p *ngIf="!denials">¯\_(ツ)_/¯</p>
+            <div *ngFor="let deny of denials">
+
+                <app-match-list-item [match]="deny"></app-match-list-item>
+              </div>
           </div>
         </div>
       </div>
