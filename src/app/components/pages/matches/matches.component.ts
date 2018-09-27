@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatchesService } from '../../../services/user/matches/matches.service';
-import { Match } from '../../../models/match';
+import { Match, MatchLoad } from '../../../models/match';
 
 @Component({
   selector: 'app-matches',
@@ -10,9 +10,9 @@ import { Match } from '../../../models/match';
 export class MatchesComponent implements OnInit {
 
 
-  matches:Match[];
-  denials:Match[];
-  matchQueue:Match[];
+  matches:MatchLoad = {loaded:false};
+  denials:MatchLoad = {loaded:false};
+  matchQueue:MatchLoad = {loaded:false};
 
   constructor(private matchesService:MatchesService) { }
 
@@ -20,21 +20,23 @@ export class MatchesComponent implements OnInit {
     //get matches
     this.matchesService.getMatches().subscribe(result=>{
       if(result && result.length > 0 && !result[0].error){
-        this.matches = result;
+        this.matches.matches = result;
       }
+      this.matches.loaded = true;
     })
     //get denials
     this.matchesService.getDenials().subscribe(result=>{
       if(result && result.length > 0 && !result[0].error){
-        this.denials = result;
+        this.denials.matches = result;
       }
+      this.denials.loaded = true;
     })
     //get match queue
     this.matchesService.getMatchQueue().subscribe(result=>{
-      console.log(result);
       if(result && result.length > 0 && !result[0].error){
-        this.matchQueue = result;
+        this.matchQueue.matches = result;
       }
+      this.matchQueue.loaded = true;
     })
   }
 

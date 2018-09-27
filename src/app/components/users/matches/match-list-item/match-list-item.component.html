@@ -1,8 +1,8 @@
-<div class="row mt-2 mb-4" (click)="matchClicked()" id="main">
-  <div class="col-4 col-sm-2">
-    <img [src]="match?.target?.photos[0]?.replace('filter','fit-in/100x100')">
+<div class="row mt-2 mb-4 d-flex justify-content-center" (click)="matchClicked()" id="main">
+  <div class="">
+    <img class="mainImage" [src]="match?.target?.photos[0]?.replace('filter','100x100')">
   </div>
-  <div class="col-8 col-sm-10">
+  <div class="col-8 col-sm-8">
     <div id="bio">
       <h5 class="">{{match?.target?.name}}
         <span>{{match?.target?.age}}</span>

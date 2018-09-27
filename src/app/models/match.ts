@@ -14,3 +14,8 @@ export interface Match{
     error?:string;
     lastOnline?:Date;
 }
+
+export interface MatchLoad{
+    matches?:Match[];
+    loaded:boolean;
+}

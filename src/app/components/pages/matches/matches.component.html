@@ -1,53 +1,86 @@
 <div class="row" id="mainRow">
   <div class="col-12">
 
-    <div class="row" id="queue">
+    <div class="row p-0 pl-sm-4 pr-sm-4 pt-sm-4 pt-2 shadowRow">
       <div class="col-12">
-        <h4>
-          <i class="far fa-question-circle"></i> Match Queue:</h4>
-        <div class="row" id="queueRow">
-          <div class="col-12">
-            <p *ngIf="!matchQueue">Nothin yet!</p>
-            <div *ngFor="let queue of matchQueue; let i = index">
+        <div class="header pt-2 pt-sm-0">
+          <h4 class="mb-0">
+            <i class="fas fa-hand-holding-heart"></i> Match Queue:
+            <p class="p-0 mb-0 text-muted"> (limit 4) based on preferences</p>
+          </h4>
 
+          <hr>
+
+        </div>
+
+        <div class="row queueRow pl-2">
+          <div class="col-12">
+            <div class="row justify-content-center" *ngIf="!matchQueue?.loaded">
+              <app-loading></app-loading>
+            </div>
+            <div class="row">
+              <p *ngIf="!matchQueue?.matches && matchQueue?.loaded">Nothin yet!</p>
+              <div *ngFor="let queue of matchQueue?.matches; let i = index" class="col-12 col-sm-6">
                 <app-match-list-item [match]="queue"></app-match-list-item>
               </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!--End Queue-->
-
-    <div class="row" id="queue">
-      <div class="col-12 col-sm-8">
-        <h4>
-          <i class="fas fa-heart"></i> Matches:</h4>
-        <div class="row" id="queueRow">
-          <div class="col-12">
-            <p *ngIf="!matches">Nothin yet!</p>
-            <div *ngFor="let match of matches; let i = index">
-
-              <app-match-list-item [match]="match"></app-match-list-item>
             </div>
 
           </div>
         </div>
       </div>
+    </div>
+    <!--End Queue-->
 
-      <div class="col-12 col-sm-4">
-        <h4>Denials ¯\_(ツ)_/¯:</h4>
-        <div class="row" id="queueRow">
+    <div class="row p-0 pl-sm-4 pr-sm-4 pt-sm-4 pt-2 mt-4 mb-4 shadowRow">
+      <div class="col-12">
+        <div class="header pt-2 pt-sm-0">
+          <h4>
+            <i class="fas fa-heart"></i> Matches:
+          </h4>
+          <hr>
+        </div>
+
+        <div class="row queueRow pl-2">
           <div class="col-12">
-            <p *ngIf="!denials">¯\_(ツ)_/¯</p>
-            <div *ngFor="let deny of denials">
+            <div class="row justify-content-center" *ngIf="!matches?.loaded">
+              <app-loading></app-loading>
+            </div>
+            <div class="row">
+              <p *ngIf="!matches?.matches && matches?.loaded">Nothin yet!</p>
+              <div *ngFor="let match of matches?.matches; let i = index" class="col-12 col-sm-6">
 
-                <app-match-list-item [match]="deny"></app-match-list-item>
+                <app-match-list-item [match]="match"></app-match-list-item>
               </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <!--End Queue-->
+
+    <div class="row p-0 pl-sm-4 pr-sm-4 pt-sm-4 pt-2 mt-4 mb-4 shadowRow">
+      <div class="col-12 ">
+        <div class="header pt-2 pt-sm-0">
+          <h4>Recent Denys ¯\_(ツ)_/¯</h4>
+          <hr>
+        </div>
+
+        <div class="row queueRow pl-2">
+          <div class="col-12">
+            <div class="row justify-content-center" *ngIf="!denials?.loaded">
+              <app-loading></app-loading>
+            </div>
+            <div class="row">
+              <p *ngIf="!denials?.matches && denials?.loaded">¯\_(ツ)_/¯</p>
+              <div *ngFor="let deny of denials?.matches" class="col-12 col-sm-6">
+
+                <app-match-list-item [match]="deny"></app-match-list-item>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 </div>
