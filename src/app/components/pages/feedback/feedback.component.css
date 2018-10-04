@@ -1,3 +1,7 @@
+a{
+    color:#283659;
+}
+
 #feedbackNav{
     /* background-color:#fff5e5; */
     /* background-color:white; */
@@ -10,6 +14,15 @@
 
 #feedbackData{
     
+}
+
+#bodyyy{
+    background-color:white;
+    box-shadow: 0px 1px 6px 0px #00000029;
+}
+
+.nav-item {
+    z-index: 5;
 }
 
 #mainRow{

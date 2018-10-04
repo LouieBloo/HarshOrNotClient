@@ -1,29 +1,29 @@
 <div class="row mb-4 pt-4 " id="item">
   <div class="col-12">
     <div class="row">
-      <div class="col-7 col-sm-12 order-11 order-sm-1">
+      <div class="col-6 col-sm-12 order-11 order-sm-1">
         <p class="text-right">{{feedback?.dateAdded | date}}</p>
       </div>
-      <div class="col-5 col-sm-3 order-10">
+      <div class="col-6 col-sm-3 order-10">
 
         <div class="row mb-3 mb-sm-0">
-          <div class="col-12 col-sm-10 pl-4 d-flex justify-content-center align-items-center">
-            <div *ngIf="feedback?.user?.gender == 'Female'; then femaleSign else maleSign"></div>
-            <ng-template #femaleSign>
-              <i class="fas fa-venus big"></i>
-            </ng-template>
-            <ng-template #maleSign>
-              <i class="fas fa-mars big"></i>
-            </ng-template>
-            <span id="age" class="pl-2 pl-sm-4">
-              <strong>{{feedback?.user?.age}}</strong>
-            </span>
+          <div class="col-12 col-sm-10 d-flex justify-content-center align-items-center">
+              <span id="age" class="">
+                <strong>{{feedback?.user?.age}}</strong>
+              </span>
+              <div *ngIf="feedback?.user?.gender == 'Female'; then femaleSign else maleSign"></div>
+              <ng-template #femaleSign >
+                <i class="fas fa-venus big ml-4"></i>
+              </ng-template>
+              <ng-template #maleSign >
+                <i class="fas fa-mars big ml-4"></i>
+              </ng-template>
           </div>
         </div>
 
       </div>
       <div class="col-12 col-sm-9 d-flex align-items-center order-12">
-        <ul>
+        <ul class="pl-4 pl-sm-0">
           <li>Interested in
             <strong>{{feedback?.user?.preference}}</strong>
           </li>
@@ -57,7 +57,7 @@
             </p>
             <div class="redeemScreen">
               <p class="text-center backgroundGreen" data-toggle="modal" [attr.data-target]="'#' + feedback?._id">
-                  <i class="fas fa-lock mr-3"></i>Click to redeem
+                <i class="fas fa-lock mr-3"></i>Click to redeem
               </p>
 
             </div>
@@ -81,11 +81,12 @@
       </div>
       <div class="modal-body">
         <p>
-          Are you sure you want to redeem this profile feedback for <strong>{{feedback?.costToRedeem}} points</strong>?
+          Are you sure you want to redeem this profile feedback for
+          <strong>{{feedback?.costToRedeem}} points</strong>?
         </p>
       </div>
       <div class="text-center p-4 acceptFooter">
-            <button type="button" class="btn btn-primary" (click)="redeemClicked()">Redeem Baby!</button>
+        <button type="button" class="btn btn-primary" (click)="redeemClicked()">Redeem Baby!</button>
 
       </div>
     </div>

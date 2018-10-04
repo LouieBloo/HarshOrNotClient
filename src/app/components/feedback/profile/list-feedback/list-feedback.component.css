@@ -3,21 +3,23 @@
 }
 
 .fa-mars{
-    color:blue;
+    color:#00005a87;
 }
 
 .fa-venus{
-    color:pink;
+    color:#cc05286b;
 }
 
 #item{
-    background-color:#fff5e5;
-    box-shadow:2px 4px 0px 1px #0000003b;
+    /* background-color:#fff5e5; */
+    background-color:white;
+    /* box-shadow:2px 4px 0px 1px #0000003b; */
+    box-shadow: 0px 1px 6px 0px #00000029;
 }
 
 #age{
     font-size:1.4rem;
-
+    padding-left:2.5rem;
 }
 
 p{
@@ -29,7 +31,7 @@ p{
 }
 
 .readMoreClosed{
-    height:200px;
+    height:130px;
     overflow: hidden;
 }
 
@@ -66,11 +68,13 @@ p{
     padding-right:15px;
 
     cursor: pointer;
+
+    
 }
 
 .redeemScreen p{
     
-    color:white;
+    color:#003d7dfc;
     height:75px;
     padding-top:25px;
 
@@ -82,7 +86,7 @@ p{
 }
 
 .backgroundGreen{
-    background-color:#001f40e0;
+    /* background-color:#001f40e0; */
 }
 
 li{
