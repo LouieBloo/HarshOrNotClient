@@ -29,6 +29,7 @@ import { LoadingComponent } from './components/animations/loading/loading.compon
 import { ProfileComponent } from './components/pages/profile/profile.component';
 import { MatchesComponent } from './components/pages/matches/matches.component';
 import { MatchListItemComponent } from './components/users/matches/match-list-item/match-list-item.component';
+import { MessagingComponent } from './components/pages/messaging/messaging.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { MatchListItemComponent } from './components/users/matches/match-list-it
     ProfileComponent,
     MatchesComponent,
     MatchListItemComponent,
+    MessagingComponent,
   ],
   imports: [
     BrowserModule,
