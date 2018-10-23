@@ -6,6 +6,8 @@ export interface Match{
         preference?:string;
         photos?:string[];
         _id?:string;
+        name?:string;
+        lastOnline?:Date;
     };
     wouldYouDate?:string;
     wouldTheyDate?:string;

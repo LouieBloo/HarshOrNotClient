@@ -4,6 +4,7 @@ export interface User{
   bio?:string;
   birthday?:number;
   gender:string;
+  age?:number;
   preference:string;
   location?:any;
   bodyType:string;

@@ -11,7 +11,7 @@ import { Photos, ModifyPhotoStatuses } from '../../../../models/photos';
 export class UpdatePhotosComponent implements OnInit {
 
 
-  private maximumNumberOfPhotos: number = 5;
+  maximumNumberOfPhotos: number = 5;
 
   photos: Photos;
   //photostatuses keep track of what photo is selected. If only 1 is selected, show delete

@@ -1,3 +1,7 @@
-<p>
-  messaging works!
-</p>
+<div class="row">
+
+  <div *ngFor="let ch of channels; let i = index" class="col-12">
+    <app-channel-list-item [channel]="ch"></app-channel-list-item>
+  </div>
+
+</div>

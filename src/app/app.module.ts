@@ -30,6 +30,7 @@ import { ProfileComponent } from './components/pages/profile/profile.component';
 import { MatchesComponent } from './components/pages/matches/matches.component';
 import { MatchListItemComponent } from './components/users/matches/match-list-item/match-list-item.component';
 import { MessagingComponent } from './components/pages/messaging/messaging.component';
+import { ChannelListItemComponent } from './components/chat/view/channel-list-item/channel-list-item.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { MessagingComponent } from './components/pages/messaging/messaging.compo
     MatchesComponent,
     MatchListItemComponent,
     MessagingComponent,
+    ChannelListItemComponent,
   ],
   imports: [
     BrowserModule,
