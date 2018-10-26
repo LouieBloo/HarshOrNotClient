@@ -3,7 +3,14 @@
     <p>img here</p>
   </div>
   <div class="col-8">
-    <!-- <p>{{channel?.members[0].identity}}</p> -->
-    
+    <p>{{channel?.memberInfo[0].identity}}</p>
+    <div *ngIf="channel?.lastMessage; else noMessages">
+      <p>{{channel?.lastMessage?.index}}</p>
+    </div>
+    <ng-template #noMessages>
+      <div>
+        <p>No messages yet!</p>
+      </div>
+    </ng-template>
   </div>
 </div>

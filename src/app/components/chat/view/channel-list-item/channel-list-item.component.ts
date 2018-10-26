@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ChannelListItem } from '../../../../models/chat/channel-list-item';
 
 @Component({
   selector: 'app-channel-list-item',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ChannelListItemComponent implements OnInit {
 
-  @Input() channel:ChannelListItemComponent;
+  @Input() channel:ChannelListItem;
   constructor() { }
 
   ngOnInit() {

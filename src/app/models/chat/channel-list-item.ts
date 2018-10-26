@@ -1,9 +1,12 @@
 export interface ChannelListItem {
     sid: string;
-    members?:MemberInfo[];
+    memberInfo?:MemberInfo[];
     friendlyName?: string;
     dateUpdated?: Date;
-    lastMessage?:string;
+    lastMessage?:{
+        index:number;
+        timestamp:Date;
+    };
 }
 
 export interface MemberInfo{

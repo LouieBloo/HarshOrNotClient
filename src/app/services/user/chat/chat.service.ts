@@ -10,10 +10,8 @@ import { ChannelListItem } from '../../../models/chat/channel-list-item';
 export class ChatService {
 
 
-  allChannels: ChannelListItem[] = [];//main source of channel info
+  allChannels: any[] = [];//main source of channel info
   public channelEmitter = new BehaviorSubject(this.allChannels);//used to emit to listeners when new channels have been added
-
-  channelLookupTimer:any;//for when channels are being added quickly, dont spam twilio api
 
   client: any;
   token: string;
@@ -68,14 +66,9 @@ export class ChatService {
     this.client.on('channelAdded', (channel) => {
       let index = this.allChannels.indexOf(channel)
       if (index === -1) {
-        this.allChannels.push(channel);//add to our stored channels
 
-        if (this.channelLookupTimer) {//reset timer if it was already set
-          clearTimeout(this.channelLookupTimer);
-        }
-        this.channelLookupTimer = setTimeout(() => {//this is used so we dont spam parseChannels when a lot of channels are being added at once
-          this.parseChannels(this.allChannels);
-        }, 300);//todo, don't use timers
+
+        this.parseChannel(channel);
       }
     });
     // A channel is no longer visible to the Client
@@ -88,31 +81,57 @@ export class ChatService {
     });
     // A channel's attributes or metadata have changed.
     this.client.on('channelUpdated', (channel) => {
-      console.log('Channel updates: ' + channel.sid);
+      console.log('Channel updates: ' , channel.updateReasons);
     });
   }
 
   //fetches all users and the user descriptors on all the channels
   //also keeps our user at the back of the members array
-  async parseChannels(channelsToParse: any[]) {
-    this.allChannels = await Promise.all(channelsToParse.map(async (ch) => {
-      let members = await ch.getMembers();
+  async parseChannel(channel: any) {
 
-      ch.members = [];
-      await Promise.all(members.map(async (mem) => {
-        let desc = await mem.getUserDescriptor();
-        if(mem.identity == this.auth.getUserID())
-        {
-          ch.members.push(desc);//keep our user at back of array
-        }
-        else{
-          ch.members.unshift(desc);
-        }
-      }))
 
-      return ch;
-    }));
+    let descriptors = await channel.getUserDescriptors();
+    channel.memberInfo = descriptors.state.items;
+    console.log(channel.lastMessage);
+    //console.log(channel.members.state.items);
+    //let members = await channel.getMembers();
 
+    // await Promise.all(members.map(async (mem) => {
+    //   let desc = await mem.getUserDescriptor();
+    //   if (mem.identity == this.auth.getUserID()) {
+    //     ch.members.push(desc);//keep our user at back of array
+    //   }
+    //   else {
+    //     ch.members.unshift(desc);
+    //   }
+    // }))
+
+    //this.messageListener(ch);//setup message listener for each channel
+
+    channel.on('messageAdded', (message) => {
+      console.log("New message!");
+      console.log(message);
+    })
+
+
+
+    this.allChannels.push(channel);//add to our stored channels
     this.channelEmitter.next(this.allChannels);//alert any listeners of new channel data
+  }
+
+  addMessage(channel: any, message: string) {
+    if (channel && message) {
+      channel.sendMessage(message).then(data => {
+        console.log("DATA");
+        console.log(data);
+      }).catch(err => {
+        console.log("ERROR");
+        console.log(err);
+      });
+    }
+  }
+
+  messageListener(channel) {
+
   }
 }

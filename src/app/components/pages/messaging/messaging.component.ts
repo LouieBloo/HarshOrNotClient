@@ -11,7 +11,6 @@ import { async } from '../../../../../node_modules/@types/q';
 export class MessagingComponent implements OnInit {
 
   channels: ChannelListItem[] = [];
-  channelLookupTimer: any;
 
   constructor(private chat: ChatService) { }
 
@@ -28,6 +27,9 @@ export class MessagingComponent implements OnInit {
     this.chat.channelEmitter.unsubscribe();
   }
 
-  
+
+  addMessage(){
+    this.chat.addMessage(this.channels[0],"hello there <3");
+  }
 
 }
