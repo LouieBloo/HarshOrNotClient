@@ -11,12 +11,13 @@ import { async } from '../../../../../node_modules/@types/q';
 export class MessagingComponent implements OnInit {
 
   channels: ChannelListItem[] = [];
+  channelSubscription: any;
 
   constructor(private chat: ChatService) { }
 
   ngOnInit() {
     //setup listener to handle channel changes
-    this.chat.channelEmitter.subscribe(ch => {
+    this.channelSubscription = this.chat.channelEmitter.subscribe(ch => {
       if (ch && ch.length > 0) {
         this.channels = ch;
       }
@@ -24,12 +25,18 @@ export class MessagingComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.chat.channelEmitter.unsubscribe();
+    this.channelSubscription.unsubscribe();
   }
 
 
-  addMessage(){
-    this.chat.addMessage(this.channels[0],"hello there <3");
+  addMessage() {
+    this.chat.addMessage(this.channels[0], this.randomString(32, '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'));
+  }
+
+  randomString(length, chars) {
+    var result = '';
+    for (var i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+    return result;
   }
 
 }

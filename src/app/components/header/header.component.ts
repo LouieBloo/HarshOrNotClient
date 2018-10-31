@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { trigger, transition, animate, style } from '@angular/animations';
+import { ChatService } from '../../services/user/chat/chat.service';
 
 @Component({
   selector: 'app-header',
@@ -14,13 +15,15 @@ export class HeaderComponent implements OnInit {
   @ViewChild('menu') menu;
 
 
-  constructor(private auth:AuthService) { }
+  constructor(private auth:AuthService,private chat:ChatService) { }
 
   ngOnInit() {
+    this.chat.startup();
   }
 
   logout(){
     this.auth.logout();
+    this.chat.logout();
   }
 
   //fired when the big menu button is clicked on mobile

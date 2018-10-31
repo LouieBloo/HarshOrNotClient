@@ -11,6 +11,7 @@ import { FeedbackComponent } from './components/pages/feedback/feedback.componen
 import { ProfileComponent } from './components/pages/profile/profile.component';
 import { MatchesComponent } from './components/pages/matches/matches.component';
 import { MessagingComponent } from './components/pages/messaging/messaging.component';
+import { ChannelComponent } from './components/pages/messaging/channel/channel.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   {path: 'feedback',component:FeedbackComponent,canActivate:[AuthGuardService]},
   {path: 'profile/:id',component:ProfileComponent,canActivate:[AuthGuardService]},
   {path: 'matches',component:MatchesComponent,canActivate:[AuthGuardService]},
-  {path: 'messaging',component:MessagingComponent,canActivate:[AuthGuardService]}
+  {path: 'messaging',component:MessagingComponent,canActivate:[AuthGuardService]},
+  {path: 'messaging/channel/:sid',component:ChannelComponent,canActivate:[AuthGuardService]}
 ];
 
 @NgModule({

@@ -19,7 +19,13 @@ export class ChatService {
   constructor(private auth: AuthService) {
     //console.log("take off storage clear!");
     //localStorage.clear();
-    this.startup();
+    //this.startup();
+  }
+
+  logout(){
+    this.allChannels = [];
+    this.client = null;
+    this.token = null;
   }
 
   getToken(): string {
@@ -92,7 +98,13 @@ export class ChatService {
 
     let descriptors = await channel.getUserDescriptors();
     channel.memberInfo = descriptors.state.items;
-    console.log(channel.lastMessage);
+    //if our user is in the front of the desc array, move them to the back for easier access
+    if(channel.memberInfo.length > 1 && channel.memberInfo[0].identity == this.auth.getUserID()){
+      let temp = channel.memberInfo[0];
+      channel.memberInfo[0] = channel.memberInfo[1];
+      channel.memberInfo[1] = temp;
+    }
+
     //console.log(channel.members.state.items);
     //let members = await channel.getMembers();
 
@@ -106,14 +118,7 @@ export class ChatService {
     //   }
     // }))
 
-    //this.messageListener(ch);//setup message listener for each channel
-
-    channel.on('messageAdded', (message) => {
-      console.log("New message!");
-      console.log(message);
-    })
-
-
+    //this.messageListener(channel);//setup message listener for each channel
 
     this.allChannels.push(channel);//add to our stored channels
     this.channelEmitter.next(this.allChannels);//alert any listeners of new channel data
@@ -132,6 +137,9 @@ export class ChatService {
   }
 
   messageListener(channel) {
-
+    channel.on('messageAdded', (message) => {
+      console.log("New message!");
+      console.log(message);
+    })
   }
 }
