@@ -1,12 +1,12 @@
 #mainRow{
-    max-width:750px;
+    width:750px;
     margin:auto;
 
-    height: 450px;
+    /* height: 450px; */
     overflow-y: scroll;
     overflow-x:hidden;
 }
 
 #textArea{
-    width:85%;
+    /* width:85%; */
 }

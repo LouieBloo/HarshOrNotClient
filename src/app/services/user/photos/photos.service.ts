@@ -40,4 +40,12 @@ export class PhotosService {
       {key1:key1,key2:key2}
     )
   }
+
+  getProfilePhoto(userID):Observable<Photos>{
+    return this.auth.request(
+      "post",
+      '/users/photos/getProfile',
+      {target:userID}
+    )
+  }
 }

@@ -4,7 +4,8 @@
       <div style="width:100%;">
         <!-- <slideshow *ngIf="user?.photos" [height]="'400px'" [backgroundSize]="'contain'" [showArrows]="true" [imageUrls]="user?.photos"
           [lazyLoad]="user?.photos?.length > 1" [showDots]="false"></slideshow> -->
-        <ngx-image-gallery class="mt-2" [ngStyle]="{'max-height.px': galleryHeight}" *ngIf="galleryImages" [images]="galleryImages" [conf]="galleryConf"></ngx-image-gallery>
+        <ngx-image-gallery class="mt-2" [ngStyle]="{'max-height.px': galleryHeight}" *ngIf="galleryImages" [images]="galleryImages"
+          [conf]="galleryConf"></ngx-image-gallery>
       </div>
     </div>
     <div *ngIf="user" class="row">
@@ -27,7 +28,8 @@
         <p class="text-muted">likes {{user?.preference}}</p>
         <div class="row mb-3">
           <div class="col-12 pd-4">
-            <strong><i class="far fa-address-book"></i> Bio:</strong>
+            <strong>
+              <i class="far fa-address-book"></i> Bio:</strong>
             <div id="bioBlock">
 
               <p>{{user?.bio}}</p>
@@ -39,10 +41,11 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <form #feedbackForm="ngForm" >
+        <form #feedbackForm="ngForm">
           <div class="form-group">
             <label for="feedback">
-              <strong><i class="far fa-comment"></i> Feedback:</strong>
+              <strong>
+                <i class="far fa-comment"></i> Feedback:</strong>
             </label>
             <p class="mt-0 mb-1" *ngIf="feedback?.dateAdded;">
               <small class="text-muted">Feedback submitted on: {{feedback?.dateAdded | date}}</small>
@@ -52,12 +55,14 @@
           </div>
           <div *ngIf="feedback?.wouldYouDate && feedback?.dateAdded" class="row">
             <div class="col-12">
-                <strong><i class="far fa-kiss-wink-heart"></i> Would You Date:</strong>
-                <p>{{feedback?.wouldYouDate}}</p>
+              <strong>
+                <i class="far fa-kiss-wink-heart"></i> Would You Date:</strong>
+              <p>{{feedback?.wouldYouDate}}</p>
             </div>
           </div>
           <div class="form-group text-center">
-            <input *ngIf="!feedback?.dateAdded;" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#wouldYouDateModal" value="Submit" id="submitButton" [disabled]='!formValid'>
+            <input *ngIf="!feedback?.dateAdded;" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#wouldYouDateModal"
+              value="Submit" id="submitButton" [disabled]='!formValid'>
           </div>
           <div *ngIf="feedback?.error" class="form-group">
             <p class="text-warning">{{feedback.error}}</p>
@@ -74,7 +79,7 @@
 <div class="modal fade" id="wouldYouDateModal" tabindex="-1" role="dialog" aria-labelledby="wouldYouDateModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <form #wouldYouDateForm="ngForm" (submit)="feedbackSubmitted()" >
+      <form #wouldYouDateForm="ngForm" (submit)="feedbackSubmitted()">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLongTitle">Would you date this person?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close" #closeModalButton>
@@ -82,26 +87,49 @@
           </button>
         </div>
         <div class="modal-body row">
-          <div class="col-12">
-              <div class="custom-control custom-radio">
-                  <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-yes" value="Yes" [ngModel]="feedback.wouldYouDate" (ngModelChange)="feedback.wouldYouDate=$event" required>
-                  <label class="custom-control-label pointer" for="pref-yes">Yes I Would!</label>
-              </div>
-              <div class="custom-control custom-radio">
-                  <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-noBut" value="NoBut" [ngModel]="feedback.wouldYouDate" (ngModelChange)="feedback.wouldYouDate=$event" required>
-                  <label class="custom-control-label pointer" for="pref-noBut">Not my type but they look great!</label>
-              </div>
-              <div class="custom-control custom-radio">
-                  <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-no" value="No" [ngModel]="feedback.wouldYouDate" (ngModelChange)="feedback.wouldYouDate=$event" required>
-                  <label class="custom-control-label pointer" for="pref-no">Nope</label>
-              </div>
+          <div class="col-12" *ngIf="modalStatus == 'initial'">
+            <div class="custom-control custom-radio">
+              <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-yes" value="Yes" [ngModel]="feedback.wouldYouDate"
+                (ngModelChange)="feedback.wouldYouDate=$event" required>
+              <label class="custom-control-label pointer" for="pref-yes">Yes I Would!</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-noBut" value="NoBut" [ngModel]="feedback.wouldYouDate"
+                (ngModelChange)="feedback.wouldYouDate=$event" required>
+              <label class="custom-control-label pointer" for="pref-noBut">Not my type but they look great!</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-no" value="No" [ngModel]="feedback.wouldYouDate"
+                (ngModelChange)="feedback.wouldYouDate=$event" required>
+              <label class="custom-control-label pointer" for="pref-no">Nope</label>
+            </div>
+          </div>
+          <div class="col-12" *ngIf="modalStatus == 'loading'" #loading>
+            <div class="row justify-content-center">
+              <app-loading></app-loading>
+            </div>
+          </div>
+          <div class="col-12" *ngIf="modalStatus == 'match'" #matched>
+            <h2 class="text-center">It's a match!</h2>
+            <img id="congratsImg" src="https://media.giphy.com/media/xT0xezQGU5xCDJuCPe/giphy-downsized.gif">
+          </div>
+          <div class="col-12" *ngIf="modalStatus == 'done'" #done>
+            <p>Feedback submitted! You gained <span class="success">10</span> points!</p>
           </div>
         </div>
-        <div class="modal-footer ">
-            <input id="submitWouldYouDateButton" type="submit" class="btn btn-primary" value="Submit Feedback" [disabled]='!wouldYouDateForm.valid' >
-          </div>
+
+        <div *ngIf="modalStatus == 'initial'" class="modal-footer ">
+          <input id="submitWouldYouDateButton" type="submit" class="btn btn-primary" value="Submit Feedback" [disabled]='!wouldYouDateForm.valid'>
+        </div>
+        <div *ngIf="modalStatus == 'match'" class="modal-footer ">
+          <a class="btn btn-primary" data-dismiss="modal" aria-label="Close" routerLink="/messaging">Messages</a>
+        </div>
+        <div *ngIf="modalStatus == 'done'" class="modal-footer ">
+          <button class="btn btn-primary" data-dismiss="modal" aria-label="Close" >Done</button>
+        </div>
+
       </form>
-      
+
     </div>
   </div>
 </div>

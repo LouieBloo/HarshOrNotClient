@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
 import { ChatService } from '../../../../services/user/chat/chat.service';
 
@@ -14,14 +14,20 @@ export class ChannelComponent implements OnInit {
 
   messages: any[] = [];
   @ViewChild('mainRow') private myScrollContainer: ElementRef;
+  isLoading:boolean = true;
 
   messageCallback:any;
 
   textAreaMessage:string;
 
+  pageHeight:number;
+
   constructor(private activatedRoute: ActivatedRoute, private chat: ChatService) { }
 
   ngOnInit() {
+
+    this.setPageHeight();
+    
     this.activatedRoute.params.subscribe(params => {//get parameters
       if (params && params.sid) {
 
@@ -33,16 +39,19 @@ export class ChannelComponent implements OnInit {
               this.activeChannel = this.activeChannel[0];
               //fetch our initial messages
               this.activeChannel.getMessages().then((messages) => {
-                console.log(messages)
                 if (messages && messages.items && messages.items.length > 0) {
                   this.messages = messages.items;
-                  this.scrollToBottom();
+                  
+                  // setTimeout(()=>{//this is a jank timeout because it wont scroll if we fire it right away
+                    
+                  //   this.scrollToBottom();
+                  // },100)
+                  this.isLoading = false;
                 }
               })
 
               
               this.messageCallback = (message)=>{
-                console.log(message);
                 this.messages.push(message);
                 this.scrollToBottom();
               }
@@ -72,8 +81,6 @@ export class ChannelComponent implements OnInit {
   addMessage() {
     if (this.activeChannel && this.textAreaMessage&& this.textAreaMessage.length > 0) {
       this.activeChannel.sendMessage(this.textAreaMessage).then(data => {
-        console.log("DATA");
-        console.log(data);
         this.textAreaMessage = "";
       }).catch(err => {
         console.log("ERROR");
@@ -85,7 +92,18 @@ export class ChannelComponent implements OnInit {
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) { }
+    } catch (err) { 
+      console.log(err);
+    }
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.setPageHeight();
+  }
+
+  //sets the height of the scroll container
+  setPageHeight(){
+    this.pageHeight = window.innerHeight - 70;
+  }
 }

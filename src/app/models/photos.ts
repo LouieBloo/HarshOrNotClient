@@ -1,6 +1,7 @@
 export interface Photos{
     photos:[string];
     photoURLS:[string];
+    error?:string;
 }
 
 export interface ModifyPhotoStatuses{

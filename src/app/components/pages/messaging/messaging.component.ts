@@ -20,6 +20,7 @@ export class MessagingComponent implements OnInit {
     this.channelSubscription = this.chat.channelEmitter.subscribe(ch => {
       if (ch && ch.length > 0) {
         this.channels = ch;
+        console.log(this.channels[0].lastMessage);
       }
     })
   }

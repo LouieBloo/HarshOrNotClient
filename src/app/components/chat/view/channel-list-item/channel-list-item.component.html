@@ -1,16 +1,26 @@
-<div class="row" (click)="clicked()">
-  <div class="col-4">
-    <p>img here</p>
+<div class="row mt-4" (click)="clicked()">
+  <div class="col-4 text-center">
+    <img *ngIf="photoURL" [src]="photoURL?.replace('filter','100x100')">
+
+    <p class="text-center">{{channel?.memberInfo[0].friendlyName}}</p>
   </div>
-  <div class="col-8">
-    <p>{{channel?.memberInfo[0].identity}}</p>
+  <div class="col-8 d-flex flex-column justify-content-center">
+
     <div *ngIf="channel?.lastMessage; else noMessages">
-      <p>{{channel?.lastMessage?.index}}</p>
+      <!-- <p>{{channel?.lastMessage?.index}}</p> -->
+      <p>{{lastMessage?.body}}</p>
     </div>
     <ng-template #noMessages>
       <div>
         <p>No messages yet!</p>
       </div>
     </ng-template>
+
+    <p *ngIf="channel?.lastMessage; else noMess" class="text-muted"><small>{{lastAuthorName}} sent on {{channel?.lastMessage?.timestamp | date:'short'}}</small></p>
+    <ng-template #noMess>
+      <p class="text-muted"><small>Created on {{channel?.dateUpdated | date:'short'}}</small></p>
+    </ng-template>
+
   </div>
+
 </div>

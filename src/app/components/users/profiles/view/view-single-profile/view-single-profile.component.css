@@ -52,6 +52,9 @@ textarea::placeholder {
     margin:auto;
 }
 
+#congratsImg{
+    width:100%;
+}
 
 ngx-image-gallery{
     z-index:5 !important;

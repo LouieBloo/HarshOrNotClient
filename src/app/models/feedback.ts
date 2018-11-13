@@ -5,6 +5,7 @@ export interface ProfileFeedback{
     error?:string;
     dateAdded?:string;
     wouldYouDate?:string;
+    wouldTheyDate?:string;
     user?:{
         age?:number;
         gender?:string;

@@ -22,6 +22,7 @@ export class ViewSingleProfileComponent implements OnInit {
   formValid:boolean = false;
   canEditForm:boolean = false;
   @ViewChild('closeModalButton') closeModalButton: ElementRef;
+  modalStatus:string = "initial";
 
   // gallery configuration
   galleryConf: GALLERY_CONF = {
@@ -129,16 +130,23 @@ export class ViewSingleProfileComponent implements OnInit {
 
   //feedback button is pressed
   feedbackSubmitted(){
+    this.modalStatus = "loading";
     this.feedback.target = this.userID;
     this.fetchFeedbackService.addProfileFeedback(this.feedback).subscribe(result=>{
+      console.log(result);
       if(result && !result.error){
         this.feedback = result;
+        if(this.feedback.wouldYouDate == "Yes" && this.feedback.wouldTheyDate == "Yes"){
+          this.modalStatus = "match"
+        }else{
+          this.modalStatus = "done";
+        }
         this.feedback.wouldYouDate = this.changeWouldYouDateText(this.feedback.wouldYouDate);
         this.canEditForm = false;
 
-        this.closeModalButton.nativeElement.click();
+        //this.closeModalButton.nativeElement.click();
       }else{
-
+        this.closeModalButton.nativeElement.click();
       }
     })
   }

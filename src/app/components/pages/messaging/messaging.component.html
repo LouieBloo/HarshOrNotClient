@@ -1,9 +1,8 @@
-<div class="row">
-
-  <div *ngFor="let ch of channels; let i = index" class="col-12">
-    <app-channel-list-item [channel]="ch"></app-channel-list-item>
+<div class="row" id="mainRow">
+  <div class="col-12">
+    <div *ngFor="let ch of channels; let i = index">
+      <app-channel-list-item [channel]="ch"></app-channel-list-item>
+    </div>
   </div>
-
-  <button (click)='addMessage()'>Add</button>
-
+  <!-- <button (click)='addMessage()'>Add</button> -->
 </div>

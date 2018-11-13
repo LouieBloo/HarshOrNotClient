@@ -22,7 +22,7 @@ export class ChatService {
     //this.startup();
   }
 
-  logout(){
+  logout() {
     this.allChannels = [];
     this.client = null;
     this.token = null;
@@ -87,7 +87,8 @@ export class ChatService {
     });
     // A channel's attributes or metadata have changed.
     this.client.on('channelUpdated', (channel) => {
-      console.log('Channel updates: ' , channel.updateReasons);
+      console.log('Channel updates: ', channel.updateReasons);
+      this.sortChannelsByLastMessageDate();
     });
   }
 
@@ -95,33 +96,36 @@ export class ChatService {
   //also keeps our user at the back of the members array
   async parseChannel(channel: any) {
 
-
     let descriptors = await channel.getUserDescriptors();
     channel.memberInfo = descriptors.state.items;
     //if our user is in the front of the desc array, move them to the back for easier access
-    if(channel.memberInfo.length > 1 && channel.memberInfo[0].identity == this.auth.getUserID()){
+    if (channel.memberInfo.length > 1 && channel.memberInfo[0].identity == this.auth.getUserID()) {
       let temp = channel.memberInfo[0];
       channel.memberInfo[0] = channel.memberInfo[1];
       channel.memberInfo[1] = temp;
     }
 
-    //console.log(channel.members.state.items);
-    //let members = await channel.getMembers();
-
-    // await Promise.all(members.map(async (mem) => {
-    //   let desc = await mem.getUserDescriptor();
-    //   if (mem.identity == this.auth.getUserID()) {
-    //     ch.members.push(desc);//keep our user at back of array
-    //   }
-    //   else {
-    //     ch.members.unshift(desc);
-    //   }
-    // }))
-
     //this.messageListener(channel);//setup message listener for each channel
-
     this.allChannels.push(channel);//add to our stored channels
+
+    //sort
+    this.sortChannelsByLastMessageDate();
+
     this.channelEmitter.next(this.allChannels);//alert any listeners of new channel data
+  }
+
+  sortChannelsByLastMessageDate() {
+    //sort channels by last update time
+    this.allChannels.sort((x, y) => {
+      if (x.lastMessage && y.lastMessage) {
+        return x.lastMessage.timestamp > y.lastMessage.timestamp ? -1 : x.lastMessage.timestamp < y.lastMessage.timestamp ? 1 : 0
+      } else if (x.lastMessage) {
+        return -1;
+      } else if (y.lastMessage) {
+        return 1;
+      }
+      return 1;
+    });
   }
 
   addMessage(channel: any, message: string) {

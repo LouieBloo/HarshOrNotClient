@@ -1,0 +1,15 @@
+.myColor{
+    background-color: #fffae2;
+}
+
+.theirColor{
+    background-color: #e2f1ff;
+}
+
+.myBubble{
+    border-radius: 20px 0px 20px 20px;
+}
+
+.theirBubble{
+    border-radius: 0px 20px 20px 20px;
+}
