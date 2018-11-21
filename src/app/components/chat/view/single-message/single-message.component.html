@@ -1,6 +1,9 @@
 <div class="row mt-3 mb-3 ml-2 mr-2 pt-2 pb-2" [ngClass]="{'myColor':isMyMessage,'theirColor':!isMyMessage,'myBubble':isMyMessage,'theirBubble':!isMyMessage}" >
   <div class="col-12">
-    {{message?.body}}
+    <p>
+        {{message?.body}}
+    </p>
+    
   </div>
   <div class="col-12">
     <small class="text-muted">{{message?.timestamp | date:'short'}}</small>

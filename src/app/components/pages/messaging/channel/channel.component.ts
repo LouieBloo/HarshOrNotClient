@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '../../../../../../node_modules/@angular/router';
 import { ChatService } from '../../../../services/user/chat/chat.service';
 
@@ -22,7 +22,7 @@ export class ChannelComponent implements OnInit {
 
   pageHeight:number;
 
-  constructor(private activatedRoute: ActivatedRoute, private chat: ChatService) { }
+  constructor(private activatedRoute: ActivatedRoute, private chat: ChatService,private changeDetectorRef:ChangeDetectorRef) { }
 
   ngOnInit() {
 
@@ -42,12 +42,13 @@ export class ChannelComponent implements OnInit {
                 if (messages && messages.items && messages.items.length > 0) {
                   this.messages = messages.items;
                   
-                  // setTimeout(()=>{//this is a jank timeout because it wont scroll if we fire it right away
+                  setTimeout(()=>{//this is a jank timeout because it wont scroll if we fire it right away
                     
-                  //   this.scrollToBottom();
-                  // },100)
-                  this.isLoading = false;
+                    this.scrollToBottom();
+                  },300)
+                  
                 }
+                this.isLoading = false;
               })
 
               
@@ -82,10 +83,19 @@ export class ChannelComponent implements OnInit {
     if (this.activeChannel && this.textAreaMessage&& this.textAreaMessage.length > 0) {
       this.activeChannel.sendMessage(this.textAreaMessage).then(data => {
         this.textAreaMessage = "";
+        this.scrollToBottom();
+        this.changeDetectorRef.detectChanges();
       }).catch(err => {
         console.log("ERROR");
         console.log(err);
       });
+    }
+  }
+
+  textAreaEnterHandler(event) {
+    if(event.keyCode == 13) {//enter button
+      event.preventDefault();
+      this.addMessage();
     }
   }
 

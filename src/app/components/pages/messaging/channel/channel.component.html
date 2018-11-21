@@ -11,14 +11,17 @@
           <div *ngFor="let message of messages;">
             <app-single-message [message]="message"></app-single-message>
           </div>
+
+          <div *ngIf="!isLoading && messages?.length <= 0" class="mt-4 mb-4">
+            <p class="text-center">No messages yet. Send em something nice <3</p>
+          </div>
         </div>
         <div class="col-12">
-          <div class="row">
-            <textarea id="textArea" class="form-control" rows="1" [(ngModel)]="textAreaMessage"></textarea>
+          <div class="row d-flex">
+            <textarea id="textArea" class="form-control ml-2" rows="3" [(ngModel)]="textAreaMessage" (keydown)="textAreaEnterHandler($event)"></textarea>
             <button class="btn btn-primary" (click)="addMessage()">
               <i class="fas fa-sign-in-alt"></i>
             </button>
-
           </div>
         </div>
       </div>

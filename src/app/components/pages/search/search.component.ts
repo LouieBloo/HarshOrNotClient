@@ -5,6 +5,8 @@ import { NouisliderModule } from 'ng2-nouislider';
 import { Router } from '@angular/router';
 import { User } from '../../../models/user';
 import { AgeRangeService } from '../../../services/sanitation/user/ageRange/age-range.service';
+import { UserHelperService } from '../../../services/user/user-helper.service';
+
 
 @Component({
   selector: 'app-search',
@@ -21,7 +23,7 @@ export class SearchComponent implements OnInit {
   ageRange = [this.minAge,this.maxAge];//we have to duplicate this so our noui component works with a double slider :(
 
 
-  constructor(private searchService:AllSearchService,private router:Router,private ageRangeConverter:AgeRangeService){}
+  constructor(private searchService:AllSearchService,private router:Router,private ageRangeConverter:AgeRangeService,private userHelper:UserHelperService){}
 
   ngOnInit() {
     this.resetSearchQuery();
@@ -29,7 +31,7 @@ export class SearchComponent implements OnInit {
 
   submit(){
     
-    this.searchQuery.bodyType = this.formatBodyType(this.searchQuery.bodyTypeRaw);//filter the bodyType to what the api is expecting
+    this.searchQuery.bodyType = this.userHelper.bodyTypeObjToArray(this.searchQuery.bodyTypeRaw);//filter the bodyType to what the api is expecting
     this.searchQuery.ageRange = this.ageRangeConverter.mapAgeRangeToAPI(this.ageRange);//filter the ageRange to what the api is expecting
     //console.log(this.searchQuery);
     this.searchService.searchAllUsers(this.searchQuery).subscribe(result =>{
@@ -38,28 +40,7 @@ export class SearchComponent implements OnInit {
     })
   }
 
-  //takes in bodyTypeRaw and returns an array of strings representing that object
-  //todo, makes this better
-  formatBodyType(bodyObject):string[]{
-    let returnObj:string[] = [];
-    if(bodyObject.athletic){
-      returnObj.push("Athletic");
-    }
-    if(bodyObject.thin){
-      returnObj.push("Thin");
-    }
-    if(bodyObject.average){
-      returnObj.push("Average");
-    }
-    if(bodyObject.plus){
-      returnObj.push("Plus");
-    }
-    if(bodyObject.veryPlus){
-      returnObj.push("Very Plus");
-    }
-
-    return returnObj;
-  }
+  
 
 
   //create empty searchQuery

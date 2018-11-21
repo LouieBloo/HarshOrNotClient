@@ -9,4 +9,6 @@
 
 #textArea{
     /* width:85%; */
+    flex:1;
+    
 }

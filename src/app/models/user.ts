@@ -8,6 +8,8 @@ export interface User{
   preference:string;
   location?:any;
   bodyType:string;
+  bodyTypePreference?:string[];
+  bodyTypePreferenceRaw?:any;//used to make using the <input> tag easier on the ui. See user-helper.service
   range:number;
   ageRange:any;
   error?:string;
