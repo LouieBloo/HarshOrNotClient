@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, SimpleChanges, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, HostListener, ViewChild, ElementRef, Output } from '@angular/core';
 import { FetchProfileService } from '../../../../../services/user/profiles/fetch/fetch-profile.service';
 import { User } from '../../../../../models/user';
 import { FetchProfileFeedbackService } from '../../../../../services/feedback/fetch-profile-feedback/fetch-profile-feedback.service';
 import { ProfileFeedback } from '../../../../../models/feedback';
 import { GALLERY_CONF, GALLERY_IMAGE } from 'ngx-image-gallery';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-view-single-profile',
@@ -16,6 +17,9 @@ export class ViewSingleProfileComponent implements OnInit {
   //user info
   @Input() userID:string;
   user:User;
+
+  //When the user submits their feedback, emit it happened so parent components can react. IE the date page component
+  @Output() sentFeedbackEmitter = new EventEmitter();
 
   //feedback stuff
   feedback:ProfileFeedback={target:"",feedback:""};
@@ -51,6 +55,7 @@ export class ViewSingleProfileComponent implements OnInit {
 
   ngOnChanges(changes:SimpleChanges){
     this.fetchUserInfo();
+    
   }
 
   //resize gallery when screen size changes
@@ -63,6 +68,7 @@ export class ViewSingleProfileComponent implements OnInit {
   fetchUserInfo(){
     if(this.userID){
       this.fetchProfileService.fetchUser(this.userID).subscribe(result=>{
+      
         if(result && !result.error){
 
           if(result.photos && result.photos.length > 0){
@@ -83,7 +89,7 @@ export class ViewSingleProfileComponent implements OnInit {
 
       this.fetchFeedbackService.fetchSingleProfileFeedback({target:this.userID}).subscribe(result=>{
         if(result && !result.error){
-          console.log(result);
+          
           this.feedback = result
           this.feedback.wouldYouDate = this.changeWouldYouDateText(this.feedback.wouldYouDate);
           this.canEditForm = false;
@@ -143,6 +149,8 @@ export class ViewSingleProfileComponent implements OnInit {
         }
         this.feedback.wouldYouDate = this.changeWouldYouDateText(this.feedback.wouldYouDate);
         this.canEditForm = false;
+
+        this.sentFeedbackEmitter.emit(this.userID);
 
         //this.closeModalButton.nativeElement.click();
       }else{

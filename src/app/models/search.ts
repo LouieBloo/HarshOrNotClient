@@ -9,3 +9,10 @@ export interface SearchQuery{
     useRange?:boolean,
     ageRange?:any;
 }
+
+export interface SearchResult{
+    name?:string;
+    _id?:string;
+    sponsored?:boolean;
+    error?:any;
+}

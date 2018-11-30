@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth/auth.service';
+import { AutomatedSearchService } from 'src/app/services/user/search/automated/automated-search.service';
+import { SearchResult } from 'src/app/models/search';
 
 @Component({
   selector: 'app-date',
@@ -8,15 +10,47 @@ import { AuthService } from '../../../services/auth/auth.service';
 })
 export class DateComponent implements OnInit {
 
-  public userID:string;
 
-  constructor(private auth:AuthService) { }
+  //current selected user. We use an array so angular creates a new object everytime the current person changes.
+  //This makes it easier to reset the view-single-profile componenet
+  currentPerson:SearchResult[];
+  //Users array
+  private searchResults:SearchResult[];
+
+  constructor(private automatedSearch:AutomatedSearchService) { }
 
   ngOnInit() {
-    //this.userID = this.auth.getUserID();
-    //this.userID = "5b74f2a5c0c23a0312331dd5";
-    this.userID = "5b90b094c3b158100f55c71d";
-    
+    this.getPeopleList();
+  }
+
+  getPeopleList(){
+    this.automatedSearch.search().subscribe(result=>{
+      console.log(result);
+      if(result && !result.error && result.users){
+        this.searchResults = result.users;
+        this.getNextPerson();
+      }else{
+        console.log("Error fetching people:",result.error);
+      }
+    })
+  }
+
+  //If there is anyone left in our searchResults array, set the current person to the person in front.
+  //The person chosen is then removed from the searchResults array.
+  getNextPerson(){
+    if(this.searchResults && this.searchResults.length > 0){
+      this.currentPerson = [];
+      this.currentPerson[0] = this.searchResults.shift();
+    }
+  }
+
+  test(){
+    this.getNextPerson();
+  }
+
+  //When the child components feedback is submitted, this is fired with the userid that was submitted
+  childComponentFeedbackSubmittedEvent(userID){
+    this.getNextPerson();
   }
 
 
