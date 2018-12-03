@@ -57,7 +57,6 @@ export class ChatService {
     //console.log("connecting client...", this.getToken());
     Client.create(this.getToken())
       .then((data) => {
-        //console.log("data: ", data);
         this.client = data;
 
         this.setupChannelListeners();
@@ -70,6 +69,7 @@ export class ChatService {
   setupChannelListeners() {
     // A channel has become visible to the Client
     this.client.on('channelAdded', (channel) => {
+      console.log(channel);
       let index = this.allChannels.indexOf(channel)
       if (index === -1) {
 

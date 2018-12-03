@@ -28,6 +28,9 @@ export class ViewSingleProfileComponent implements OnInit {
   @ViewChild('closeModalButton') closeModalButton: ElementRef;
   modalStatus:string = "initial";
 
+  //when we submit our feedback and we are dating, this will hold the timer of when to tell the dating page to move on
+  finishViewingCountdown:any;
+
   // gallery configuration
   galleryConf: GALLERY_CONF = {
     showDeleteControl: false,
@@ -150,13 +153,25 @@ export class ViewSingleProfileComponent implements OnInit {
         this.feedback.wouldYouDate = this.changeWouldYouDateText(this.feedback.wouldYouDate);
         this.canEditForm = false;
 
-        this.sentFeedbackEmitter.emit(this.userID);
+        
 
         //this.closeModalButton.nativeElement.click();
       }else{
         this.closeModalButton.nativeElement.click();
       }
     })
+  }
+
+  //called when the user is done submitting feedback
+  //sets a delay and then fires the sentFeedbackEmitter
+  finishViewing(){
+    if(this.modalStatus == "match" || this.modalStatus == "done"){
+      if(!this.finishViewingCountdown){
+        this.finishViewingCountdown = setTimeout(()=>{
+          this.sentFeedbackEmitter.emit(this.userID);
+        },750);
+      }
+    }
   }
 
   //when the feedback text area is receiving letters

@@ -26,7 +26,7 @@ export class DateComponent implements OnInit {
   getPeopleList(){
     this.automatedSearch.search().subscribe(result=>{
       console.log(result);
-      if(result && !result.error && result.users){
+      if(result && !result.error && result.users && result.users.length > 0){
         this.searchResults = result.users;
         this.getNextPerson();
       }else{
@@ -38,9 +38,12 @@ export class DateComponent implements OnInit {
   //If there is anyone left in our searchResults array, set the current person to the person in front.
   //The person chosen is then removed from the searchResults array.
   getNextPerson(){
+    
     if(this.searchResults && this.searchResults.length > 0){
       this.currentPerson = [];
       this.currentPerson[0] = this.searchResults.shift();
+    }else{
+      this.getPeopleList();
     }
   }
 
