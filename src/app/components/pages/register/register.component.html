@@ -1,91 +1,118 @@
 <form class="form" role="form" #registerForm="ngForm" (submit)="submit()">
-  <div class="row justify-content-center">
-      <div class="col-md-6">
-        <h2>Register New User</h2>
-        <hr>
+    <div class="row justify-content-center p-2 mb-3 mt-3" id="mainRow">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="mt-2">Register a New Account</h2>
+                    <p><small class="text-muted">We will send an email confirmation</small></p>
+                    <hr>
+                </div>
+                <div class="form-group col-12">
+                    <label for="name"><strong><i class="fas fa-user-circle"></i> Name:</strong></label>
+                    <input class="form-control" name="name" type="text" id="name" required minlength="2" maxlength="60"
+                        [(ngModel)]="registerDetails.name" #name="ngModel">
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+                        <div *ngIf="name.errors.required">Name Required</div>
+                        <div *ngIf="name.errors.minlength">Min 2 chars</div>
+                        <div *ngIf="name.errors.maxlength">Max 60 chars</div>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input class="form-control" name="name" type="text" id="name" required minlength="2" maxlength="60" [(ngModel)]="registerDetails.name" #name="ngModel">
-            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-                <div *ngIf="name.errors.required">Name Required</div>
-                <div *ngIf="name.errors.minlength">Min 2 chars</div>
-                <div *ngIf="name.errors.maxlength">Max 60 chars</div>
-            </div>
-        </div>
+                <div class="form-group col-12">
+                    <label for="email"><strong><i class="fas fa-at"></i> Email:</strong></label>
+                    <input class="form-control" name="email" type="email" id="email" required [(ngModel)]="registerDetails.email"
+                        #email="ngModel" email>
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">Invalid
+                        Email</div>
+                </div>
 
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input class="form-control" name="email" type="email" id="email" required [(ngModel)]="registerDetails.email" #email="ngModel" email>
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">Invalid Email</div>
-        </div>
+                <div class="form-group col-12">
+                    <label for="password"><strong><i class="fas fa-unlock-alt"></i> Password:</strong></label>
+                    <input class="form-control" name="password" type="password" id="password" required minlength="8"
+                        maxlength="36" [(ngModel)]="registerDetails.password" #password="ngModel">
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">Password
+                        between 8 and 35 characters</div>
+                </div>
+                <div class="form-group col-12">
+                    <label for="birthday"><strong><i class="fas fa-birthday-cake"></i> Birthday:</strong><small class="text-muted"> must be 18 years old or older</small></label>
+                    <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01" value="2000-01-01"
+                        appEightteenOrOlder [(ngModel)]="registerDetails.birthday" #birthday="ngModel" required />
+                    <div *ngIf="birthday.invalid" class="alert alert-danger">Must be 18 or older</div>
+                </div>
+                <div class="form-group col-5 col-md-4">
+                    <label><strong><i class="fas fa-transgender"></i> I am a:</strong></label>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="gender" type="radio" id="male" value="Male"
+                            [(ngModel)]="registerDetails.gender">
+                        <label class="custom-control-label" for="male">Male</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="gender" type="radio" id="female" value="Female"
+                            checked [(ngModel)]="registerDetails.gender">
+                        <label class="custom-control-label" for="female">Female</label>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input class="form-control" name="password" type="password" id="password" required minlength="8" maxlength="36" [(ngModel)]="registerDetails.password" #password="ngModel">
-            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">Password between 8 and 35 characters</div>
-        </div>
-        <div class="form-group">
-            <label for="birthday">Birthday:<small class="text-muted"> must be 18 years old or older</small></label>
-            <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01" value="2000-01-01" appEightteenOrOlder [(ngModel)]="registerDetails.birthday" #birthday="ngModel" required />
-            <div *ngIf="birthday.invalid" class="alert alert-danger">Must be 18 or older</div>
-        </div>
-        <div class="form-group">
-            <label>I am a:</label>
-            <div class="form-check">
-                <input class="form-check-input" name="gender" type="radio" id="male" value="Male" [(ngModel)]="registerDetails.gender">
-                <label class="form-check-label" for="male">Male</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="gender" type="radio" id="female" value="Female" checked [(ngModel)]="registerDetails.gender">
-                <label class="form-check-label" for="female">Female</label>
-            </div>
-        </div>
-       
-        <div class="form-group">
-            <label>I am looking for:</label>
-            <div class="form-check">
-                <input class="form-check-input" name="preference" type="radio" id="pref-male" value="Male" checked [(ngModel)]="registerDetails.preference">
-                <label class="form-check-label" for="pref-male">Men</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="preference" type="radio" id="pref-female" value="Female" [(ngModel)]="registerDetails.preference">
-                <label class="form-check-label" for="pref-female">Women</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="preference" type="radio" id="pref-both" value="Both" [(ngModel)]="registerDetails.preference">
-                <label class="form-check-label" for="pref-both">Both</label>
-            </div>
-        </div>
+                <div class="form-group col-7 col-md-4">
+                    <label><strong><i class="fas fa-transgender"></i> I am looking for:</strong></label>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="preference" type="radio" id="pref-male" value="Male"
+                            checked [(ngModel)]="registerDetails.preference">
+                        <label class="custom-control-label" for="pref-male">Men</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="preference" type="radio" id="pref-female" value="Female"
+                            [(ngModel)]="registerDetails.preference">
+                        <label class="custom-control-label" for="pref-female">Women</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="preference" type="radio" id="pref-both" value="Both"
+                            [(ngModel)]="registerDetails.preference">
+                        <label class="custom-control-label" for="pref-both">Both</label>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <label>My body type is:</label>
-            <div class="form-check">
-                <input class="form-check-input" name="bodyType" type="radio" id="body-athletic" value="Athletic" [(ngModel)]="registerDetails.bodyType" required>
-                <label class="form-check-label" for="body-athletic">Athletic</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="bodyType" type="radio" id="body-thin" value="Thin" [(ngModel)]="registerDetails.bodyType" required>
-                <label class="form-check-label" for="body-thin">Thin</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="bodyType" type="radio" id="body-average" value="Average" [(ngModel)]="registerDetails.bodyType" required>
-                <label class="form-check-label" for="body-average">Average</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="bodyType" type="radio" id="body-plus" value="Plus" [(ngModel)]="registerDetails.bodyType" required>
-                <label class="form-check-label" for="body-plus">Plus</label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" name="bodyType" type="radio" id="body-very-plus" value="Very Plus" [(ngModel)]="registerDetails.bodyType" required>
-                <label class="form-check-label" for="body-very-plus">Very Plus</label>
-            </div>
-        </div>
+                <div class="form-group col-12 col-md-4">
+                    <label><strong><i class="fas fa-apple-alt"></i> My body type is:</strong></label>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="bodyType" type="radio" id="body-athletic" value="Athletic"
+                            [(ngModel)]="registerDetails.bodyType" required>
+                        <label class="custom-control-label" for="body-athletic">Athletic</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="bodyType" type="radio" id="body-thin" value="Thin"
+                            [(ngModel)]="registerDetails.bodyType" required>
+                        <label class="custom-control-label" for="body-thin">Thin</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="bodyType" type="radio" id="body-average" value="Average"
+                            [(ngModel)]="registerDetails.bodyType" required>
+                        <label class="custom-control-label" for="body-average">Average</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="bodyType" type="radio" id="body-plus" value="Plus"
+                            [(ngModel)]="registerDetails.bodyType" required>
+                        <label class="custom-control-label" for="body-plus">Plus</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" name="bodyType" type="radio" id="body-very-plus" value="Very Plus"
+                            [(ngModel)]="registerDetails.bodyType" required>
+                        <label class="custom-control-label" for="body-very-plus">Very Plus</label>
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Submit" [disabled]='!registerForm.valid'>
+                <div class="col-12">
+                    <div *ngIf="error" class="alert alert-danger" role="alert">
+                        {{error}}
+                    </div>
+                </div>
+
+                <div class="form-group col-12 d-flex justify-content-center mt-4">
+                    <input id="submitButton" type="submit" class="btn btn-primary" value="Submit" [disabled]='!registerForm.valid'>
+                </div>
+            </div>
+
         </div>
-      </div>
-  </div>
-  
+    </div>
+
 </form>
