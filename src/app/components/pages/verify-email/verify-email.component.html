@@ -1,0 +1,32 @@
+<div class="row justify-content-center" *ngIf="status.loading">
+  <app-loading></app-loading>
+</div>
+
+<div class="row mt-4 " id="mainRow">
+  <div class="col-12">
+
+    <div class="row" *ngIf="!status.loading && status.verified">
+      <div class="col-12">
+        <div class="row pt-4 pb-4 shadowCard">
+          <div class="col-12">
+            <p class="text-center"><i id="bigFrown" class="far fa-smile-beam"></i></p>
+            <h4 class="text-center">Email succesfully verified!</h4>
+          </div>
+        </div>
+        <div class="row mt-2 mb-4 pt-4 pb-4 shadowCard">
+            <div class="col-12 text-center">
+              <a class="btn btn-primary" routerLink="/login" id="loginButton">Log in Baby!</a>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row mt-2 mb-2 pt-4 pb-4 shadowCard" *ngIf="!status.loading && !status.verified">
+      <div class="col-12">
+        <p class="text-center "><i id="bigFrown" class="far fa-frown-open"></i></p>
+        <h4 class="text-center mt-4">Oops, I couldn't find that email to verify</h4>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserHelperService {
 
-  constructor() { }
+  constructor(private auth:AuthService) { }
+
+  verifyEmailToken(token):Observable<any>{
+    return this.auth.request("post","/users/verify-email",{token:token});
+  }
 
   //takes in bodyTypeRaw and returns an array of strings representing that object
   //todo, makes this better

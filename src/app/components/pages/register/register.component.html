@@ -1,5 +1,5 @@
 <form class="form" role="form" #registerForm="ngForm" (submit)="submit()">
-    <div class="row justify-content-center p-2 mb-3 mt-3" id="mainRow">
+    <div class="row justify-content-center p-2 mb-3 mt-3 shadowCard" id="mainRow">
         <div class="col-12">
             <div class="row">
                 <div class="col-12">
@@ -34,7 +34,8 @@
                         between 8 and 35 characters</div>
                 </div>
                 <div class="form-group col-12">
-                    <label for="birthday"><strong><i class="fas fa-birthday-cake"></i> Birthday:</strong><small class="text-muted"> must be 18 years old or older</small></label>
+                    <label for="birthday"><strong><i class="fas fa-birthday-cake"></i> Birthday:</strong><small class="text-muted">
+                            must be 18 years old or older</small></label>
                     <input type="date" class="form-control" id="birthday" name="birthday" min="1900-01-01" value="2000-01-01"
                         appEightteenOrOlder [(ngModel)]="registerDetails.birthday" #birthday="ngModel" required />
                     <div *ngIf="birthday.invalid" class="alert alert-danger">Must be 18 or older</div>
@@ -116,3 +117,30 @@
     </div>
 
 </form>
+
+
+
+
+<!-- Register complete modal -->
+<div class="modal fade" id="registerCompleteModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header col-12">
+                <h4>Success!</h4>
+                <button type="button" class="close" data-toggle="modal" data-target="#registerCompleteModal" aria-label="Close"
+                    #openRegisterModal>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body col-12">
+                <div class="">
+                    <p>Your account has been registered succesfully. Please check your email to verify it</p>
+                    <div class="text-center">
+                        <button class="btn btn-primary" (click)="goToLoginPage()" id="loginButton">Got it!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

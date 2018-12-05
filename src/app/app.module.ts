@@ -33,6 +33,7 @@ import { MessagingComponent } from './components/pages/messaging/messaging.compo
 import { ChannelListItemComponent } from './components/chat/view/channel-list-item/channel-list-item.component';
 import{ChannelComponent} from './components/pages/messaging/channel/channel.component';
 import { SingleMessageComponent } from './components/chat/view/single-message/single-message.component';
+import { VerifyEmailComponent } from './components/pages/verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { SingleMessageComponent } from './components/chat/view/single-message/si
     MessagingComponent,
     ChannelListItemComponent,
     ChannelComponent,
-    SingleMessageComponent
+    SingleMessageComponent,
+    VerifyEmailComponent
   ],
   imports: [
     BrowserModule,

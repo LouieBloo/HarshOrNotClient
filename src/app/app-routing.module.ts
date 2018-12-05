@@ -12,6 +12,7 @@ import { ProfileComponent } from './components/pages/profile/profile.component';
 import { MatchesComponent } from './components/pages/matches/matches.component';
 import { MessagingComponent } from './components/pages/messaging/messaging.component';
 import { ChannelComponent } from './components/pages/messaging/channel/channel.component';
+import { VerifyEmailComponent } from './components/pages/verify-email/verify-email.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'profile/:id',component:ProfileComponent,canActivate:[AuthGuardService]},
   {path: 'matches',component:MatchesComponent,canActivate:[AuthGuardService]},
   {path: 'messaging',component:MessagingComponent,canActivate:[AuthGuardService]},
-  {path: 'messaging/channel/:sid',component:ChannelComponent,canActivate:[AuthGuardService]}
+  {path: 'messaging/channel/:sid',component:ChannelComponent,canActivate:[AuthGuardService]},
+  {path: 'verify-email/:token',component:VerifyEmailComponent}
 ];
 
 @NgModule({

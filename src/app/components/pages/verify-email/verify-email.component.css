@@ -1,0 +1,14 @@
+#mainRow{
+    margin:auto;
+    max-width:750px;
+}
+
+#bigFrown{
+    font-size:8rem;
+}
+
+#loginButton{
+    width:12rem;
+    background-color: #df3ff5ed;
+    border:none;
+}

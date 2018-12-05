@@ -20,12 +20,15 @@ export class LoginComponent implements OnInit {
 
   submit(){
     this.auth.login(this.loginDetails).subscribe(result =>{
-
-      this.error = result.error;
       if(result.token && !this.error){
         this.router.navigateByUrl('/');
+      }else if(result.error){
+        if(result.error.email){
+          this.error = result.error.email.msg;
+        }else{
+          this.error = result.error;
+        }
       }
-
     });
   }
 
