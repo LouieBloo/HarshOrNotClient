@@ -34,6 +34,7 @@ import { ChannelListItemComponent } from './components/chat/view/channel-list-it
 import{ChannelComponent} from './components/pages/messaging/channel/channel.component';
 import { SingleMessageComponent } from './components/chat/view/single-message/single-message.component';
 import { VerifyEmailComponent } from './components/pages/verify-email/verify-email.component';
+import { LinkCardComponent } from './components/general/link-card/link-card.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { VerifyEmailComponent } from './components/pages/verify-email/verify-ema
     ChannelListItemComponent,
     ChannelComponent,
     SingleMessageComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    LinkCardComponent
   ],
   imports: [
     BrowserModule,

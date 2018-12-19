@@ -1,0 +1,12 @@
+.linkCardImg{
+    max-width:125px;
+}
+
+a { 
+    color: inherit;
+    text-decoration: inherit;
+} 
+
+#mainRow{
+    height:100%;
+}
