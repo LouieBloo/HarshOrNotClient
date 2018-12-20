@@ -1,5 +1,3 @@
-<button (click)="test()">Next</button>
-
 <div *ngFor="let person of currentPerson">
     <app-view-single-profile [userID]="person._id" (sentFeedbackEmitter)="childComponentFeedbackSubmittedEvent($event)" ></app-view-single-profile>
 </div>

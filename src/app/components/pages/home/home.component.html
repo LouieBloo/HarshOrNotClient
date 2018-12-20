@@ -1,38 +1,36 @@
-<div class="row shadowCard" id="mainRow">
+<div class="row shadowCard mb-4" id="mainRow">
   <div class="col-12">
 
     <div *ngIf="showLocationAlert" class="alert alert-warning">You need to set your location before your profile
       becomes discoverable</div>
 
-    <div class="row pt-4">
+    <div class="row mt-4 pt-4">
       <div class="col-12 text-center">
-        <h2>Hello there {{user?.name}}!</h2>
+        <h2 data-toggle="tooltip" data-placement="top" title="{{user?._id}}">Hello {{user?.name}}!</h2>
         <p>What would you like to do?</p>
       </div>
     </div>
 
     <div class="row mt-2 mb-2 justify-content-center">
-      <div class="col-12 col-sm-6 col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 mt-3">
         <app-link-card [linkHeader]="'Edit my preferences'" [linkBody]="'Change your location, preferences, and profile'"
           [imgUrl]="'assets/img/icons/editProfile.png'" [link]="'/my-profile'"></app-link-card>
       </div>
-      <div class="col-12 col-sm-6 col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 mt-3">
         <app-link-card [linkHeader]="'Date'" [linkBody]="'Give people feedback and date at the same time'" [imgUrl]="'assets/img/icons/hearts.png'"
           [link]="'/date'"></app-link-card>
       </div>
-      <div class="col-12 col-sm-6 col-md-3">
+      <div class="col-12 col-sm-6 col-md-3 mt-3">
         <app-link-card [linkHeader]="'Message'" [linkBody]="'Chat with your matches'" [imgUrl]="'assets/img/icons/heartMessageBubble.png'"
           [link]="'/messaging'"></app-link-card>
       </div>
     </div>
 
-    <div class="row mt-2 mb-2 justify-content-center">
+    <div class="row mt-2 mb-2 mt-3 justify-content-center">
       <div class="col-12 col-sm-6 col-md-3">
-        <app-link-card [linkHeader]="'Statistics'" [linkBody]="user?.points?.current + ' points'" [imgUrl]="'assets/img/icons/star.png'" [link]="'/statistics'"></app-link-card>
+        <app-link-card [linkHeader]="'View statistics'" [linkBody]="user?.points?.current + ' points'" [imgUrl]="'assets/img/icons/star.png'" [link]="'/statistics'"></app-link-card>
       </div>
     </div>
-
-    <dd class="col-sm-9">{{user?._id}}</dd>
 
   </div>
 

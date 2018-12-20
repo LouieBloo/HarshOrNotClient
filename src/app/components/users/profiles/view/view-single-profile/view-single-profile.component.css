@@ -2,7 +2,7 @@
     max-width:750px;
     margin:auto;
 
-    background-color: #fffbf5;
+    background-color: white;
     /* border-style: solid; */
 }
 
@@ -31,7 +31,7 @@ span{
 
 
 #bioBlock{
-    background-color:#d3b39d26;
+    background-color:#e2a40026;
     padding:15px;
 
 }

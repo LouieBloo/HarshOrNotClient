@@ -1,9 +1,17 @@
 <div class="row">
+
   <div class="col-12 col-sm-6 col-lg-3">
-    <div class="card">
-      <div class="card-header bg-secondary text-white">
-        <i class="fas fa-smile-beam mr-2"></i>About Me</div>
-      <div class="card-body">
+    <div class="row shadowCard m-0 pb-3">
+      <div class="col-12">
+        <div class="row text-center mt-4 mb-2">
+          <div class="col-12 d-flex align-items-center justify-content-center">
+            <img class="headerPicture mr-4" [src]="'/assets/img/icons/id-card.png'">
+            <h3 class="m-0">Personal</h3>
+          </div>
+        </div>
+
+        <hr>
+
         <p class="card-text">
           <strong>Name:</strong>
           <span> {{user?.name}}</span>
@@ -31,102 +39,124 @@
   </div>
 
   <div class="col-12 col-sm-6 col-lg-4 mt-4 mt-sm-0">
-    <div class="card">
-      <div class="card-header bg-success text-white">
-        <i class="fas fa-sliders-h mr-2"></i>Preferences</div>
-      <div class="card-body">
-        <form class="form" role="form" #updateForm="ngForm" (submit)="updatePreferences()">
-          <div class="row">
-            <div class="col-12">
-              <p>Changing these will effect who you see when you are dating <strong>&amp;</strong> who sees you when they are dating</p>
-            </div>
-            <div class="col-6">
-              <label>
-                <strong>Their Sex:</strong>
-              </label>
-              <div class="custom-control custom-radio">
-                <input class="custom-control-input" name="preference" type="radio" id="pref-male" value="Male" checked [(ngModel)]="user.preference">
-                <label class="custom-control-label" for="pref-male">Men</label>
+    <div class="row shadowCard m-0  pb-3">
+      <div class="col-12">
+
+        <div class="row text-center mt-4 mb-2">
+          <div class="col-12 d-flex align-items-center justify-content-center">
+            <img class="headerPicture mr-4" [src]="'/assets/img/icons/editProfile.png'">
+            <h3 class="m-0"> Profile &amp; <br> Preferences</h3>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row ">
+          <form class="form col-12" role="form" #updateForm="ngForm" (submit)="updatePreferences()">
+            <div class="row">
+              <div class="col-12">
+                <p>Changing these will effect who you see when you are dating <strong>&amp;</strong> who sees you when
+                  they are dating</p>
               </div>
-              <div class="custom-control custom-radio">
-                <input class="custom-control-input" name="preference" type="radio" id="pref-female" value="Female" [(ngModel)]="user.preference">
-                <label class="custom-control-label" for="pref-female">Women</label>
+              <div class="col-6">
+                <label>
+                  <strong>Their Sex:</strong>
+                </label>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" name="preference" type="radio" id="pref-male" value="Male"
+                    checked [(ngModel)]="user.preference">
+                  <label class="custom-control-label" for="pref-male">Men</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" name="preference" type="radio" id="pref-female" value="Female"
+                    [(ngModel)]="user.preference">
+                  <label class="custom-control-label" for="pref-female">Women</label>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input class="custom-control-input" name="preference" type="radio" id="pref-both" value="Both"
+                    [(ngModel)]="user.preference">
+                  <label class="custom-control-label" for="pref-both">Both</label>
+                </div>
               </div>
-              <div class="custom-control custom-radio">
-                <input class="custom-control-input" name="preference" type="radio" id="pref-both" value="Both" [(ngModel)]="user.preference">
-                <label class="custom-control-label" for="pref-both">Both</label>
-              </div>
-            </div>
-            <div class="col-6">
-              <label>
+              <div class="col-6">
+                <label>
                   <strong>Their Body Type:</strong>
-              </label>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" name="body-athletic" type="checkbox" id="body-athletic" value="Athletic" [ngModel]="user?.bodyTypePreferenceRaw?.athletic"
-                  (ngModelChange)="user.bodyTypePreferenceRaw.athletic=$event">
-                <label class="custom-control-label" for="body-athletic">Athletic</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" name="body-thin" type="checkbox" id="body-thin" value="Thin" [ngModel]="user?.bodyTypePreferenceRaw?.thin"
-                  (ngModelChange)="user.bodyTypePreferenceRaw.thin=$event">
-                <label class="custom-control-label" for="body-thin">Thin</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" name="body-average" type="checkbox" id="body-average" value="Average" [ngModel]="user?.bodyTypePreferenceRaw?.average"
-                  (ngModelChange)="user.bodyTypePreferenceRaw.average=$event">
-                <label class="custom-control-label" for="body-average">Average</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" name="body-plus" type="checkbox" id="body-plus" value="Plus" [ngModel]="user?.bodyTypePreferenceRaw?.plus"
-                  (ngModelChange)="user.bodyTypePreferenceRaw.plus=$event">
-                <label class="custom-control-label" for="body-plus">Plus</label>
-              </div>
-              <div class="custom-control custom-checkbox">
-                <input class="custom-control-input" name="body-very-plus" type="checkbox" id="body-very-plus" value="Very Plus" [ngModel]="user?.bodyTypePreferenceRaw?.veryPlus"
-                  (ngModelChange)="user.bodyTypePreferenceRaw.veryPlus=$event">
-                <label class="custom-control-label" for="body-very-plus">Very Plus</label>
+                </label>
+                <div class="custom-control custom-checkbox">
+                  <input class="custom-control-input" name="body-athletic" type="checkbox" id="body-athletic" value="Athletic"
+                    [ngModel]="user?.bodyTypePreferenceRaw?.athletic" (ngModelChange)="user.bodyTypePreferenceRaw.athletic=$event">
+                  <label class="custom-control-label" for="body-athletic">Athletic</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input class="custom-control-input" name="body-thin" type="checkbox" id="body-thin" value="Thin"
+                    [ngModel]="user?.bodyTypePreferenceRaw?.thin" (ngModelChange)="user.bodyTypePreferenceRaw.thin=$event">
+                  <label class="custom-control-label" for="body-thin">Thin</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input class="custom-control-input" name="body-average" type="checkbox" id="body-average" value="Average"
+                    [ngModel]="user?.bodyTypePreferenceRaw?.average" (ngModelChange)="user.bodyTypePreferenceRaw.average=$event">
+                  <label class="custom-control-label" for="body-average">Average</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input class="custom-control-input" name="body-plus" type="checkbox" id="body-plus" value="Plus"
+                    [ngModel]="user?.bodyTypePreferenceRaw?.plus" (ngModelChange)="user.bodyTypePreferenceRaw.plus=$event">
+                  <label class="custom-control-label" for="body-plus">Plus</label>
+                </div>
+                <div class="custom-control custom-checkbox">
+                  <input class="custom-control-input" name="body-very-plus" type="checkbox" id="body-very-plus" value="Very Plus"
+                    [ngModel]="user?.bodyTypePreferenceRaw?.veryPlus" (ngModelChange)="user.bodyTypePreferenceRaw.veryPlus=$event">
+                  <label class="custom-control-label" for="body-very-plus">Very Plus</label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label for="bio">
-              <strong>My Bio: </strong>
-              <small class="text-muted">Max 1000 characters</small>
-            </label>
-            <textarea class="form-control" rows="5" id="bio" maxlength="1000" name="bio" [(ngModel)]="user.bio"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="zip">
-              <strong>Zip I'm in: </strong>
-            </label>
-            <input class="form-control" type="text" pattern="[0-9]{5}" id="zip" name="zip" required minlength="5" maxlength="5" [(ngModel)]="user.location.zip"
-            />
-          </div>
-          <div class="form-group">
-            <label for="range">
-              <strong>Maximum distance: </strong>{{user.range}} miles</label>
-            <!-- <input type="range" min="1" max="150" value="30" class="form-control" id="range" name="range" [(ngModel)]="user.range" required> -->
-            <nouislider [min]="1" [max]="150" [step]="1" name="range" [(ngModel)]="user.range"></nouislider>
-          </div>
-          <div class="form-group">
-            <label for="range">
-              <strong>Age Range: </strong>{{ageRange[0]}}-{{ageRange[1]}} years old</label>
-            <nouislider [connect]="true" [min]="18" [max]="100" [step]="1" name="ageRange" [(ngModel)]="ageRange"></nouislider>
-          </div>
-          <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Update" [disabled]='!updateForm.valid'>
-          </div>
-          <div *ngIf="alert" class="alert alert-success">{{alert}}</div>
-        </form>
+            <div class="form-group">
+              <label for="bio">
+                <strong>My Bio: </strong>
+                <small class="text-muted">Max 1000 characters</small>
+              </label>
+              <textarea class="form-control" rows="5" id="bio" maxlength="1000" name="bio" [(ngModel)]="user.bio"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="zip">
+                <strong>Zip I'm in: </strong>
+              </label>
+              <input class="form-control" type="text" pattern="[0-9]{5}" id="zip" name="zip" required minlength="5"
+                maxlength="5" [(ngModel)]="user.location.zip" />
+            </div>
+            <div class="form-group">
+              <label for="range">
+                <strong>Maximum distance: </strong>{{user.range}} miles</label>
+              <nouislider [min]="1" [max]="150" [step]="1" name="range" [(ngModel)]="user.range"></nouislider>
+            </div>
+            <div class="form-group">
+              <label for="range">
+                <strong>Age Range: </strong>{{ageRange[0]}}-{{ageRange[1]}} years old</label>
+              <nouislider [connect]="true" [min]="18" [max]="100" [step]="1" name="ageRange" [(ngModel)]="ageRange"></nouislider>
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Update" [disabled]='!updateForm.valid'>
+            </div>
+            <div *ngIf="alert" class="alert alert-success">{{alert}}</div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="col-12 col-lg-5 mt-4 mt-md-0 mb-md-0 mb-4">
-    <div class="card">
-      <div class="card-header bg-primary text-white">
-        <i class="fas fa-camera-retro mr-2"></i>Photos</div>
-      <div class="card-body">
+    <div class="row shadowCard m-0 pb-3">
+      <div class="col-12">
+        <div class="row text-center mt-4 mb-2">
+          <div class="col-12 d-flex align-items-center justify-content-center">
+            <img class="headerPicture mr-4" [src]="'/assets/img/icons/camera.png'">
+            <h3 class="m-0">Photos</h3>
+          </div>
+        </div>
+
+        <hr>
+
+      </div>
+      <div class="col-12">
         <app-update-photos></app-update-photos>
       </div>
     </div>

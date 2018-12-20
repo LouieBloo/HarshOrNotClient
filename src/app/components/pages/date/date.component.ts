@@ -38,7 +38,6 @@ export class DateComponent implements OnInit {
   //If there is anyone left in our searchResults array, set the current person to the person in front.
   //The person chosen is then removed from the searchResults array.
   getNextPerson(){
-    
     if(this.searchResults && this.searchResults.length > 0){
       this.currentPerson = [];
       this.currentPerson[0] = this.searchResults.shift();
@@ -47,9 +46,6 @@ export class DateComponent implements OnInit {
     }
   }
 
-  test(){
-    this.getNextPerson();
-  }
 
   //When the child components feedback is submitted, this is fired with the userid that was submitted
   childComponentFeedbackSubmittedEvent(userID){

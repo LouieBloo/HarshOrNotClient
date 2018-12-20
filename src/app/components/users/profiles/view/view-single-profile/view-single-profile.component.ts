@@ -53,7 +53,7 @@ export class ViewSingleProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    this.setGalleryHeight();
+    //this.setGalleryHeight();
   }
 
   ngOnChanges(changes:SimpleChanges){
@@ -64,7 +64,7 @@ export class ViewSingleProfileComponent implements OnInit {
   //resize gallery when screen size changes
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.setGalleryHeight();
+   // this.setGalleryHeight();
   }
 
   //calls the services that fetch user info and feedback
