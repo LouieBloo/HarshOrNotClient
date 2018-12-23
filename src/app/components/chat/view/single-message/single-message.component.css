@@ -18,3 +18,9 @@ p{
     white-space: pre-line;
     margin:0px;
 }
+
+.author{
+    font-weight: 500;
+    color:#1f1f1f;
+    font-size:17px;
+}

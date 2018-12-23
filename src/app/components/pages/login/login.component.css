@@ -1,6 +1,35 @@
-.form-signin {
-    width: 100%;
-    max-width: 330px;
+#mainRow {
+    max-width: 550px;
     padding: 15px;
     margin: auto;
+}
+
+.background{
+    background-color:white;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+#loginPic{
+    max-width:200px;
+}
+
+.btn{
+    border-radius:0rem;
+}
+
+.form-control{
+    border-radius:0rem;
+
+    border-color:#0000000f;
+    border-width: 1px 1px 1px 1px;
+
+}
+
+.loginButtonColor{
+    background-color:rgb(174, 90, 241);
+    color:white;
+}
+
+.registerButtonColor{
 }

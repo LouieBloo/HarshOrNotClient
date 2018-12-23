@@ -1,9 +1,14 @@
-<div class="row mt-3 mb-3 ml-2 mr-2 pt-2 pb-2" [ngClass]="{'myColor':isMyMessage,'theirColor':!isMyMessage,'myBubble':isMyMessage,'theirBubble':!isMyMessage}" >
+<div class="row mt-3 mb-3  pt-2 pb-2" [ngClass]="{'myColor':isMyMessage,'theirColor':!isMyMessage,'myBubble':isMyMessage,'theirBubble':!isMyMessage}">
   <div class="col-12">
     <p>
-        {{message?.body}}
+      <span class="author mr-2">
+        <a *ngIf="!isMyMessage; else mine" [routerLink]="['/profile',message?.state?.author]">{{message?.channel.memberInfo[0].friendlyName}}:</a>
+        <ng-template #mine>
+          {{message?.channel.memberInfo[1].friendlyName}}:
+        </ng-template>
+      </span>
+      {{message?.body}}
     </p>
-    
   </div>
   <div class="col-12">
     <small class="text-muted">{{message?.timestamp | date:'short'}}</small>

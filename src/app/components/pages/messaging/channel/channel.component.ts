@@ -114,6 +114,6 @@ export class ChannelComponent implements OnInit {
 
   //sets the height of the scroll container
   setPageHeight(){
-    this.pageHeight = window.innerHeight - 70;
+    this.pageHeight = window.innerHeight - 65;
   }
 }

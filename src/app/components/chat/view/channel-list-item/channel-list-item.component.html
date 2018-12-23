@@ -8,7 +8,12 @@
 
     <div *ngIf="channel?.lastMessage; else noMessages">
       <!-- <p>{{channel?.lastMessage?.index}}</p> -->
-      <p>{{lastMessage?.body}}</p>
+      <div *ngIf="lastMessage?.body">
+        <p>{{lastMessage?.body}}</p>
+      </div>
+      <div *ngIf="!lastMessage?.body">
+          <p>Loading...</p>
+      </div>
     </div>
     <ng-template #noMessages>
       <div>

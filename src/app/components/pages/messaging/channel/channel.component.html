@@ -1,11 +1,11 @@
-<div class="row">
+<div class="row align-items-center justify-content-center" id="loading" *ngIf="isLoading">
+  <app-loading></app-loading>
+</div>
 
-
-  <div class="" id="mainRow" #mainRow [ngStyle]="{'height.px': pageHeight}">
-    <div class="row justify-content-center" *ngIf="isLoading">
-      <app-loading></app-loading>
-    </div>
-    <div class="col-12" *ngIf="!isLoading">
+<div class="row " *ngIf="!isLoading">
+  <div class="d-flex align-items-end pl-2 pr-2 pb-2 pt-0" id="mainRow" #mainRow [ngStyle]="{'height.px': pageHeight}">
+   
+    <div class="col-12" >
       <div class="row">
         <div class="col-12">
           <div *ngFor="let message of messages;">
@@ -16,8 +16,8 @@
             <p class="text-center">No messages yet. Send em something nice <3</p>
           </div>
         </div>
-        <div class="col-12">
-          <div class="row d-flex">
+        <div class="col-12 ">
+          <div class="row d-flex mb-2">
             <textarea id="textArea" class="form-control ml-2" rows="3" [(ngModel)]="textAreaMessage" (keydown)="textAreaEnterHandler($event)"></textarea>
             <button class="btn btn-primary" (click)="addMessage()">
               <i class="fas fa-sign-in-alt"></i>
