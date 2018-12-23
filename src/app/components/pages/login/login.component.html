@@ -1,4 +1,4 @@
-<div class="background">
+<div class="background d-flex justify-content-center">
   <div class="row" id="mainRow">
     <div class="col-12">
 
@@ -14,38 +14,44 @@
             <img class="mb-2" [src]="'assets/img/icons/logo.png'" id="loginPic">
           </div>
 
-          <p class="mb-0 mt-3 text-center">Harsh gives you valuable insight on how your peers view you, both positively and
-            negatively, and lets you
-            discover people you love</p>
-          <div class="form-group mt-3">
-            <h5>Register:</h5>
-            <a class="btn form-control btn-primary registerButtonColor" routerLink="/register">I'm in!</a>
+          <p class="mb-0 mt-3 text-center">Harsh gives you valuable insight on how your peers view you, both positively
+            and negatively, and lets you discover people you love</p>
+          <div class="form-group mb-0 mt-4">
+            <a class="btn form-control btn-primary registerButtonColor" routerLink="/register">Register</a>
           </div>
         </div>
       </div>
+      <hr>
       <div class="row">
         <div class="col-12">
-          <form class="form-signin form" role="form" #loginForm="ngForm" (submit)="submit()">
+          <form class="form-signin form " role="form" #loginForm="ngForm">
+            <div [ngClass]="{'hidden':!showingLoginInput}">
+              <div class="form-group mb-0">
+                <h5>Sign In:</h5>
+                <label for="email" class="sr-only">Email address</label>
+                <input type="email" class="form-control mb-1" placeholder="Email address" name="email" type="email" id="email"
+                  required maxlength="60" [(ngModel)]="loginDetails.email" #email="ngModel">
 
-            <div class="form-group mb-0">
-              <h5>Sign In:</h5>
-              <label for="email" class="sr-only">Email address</label>
-              <input type="email" class="form-control" placeholder="Email address" name="email" type="email" id="email"
-                required maxlength="60" [(ngModel)]="loginDetails.email" #email="ngModel">
-
-              <label for="inputPassword" class="sr-only">Password</label>
-              <input type="password" class="form-control" placeholder="Password" name="password" type="password" id="password"
-                required minlength="0" maxlength="36" [(ngModel)]="loginDetails.password" #password="ngModel"
-                autocomplete="off">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" class="form-control mb-1" placeholder="Password" name="password" type="password"
+                  id="password" required minlength="0" maxlength="36" [(ngModel)]="loginDetails.password" #password="ngModel"
+                  autocomplete="off">
+              </div>
+              <div class="custom-control custom-checkbox ml-1 mt-2 mb-4">
+                <input class="custom-control-input" name="rememberMe" type="checkbox" id="rememberMe" value="Remember"
+                  [(ngModel)]="rememberMe">
+                <label class="custom-control-label" for="rememberMe">Remember me</label>
+              </div>
             </div>
-
             <div class="form-group ">
-              <input type="submit" class="btn form-control loginButtonColor" value="Login" [disabled]='!loginForm.valid'>
+              <button (click)="loginButtonClicked()" class="btn form-control loginButtonColor" [disabled]='!loginForm.valid && showingLoginInput'>Login</button>
             </div>
-
-            <div *ngIf="error" class="alert alert-danger mt-4">{{error}}</div>
           </form>
-          <hr>
+
+
+
+          <div *ngIf="error" class="alert alert-danger mt-4">{{error}}</div>
+
         </div>
       </div>
     </div>

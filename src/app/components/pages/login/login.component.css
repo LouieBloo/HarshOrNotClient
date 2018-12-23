@@ -8,6 +8,7 @@
     background-color:white;
     margin-right: -15px;
     margin-left: -15px;
+    height:100vh;
 }
 
 #loginPic{
@@ -32,4 +33,8 @@
 }
 
 .registerButtonColor{
+}
+
+.hidden{
+    display: none;
 }

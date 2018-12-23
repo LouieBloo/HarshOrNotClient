@@ -23,3 +23,9 @@ i{
     background-color: #df3ff5ed;
     border:none;
 }
+
+.background{
+    background-color:white;
+    margin-right: -15px;
+    margin-left: -15px;
+}
