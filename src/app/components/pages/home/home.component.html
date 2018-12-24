@@ -1,4 +1,4 @@
-<div class="row shadowCard mb-4 mt-2" id="mainRow">
+<div class="row shadowCard mb-4 mt-0 mt-sm-2 " id="mainRow">
   <div class="col-12">
 
     <div *ngIf="showLocationAlert" class="alert alert-warning">You need to set your location before your profile
@@ -28,7 +28,8 @@
 
     <div class="row mt-2 mb-2 mt-3 justify-content-center">
       <div class="col-12 col-sm-6 col-md-3">
-        <app-link-card [linkHeader]="'View statistics'" [linkBody]="user?.points?.current + ' points'" [imgUrl]="'assets/img/icons/star.png'" [link]="'/statistics'"></app-link-card>
+        <app-link-card [linkHeader]="'View statistics'" [linkBody]="user?.points?.current + ' points'" [imgUrl]="'assets/img/icons/star.png'"
+          [link]="'/statistics'"></app-link-card>
       </div>
     </div>
 

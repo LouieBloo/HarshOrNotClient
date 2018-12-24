@@ -1,32 +1,37 @@
-<div class="row" id="mainRow">
+<div class="row shadowCard mt-0 mt-sm-2" id="mainRow">
   <div class="col-12">
 
     <div class="row justify-content-center" *ngIf="feedbackAboutMe.length <= 0 && feedbackIGave.length <= 0">
       <app-loading></app-loading>
     </div>
 
-    <div class="row" id="feedbackNav" *ngIf="feedbackAboutMe.length  > 0 || feedbackIGave.length  > 0">
+    <h3 class="mt-4">Feedback:</h3>
+    <p>What feedback would you like to see?</p>
 
+    <div class="row">
       <div class="col-12">
-        <div class="row">
-          <div class="col-12">
-            <!-- <p class="pt-4 text-center">
-              <strong>What kind of feedback would you like to see?</strong>
-              </p> -->
-          </div>
-        </div>
-
-        <ul class="row nav nav-tabs nav-justified" id="pills-tab" role="tablist">
-          <li class="nav-item col-6 col-sm-6">
-            <a class="nav-link active" id="pills-about-tab" data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about"
-              aria-selected="true"><i class="far fa-smile-beam mr-2"></i> About Me</a>
+        <ul class="row nav nav-pills nav-justified" id="pills-tab" role="tablist">
+          <li class="nav-item col-12 col-sm-6">
+            <a class="nav-link active d-flex justify-content-center align-items-center" id="pills-about-tab"
+              data-toggle="pill" href="#pills-about" role="tab" aria-controls="pills-about" aria-selected="true">
+              <img class="tabPic mr-3" [src]="'assets/img/icons/smile.png'">
+              <h5 class="mb-0">About Me</h5>
+            </a>
           </li>
-          <li class="nav-item col-6 col-sm-6">
-            <a class="nav-link" id="pills-gave-tab" data-toggle="pill" href="#pills-gave" role="tab" aria-controls="pills-gave" aria-selected="false"><i class="fas fa-pencil-alt mr-2"></i> I Gave</a>
+          <li class="nav-item col-12 col-sm-6">
+            <a class="nav-link d-flex justify-content-center align-items-center" id="pills-gave-tab" data-toggle="pill"
+              href="#pills-gave" role="tab" aria-controls="pills-gave" aria-selected="false">
+              <img class="tabPic mr-3" [src]="'assets/img/icons/pencil.png'">
+              <h5 class="mb-0">I Gave</h5>
+            </a>
           </li>
         </ul>
-
       </div>
+    </div>
+
+    <hr class="mt-4 mb-4 mb-sm-0">
+
+    <div class="row" id="feedbackNav" *ngIf="feedbackAboutMe.length  > 0 || feedbackIGave.length  > 0">
 
       <div class="col-12" id="bodyyy">
         <div class="tab-content  ml-2 ml-sm-4 mr-2 mr-sm-4 mt-2 mt-sm-4" id="pills-tabContent">

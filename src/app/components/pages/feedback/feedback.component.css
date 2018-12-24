@@ -12,28 +12,37 @@ a{
 }
 
 
-#feedbackData{
+.nav-item {
+    z-index: 5;
     
 }
 
-#bodyyy{
-    background-color:white;
-    box-shadow: 0px 1px 6px 0px #00000029;
+.nav-link.active{
+    background-color:#3693ff;
+
+}
+.nav-link{
+    background-color:#00000017;
 }
 
-.nav-item {
-    z-index: 5;
+.nav-pills .nav-link{
+    border-radius: 0px;
 }
 
 #mainRow{
     max-width:750px;
     margin:auto;
-
+    background-color:white;
     /* background-color:#fdd698; */
     /* box-shadow:0 0 14px 0px #0000003b; */
 }
 
+
 .nav-justified .nav-item{
     flex-basis:auto;
+}
+
+.tabPic{
+    max-width:25px;
 }
 
