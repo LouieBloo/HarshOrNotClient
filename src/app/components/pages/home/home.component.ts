@@ -13,20 +13,12 @@ export class HomeComponent implements OnInit {
 
   user:User;
 
-  showLocationAlert:boolean;
-
   constructor(private welcomeService:WelcomeService) { }
 
   ngOnInit() {
     this.welcomeService.getWelcomeInfo().subscribe(result =>{
       this.user = result;
-      if(this.user.location == null || this.user.location.zip == null){
-        this.showLocationAlert = true;
-      }
     })
-  }
-
-  searchButtonClicked(){
   }
 
 }

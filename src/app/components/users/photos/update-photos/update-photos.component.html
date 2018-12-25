@@ -26,7 +26,7 @@
     </h4>
 
     <form *ngIf="photos?.photos.length < maximumNumberOfPhotos" role="form" #uploadForm="ngForm" (submit)="submitUpload()">
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'invisible':uploading}">
         <input type='file' (change)="fileChangeEvent($event)">
         <image-cropper
           [imageChangedEvent]="imageChangedEvent"
@@ -41,9 +41,10 @@
           [style.display]="cropperReady ? null : 'none'">
         </image-cropper>
       </div>
-      <div class="form-group">
+      <div class="form-group" *ngIf="!uploading">
         <input type="submit" class="btn btn-primary" value="Upload">
       </div>
+      
       <div *ngIf="error" class="alert alert-success">{{error}}</div>
     </form>
 

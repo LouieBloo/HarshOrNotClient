@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
 import { trigger, transition, animate, style } from '@angular/animations';
 import { ChatService } from '../../services/user/chat/chat.service';
+import { LocationService } from 'src/app/services/user/location/location.service';
+import { DiscoverableService } from 'src/app/services/user/profiles/discoverable/discoverable.service';
 
 @Component({
   selector: 'app-header',
@@ -12,18 +14,32 @@ export class HeaderComponent implements OnInit {
 
   isCollapsed:boolean = true;
 
+  discoverableListener:any;
+  discoverableDescription:string;
+
   @ViewChild('menu') menu;
 
 
-  constructor(private auth:AuthService,private chat:ChatService) { }
+  constructor(private auth:AuthService,private chat:ChatService,private location:LocationService,private discoverable:DiscoverableService) { }
 
   ngOnInit() {
     this.chat.startup();
+    this.location.startup();
+
+    this.discoverableListener = this.discoverable.alertEmitter.subscribe(data=>{
+      if(data){
+        this.discoverableDescription = data.description;
+      }
+    })
+    this.discoverable.checkIfDiscoverable();
   }
 
   logout(){
     this.auth.logout();
     this.chat.logout();
+
+    this.discoverableListener.unsubscribe();
+    this.discoverableDescription = null;
   }
 
   //fired when the big menu button is clicked on mobile

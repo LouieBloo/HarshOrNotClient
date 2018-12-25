@@ -17,6 +17,8 @@ export class DateComponent implements OnInit {
   //Users array
   private searchResults:SearchResult[];
 
+  error:string;
+
   constructor(private automatedSearch:AutomatedSearchService) { }
 
   ngOnInit() {
@@ -25,12 +27,12 @@ export class DateComponent implements OnInit {
 
   getPeopleList(){
     this.automatedSearch.search().subscribe(result=>{
-      console.log(result);
+      this.error = null;
       if(result && !result.error && result.users && result.users.length > 0){
         this.searchResults = result.users;
         this.getNextPerson();
-      }else{
-        console.log("Error fetching people:",result.error);
+      }else if(result.error){
+        this.error = result.error;
       }
     })
   }

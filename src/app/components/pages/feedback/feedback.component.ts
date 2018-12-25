@@ -10,7 +10,10 @@ import { ProfileFeedback } from '../../../models/feedback';
 export class FeedbackComponent implements OnInit {
 
   feedbackAboutMe:ProfileFeedback[] = [];
+  isAboutMeLoading:boolean = true;
+  
   feedbackIGave:ProfileFeedback[] = [];
+  isIGaveLoading:boolean = true;
 
   constructor(private fetchProfileFeedbackService:FetchProfileFeedbackService) { }
 
@@ -20,20 +23,22 @@ export class FeedbackComponent implements OnInit {
   }
 
   getAboutMeFeedback(limit:number){
+    this.isAboutMeLoading = true;
     this.fetchProfileFeedbackService.getFeedbackAboutMe(limit).subscribe(result=>{
       if(result && result.length >0 && !result[0].error){
         this.feedbackAboutMe = result;
-        console.log(result);
       }
+      this.isAboutMeLoading = false;
     })
   }
 
   getIGaveFeedback(limit:number){
+    this.isIGaveLoading = true;
     this.fetchProfileFeedbackService.getFeedbackIGave(limit).subscribe(result=>{
       if(result && result.length >0 && !result[0].error){
         this.feedbackIGave = result;
-        console.log(result);
       }
+      this.isIGaveLoading = false;
     })
   }
 

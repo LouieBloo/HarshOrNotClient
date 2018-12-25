@@ -1,10 +1,6 @@
 <div class="row shadowCard mt-0 mt-sm-2" id="mainRow">
   <div class="col-12">
 
-    <div class="row justify-content-center" *ngIf="feedbackAboutMe.length <= 0 && feedbackIGave.length <= 0">
-      <app-loading></app-loading>
-    </div>
-
     <h3 class="mt-4">Feedback:</h3>
     <p>What feedback would you like to see?</p>
 
@@ -31,27 +27,44 @@
 
     <hr class="mt-4 mb-4 mb-sm-0">
 
-    <div class="row" id="feedbackNav" *ngIf="feedbackAboutMe.length  > 0 || feedbackIGave.length  > 0">
-
+    <div class="row" id="feedbackNav">
       <div class="col-12" id="bodyyy">
         <div class="tab-content  ml-2 ml-sm-4 mr-2 mr-sm-4 mt-2 mt-sm-4" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-about" role="tabpanel" aria-labelledby="pills-about-tab">
-
-            <div *ngFor="let feedback of feedbackAboutMe; let i = index">
-              <app-list-feedback [feedback]="feedback"></app-list-feedback>
+            <div class="row justify-content-center" *ngIf="isAboutMeLoading; else aboutMe">
+              <app-loading></app-loading>
             </div>
-
+            <ng-template #aboutMe>
+              <div *ngFor="let feedback of feedbackAboutMe; let i = index">
+                <app-list-feedback [feedback]="feedback"></app-list-feedback>
+              </div>
+              <div *ngIf="feedbackAboutMe.length <= 0">
+                <app-link-card [linkHeader]="'No feedback'" [linkBody]="'Looks like no-one has seen your profile yet. Hang tight!'"
+                  [imgUrl]="'assets/img/icons/sceptic.png'" [link]="'/date'"></app-link-card>
+              </div>
+            </ng-template>
           </div>
           <!--end about tab-->
           <div class="tab-pane fade" id="pills-gave" role="tabpanel" aria-labelledby="pills-gave-tab">
-            <div *ngFor="let feedback of feedbackIGave; let i = index">
-              <app-list-feedback [feedback]="feedback"></app-list-feedback>
+            <div class="row justify-content-center" *ngIf="isIGaveLoading; else iGave">
+              <app-loading></app-loading>
             </div>
+            <ng-template #iGave>
+              <div *ngFor="let feedback of feedbackIGave; let i = index">
+                <app-list-feedback [feedback]="feedback"></app-list-feedback>
+              </div>
+              <div *ngIf="feedbackIGave.length <= 0">
+                <app-link-card [linkHeader]="'No feedback'" [linkBody]="'You haven\'t given any feedback yet'"
+                  [imgUrl]="'assets/img/icons/sceptic.png'" [link]="'/date'"></app-link-card>
+              </div>
+            </ng-template>
           </div>
           <!--end gave tab-->
         </div>
       </div>
     </div>
+
+
 
   </div>
 </div>

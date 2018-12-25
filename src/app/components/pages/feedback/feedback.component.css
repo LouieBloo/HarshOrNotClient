@@ -18,11 +18,17 @@ a{
 }
 
 .nav-link.active{
-    background-color:#3693ff;
-
+    background-color:white;
+    border-color:rgb(6, 62, 127);
+    border-style: solid;
+    border-width:1px;
+    color:black;
 }
 .nav-link{
-    background-color:#00000017;
+    border-color:rgba(0, 0, 0, 0.1);
+    border-style: solid;
+    border-width:1px;
+    /* background-color:#00000017; */
 }
 
 .nav-pills .nav-link{

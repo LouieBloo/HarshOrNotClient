@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" routerLink="/">
-    <i class="fas fa-poll"></i>
+    <i class="fas fa-yin-yang"></i>
      Harsh
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation" (click)="menuToggleClicked()">
@@ -35,3 +35,5 @@
     <a aria-label="logout" class="text-muted" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
   </div>
 </nav>
+
+<div *ngIf="discoverableDescription" class="alert alert-warning">{{discoverableDescription}}</div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { PhotosService } from '../../../../services/user/photos/photos.service';
 import { Photos, ModifyPhotoStatuses } from '../../../../models/photos';
+import { DiscoverableService } from 'src/app/services/user/profiles/discoverable/discoverable.service';
 
 @Component({
   selector: 'app-update-photos',
@@ -31,7 +32,10 @@ export class UpdatePhotosComponent implements OnInit {
   showDeleteButton: boolean;
   showSwapButton: boolean;
 
-  constructor(private photoService: PhotosService) {
+  //loading indicator
+  uploading:boolean = false;
+
+  constructor(private photoService: PhotosService, private discoverable: DiscoverableService) {
     this.clearPhotoStatuses();
   }
 
@@ -44,6 +48,7 @@ export class UpdatePhotosComponent implements OnInit {
   //actually make the server request
   submitUpload() {
     if (this.newPhoto != null) {
+      this.uploading = true;
 
       const uploadData = new FormData();
       uploadData.append('photo', this.newPhoto, this.newPhoto.name);
@@ -55,6 +60,11 @@ export class UpdatePhotosComponent implements OnInit {
         this.checkDeleteAndSwapStatuses();
         this.cropperReady = false;
         this.error = "";
+
+        //since we added a photo, check discoverability
+        this.discoverable.checkIfDiscoverable();
+
+        this.uploading = false;
       })
     }
   }
@@ -110,6 +120,9 @@ export class UpdatePhotosComponent implements OnInit {
         this.clearPhotoStatuses();
         this.checkDeleteAndSwapStatuses();
         this.error = "";
+
+        //since we deleted a photo, check discoverability
+        this.discoverable.checkIfDiscoverable();
       })
     }
   }

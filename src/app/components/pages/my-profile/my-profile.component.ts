@@ -6,6 +6,7 @@ import { UpdateProfileService } from '../../../services/user/profiles/update/upd
 import { NouisliderModule } from 'ng2-nouislider';
 import { AgeRangeService } from '../../../services/sanitation/user/ageRange/age-range.service';
 import { UserHelperService } from '../../../services/user/user-helper.service';
+import { DiscoverableService } from 'src/app/services/user/profiles/discoverable/discoverable.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -18,7 +19,7 @@ export class MyProfileComponent implements OnInit {
   alert: string;
   ageRange = [18, 100];//we have to duplicate this so our noui component works with a double slider :(
 
-  constructor(private userService: FetchProfileService, private userUpdate: UpdateProfileService, private ageRangeConverter: AgeRangeService, private userHelper: UserHelperService) { }
+  constructor(private userService: FetchProfileService, private userUpdate: UpdateProfileService, private ageRangeConverter: AgeRangeService, private userHelper: UserHelperService,private discoverable:DiscoverableService) { }
 
   ngOnInit() {
     
@@ -68,6 +69,9 @@ export class MyProfileComponent implements OnInit {
       } else {
         this.user.bodyTypePreferenceRaw = this.userHelper.bodyTypeArrayToObj(this.user.bodyTypePreference);
       }
+
+      //since we updated location, check discoverability
+      this.discoverable.checkIfDiscoverable();
     });
   }
 

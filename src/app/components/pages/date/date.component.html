@@ -1,4 +1,13 @@
 <div *ngFor="let person of currentPerson">
-    <app-view-single-profile [userID]="person._id" (sentFeedbackEmitter)="childComponentFeedbackSubmittedEvent($event)" ></app-view-single-profile>
+    <app-view-single-profile [userID]="person._id" (sentFeedbackEmitter)="childComponentFeedbackSubmittedEvent($event)"></app-view-single-profile>
 </div>
 
+<div *ngIf="error">
+    <div class="row shadowCard pb-2" id="oopsRow">
+        <div class="col-12">
+            <app-link-card [linkHeader]="'Oops!'" [linkBody]="'You need to be discoverable before you can date! Click to edit your profile'"
+                [imgUrl]="'assets/img/icons/confused.png'" [link]="'/my-profile'"></app-link-card>
+                
+        </div>
+    </div>
+</div>
