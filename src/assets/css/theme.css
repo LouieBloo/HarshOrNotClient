@@ -50,5 +50,10 @@ p{
     display:none;
 }
 
+.images-container{
+    touch-action: auto !important;
+    user-select:auto !important;
+    -webkit-user-drag:auto !important;
+}
 
 

@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
         this.discoverableDescription = data.description;
       }
     })
-    this.discoverable.checkIfDiscoverable();
+    //this.discoverable.checkIfDiscoverable(); location service will handle calling this
   }
 
   logout(){

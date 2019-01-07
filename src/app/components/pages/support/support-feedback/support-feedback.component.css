@@ -1,0 +1,12 @@
+.mainRow{
+    margin:auto;
+    max-width:650px;
+}
+
+#submitButton{
+    width:100%;
+}
+
+#thanksPicture{
+    max-width:125px;
+}

@@ -35,6 +35,8 @@ import{ChannelComponent} from './components/pages/messaging/channel/channel.comp
 import { SingleMessageComponent } from './components/chat/view/single-message/single-message.component';
 import { VerifyEmailComponent } from './components/pages/verify-email/verify-email.component';
 import { LinkCardComponent } from './components/general/link-card/link-card.component';
+import { SupportFeedbackComponent } from './components/pages/support/support-feedback/support-feedback.component';
+import { SingleSupportFeedbackComponent } from './components/support/single-support-feedback/single-support-feedback.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { LinkCardComponent } from './components/general/link-card/link-card.comp
     ChannelComponent,
     SingleMessageComponent,
     VerifyEmailComponent,
-    LinkCardComponent
+    LinkCardComponent,
+    SupportFeedbackComponent,
+    SingleSupportFeedbackComponent
   ],
   imports: [
     BrowserModule,

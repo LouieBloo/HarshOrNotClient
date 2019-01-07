@@ -26,10 +26,14 @@
     </div>
 
     <div class="row mt-2 mb-2 mt-3 justify-content-center">
-      <div class="col-12 col-sm-6 col-md-3">
+      <div class="col-12 col-sm-6 col-md-4">
         <app-link-card [linkHeader]="'View statistics'" [linkBody]="user?.points?.current + ' points'" [imgUrl]="'assets/img/icons/star.png'"
           [link]="'/statistics'"></app-link-card>
       </div>
+      <div class="col-12 col-sm-6 col-md-4">
+          <app-link-card [linkHeader]="'Bugs and Feedback'" [linkBody]="'Found a bug or have any feedback for the app?'" [imgUrl]="'assets/img/icons/malware.png'"
+            [link]="'/support-feedback'"></app-link-card>
+        </div>
     </div>
 
   </div>

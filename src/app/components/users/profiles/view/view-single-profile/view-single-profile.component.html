@@ -4,8 +4,10 @@
       <div style="width:100%;">
         <!-- <slideshow *ngIf="user?.photos" [height]="'400px'" [backgroundSize]="'contain'" [showArrows]="true" [imageUrls]="user?.photos"
           [lazyLoad]="user?.photos?.length > 1" [showDots]="false"></slideshow> -->
-        <ngx-image-gallery class="mt-2" [ngStyle]="{'max-height.px': galleryHeight}" *ngIf="galleryImages" [images]="galleryImages"
-          [conf]="galleryConf"></ngx-image-gallery>
+        <div #galleryContainer>
+            <ngx-image-gallery class="mt-2" [ngStyle]="{'max-height.px': galleryHeight}" *ngIf="galleryImages" [images]="galleryImages"
+            [conf]="galleryConf"></ngx-image-gallery>
+        </div>
       </div>
     </div>
     <div *ngIf="user" class="row">
@@ -50,8 +52,8 @@
             <p class="mt-0 mb-1" *ngIf="feedback?.dateAdded;">
               <small class="text-muted">Feedback submitted on: {{feedback?.dateAdded | date}}</small>
             </p>
-            <textarea class="form-control" name="feedback" id="feedback" rows="3" placeholder="be honest and constructive" [disabled]="!canEditForm"
-              (ngModelChange)="textAreaChanged($event);" [(ngModel)]="feedback.feedback"></textarea>
+            <textarea class="form-control" name="feedback" id="feedback" rows="3" placeholder="be honest and constructive"
+              [disabled]="!canEditForm" (ngModelChange)="textAreaChanged($event);" [(ngModel)]="feedback.feedback"></textarea>
           </div>
           <div *ngIf="feedback?.wouldYouDate && feedback?.dateAdded" class="row">
             <div class="col-12">
@@ -76,7 +78,8 @@
 <!-- (submit)="feedbackSubmitted()" -->
 
 <!-- Would you date modal -->
-<div class="modal fade" id="wouldYouDateModal" tabindex="-1" role="dialog" aria-labelledby="wouldYouDateModalTitle" aria-hidden="true">
+<div class="modal fade" id="wouldYouDateModal" tabindex="-1" role="dialog" aria-labelledby="wouldYouDateModalTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <form #wouldYouDateForm="ngForm" (submit)="feedbackSubmitted()">
@@ -89,18 +92,18 @@
         <div class="modal-body row">
           <div class="col-12" *ngIf="modalStatus == 'initial'">
             <div class="custom-control custom-radio">
-              <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-yes" value="Yes" [ngModel]="feedback.wouldYouDate"
-                (ngModelChange)="feedback.wouldYouDate=$event" required>
+              <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-yes" value="Yes"
+                [ngModel]="feedback.wouldYouDate" (ngModelChange)="feedback.wouldYouDate=$event" required>
               <label class="custom-control-label pointer" for="pref-yes">Yes I Would!</label>
             </div>
             <div class="custom-control custom-radio">
-              <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-noBut" value="NoBut" [ngModel]="feedback.wouldYouDate"
-                (ngModelChange)="feedback.wouldYouDate=$event" required>
+              <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-noBut" value="NoBut"
+                [ngModel]="feedback.wouldYouDate" (ngModelChange)="feedback.wouldYouDate=$event" required>
               <label class="custom-control-label pointer" for="pref-noBut">Not my type but they look great!</label>
             </div>
             <div class="custom-control custom-radio">
-              <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-no" value="No" [ngModel]="feedback.wouldYouDate"
-                (ngModelChange)="feedback.wouldYouDate=$event" required>
+              <input class="custom-control-input pointer" name="wouldYouDate" type="radio" id="pref-no" value="No"
+                [ngModel]="feedback.wouldYouDate" (ngModelChange)="feedback.wouldYouDate=$event" required>
               <label class="custom-control-label pointer" for="pref-no">Nope</label>
             </div>
           </div>

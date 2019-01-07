@@ -2,12 +2,20 @@
     <app-view-single-profile [userID]="person._id" (sentFeedbackEmitter)="childComponentFeedbackSubmittedEvent($event)"></app-view-single-profile>
 </div>
 
-<div *ngIf="error">
-    <div class="row shadowCard pb-2" id="oopsRow">
+<div *ngIf="status?.notDiscoverable">
+    <div class="row shadowCard mt-1 mb-1" id="oopsRow">
         <div class="col-12">
             <app-link-card [linkHeader]="'Oops!'" [linkBody]="'You need to be discoverable before you can date! Click to edit your profile'"
                 [imgUrl]="'assets/img/icons/confused.png'" [link]="'/my-profile'"></app-link-card>
-                
+        </div>
+    </div>
+</div>
+
+<div *ngIf="status?.noResults">
+    <div class="row shadowCard mt-1 mb-1" id="noResultsRow">
+        <div class="col-12">
+            <app-link-card [linkHeader]="'No users'" [linkBody]="'There are currently no profiles in your area that match your preferences.'"
+                [imgUrl]="'assets/img/icons/confused.png'" [link]="'/my-profile'"></app-link-card>
         </div>
     </div>
 </div>
