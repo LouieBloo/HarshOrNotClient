@@ -14,20 +14,20 @@ export class ChannelComponent implements OnInit {
 
   messages: any[] = [];
   @ViewChild('mainRow') private myScrollContainer: ElementRef;
-  isLoading:boolean = true;
+  isLoading: boolean = true;
 
-  messageCallback:any;
+  messageCallback: any;
 
-  textAreaMessage:string;
+  textAreaMessage: string;
 
-  pageHeight:number;
+  pageHeight: number;
 
-  constructor(private activatedRoute: ActivatedRoute, private chat: ChatService,private changeDetectorRef:ChangeDetectorRef) { }
+  constructor(private activatedRoute: ActivatedRoute, private chat: ChatService, private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
 
     this.setPageHeight();
-    
+
     this.activatedRoute.params.subscribe(params => {//get parameters
       if (params && params.sid) {
 
@@ -41,23 +41,26 @@ export class ChannelComponent implements OnInit {
               this.activeChannel.getMessages().then((messages) => {
                 if (messages && messages.items && messages.items.length > 0) {
                   this.messages = messages.items;
-                  
-                  setTimeout(()=>{//this is a jank timeout because it wont scroll if we fire it right away
-                    
+
+                  setTimeout(() => {//this is a jank timeout because it wont scroll if we fire it right away
+
                     this.scrollToBottom();
-                  },300)
-                  
+                  }, 300)
+
+                  this.updateLastSeen();
                 }
                 this.isLoading = false;
               })
 
-              
-              this.messageCallback = (message)=>{
+
+              this.messageCallback = (message) => {
                 this.messages.push(message);
                 this.scrollToBottom();
+                this.updateLastSeen();
               }
               //subscribe for any new messages
               this.activeChannel.on('messageAdded', this.messageCallback);
+
             }
           }
         })
@@ -80,7 +83,7 @@ export class ChannelComponent implements OnInit {
   }
 
   addMessage() {
-    if (this.activeChannel && this.textAreaMessage&& this.textAreaMessage.length > 0) {
+    if (this.activeChannel && this.textAreaMessage && this.textAreaMessage.length > 0) {
       this.activeChannel.sendMessage(this.textAreaMessage).then(data => {
         this.textAreaMessage = "";
         this.scrollToBottom();
@@ -92,8 +95,16 @@ export class ChannelComponent implements OnInit {
     }
   }
 
+  //set last consumed index
+  updateLastSeen() {
+    if (this.messages && this.messages.length > 0) {
+      this.activeChannel.setAllMessagesConsumed().then(data=>{
+      });
+    }
+  }
+
   textAreaEnterHandler(event) {
-    if(event.keyCode == 13) {//enter button
+    if (event.keyCode == 13) {//enter button
       event.preventDefault();
       this.addMessage();
     }
@@ -102,7 +113,7 @@ export class ChannelComponent implements OnInit {
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) { 
+    } catch (err) {
       console.log(err);
     }
   }
@@ -113,7 +124,7 @@ export class ChannelComponent implements OnInit {
   }
 
   //sets the height of the scroll container
-  setPageHeight(){
+  setPageHeight() {
     this.pageHeight = window.innerHeight - 65;
   }
 }

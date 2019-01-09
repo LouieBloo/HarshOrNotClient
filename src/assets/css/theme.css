@@ -57,3 +57,22 @@ p{
 }
 
 
+.midMarginMedium{
+    max-width:450px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.midMarginLarge{
+    max-width:750px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.fa-mars{
+    color:blue;
+}
+
+.fa-venus{
+    color:pink;
+}
+

@@ -7,14 +7,6 @@ img{
     cursor: pointer;
 }
 
-.fa-mars{
-    color:blue;
-}
-
-.fa-venus{
-    color:pink;
-}
-
 li{
     list-style-type:circle;
 }

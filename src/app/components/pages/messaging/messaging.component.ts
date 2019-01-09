@@ -12,15 +12,23 @@ export class MessagingComponent implements OnInit {
 
   channels: ChannelListItem[] = [];
   channelSubscription: any;
+  status:any ={
+    loading:true
+  }
 
   constructor(private chat: ChatService) { }
 
   ngOnInit() {
     //setup listener to handle channel changes
     this.channelSubscription = this.chat.channelEmitter.subscribe(ch => {
+      //if we have channels, show them and stop loading
       if (ch && ch.length > 0) {
         this.channels = ch;
-        console.log(this.channels[0].lastMessage);
+        this.status.loading = false;
+      }else{//set a timeout so we give a chance for the emitter to emit, if a delay is too long call the loading off
+        setTimeout(()=>{
+          this.status.loading = false;
+        },3000)
       }
     })
   }

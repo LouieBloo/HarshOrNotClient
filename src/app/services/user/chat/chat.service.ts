@@ -3,6 +3,7 @@ import { Client } from 'twilio-chat';
 import { AuthService } from '../../auth/auth.service';
 import { Observable, BehaviorSubject } from '../../../../../node_modules/rxjs';
 import { ChannelListItem } from '../../../models/chat/channel-list-item';
+import { ChannelSnippet } from 'src/app/models/chat/chat';
 
 @Injectable({
   providedIn: 'root'
@@ -88,6 +89,7 @@ export class ChatService {
     // A channel's attributes or metadata have changed.
     this.client.on('channelUpdated', (channel) => {
       console.log('Channel updates: ', channel.updateReasons);
+      console.log(channel);
       this.sortChannelsByLastMessageDate();
     });
   }
@@ -145,5 +147,10 @@ export class ChatService {
       console.log("New message!");
       console.log(message);
     })
+  }
+
+  
+  getChannelInfo(userID):Observable<ChannelSnippet>{
+    return this.auth.request("post",'/users/chat/viewChannelInfo',{_id:userID});
   }
 }

@@ -1,31 +1,46 @@
-<div class="row mt-4" (click)="clicked()">
-  <div class="col-4 text-center">
-    <img *ngIf="photoURL" [src]="photoURL?.replace('filter','100x100')">
-
-    <p class="text-center">{{channel?.memberInfo[0].friendlyName}}</p>
+<div class="row mt-2 mb-4 pt-4 d-flex justify-content-center" [ngClass]="{'unreadColor':unread}" (click)="clicked()">
+  <div class="">
+    <img class="mainImage" *ngIf="user" [src]="user?.photo.replace('filter','100x100')">
   </div>
-  <div class="col-8 d-flex flex-column justify-content-center">
 
-    <div *ngIf="channel?.lastMessage; else noMessages">
-      <!-- <p>{{channel?.lastMessage?.index}}</p> -->
-      <div *ngIf="lastMessage?.body">
-        <p>{{lastMessage?.body}}</p>
-      </div>
-      <div *ngIf="!lastMessage?.body">
+  <div class="col-8 col-sm-8">
+    <div id="bio">
+      <h5 class="">{{user?.name}}
+        <span>{{user?.age}}</span>
+        <div *ngIf="user?.gender == 'Female'; then femaleSign else maleSign"></div>
+        <ng-template #femaleSign>
+          <small class="ml-2 text-muted">
+            <i class="fas fa-venus"></i>
+          </small>
+        </ng-template>
+        <ng-template #maleSign>
+          <small class="ml-2 text-muted">
+            <i class="fas fa-mars"></i>
+          </small>
+        </ng-template>
+      </h5>
+      <div *ngIf="channel?.lastMessage; else noMessages">
+        <!-- <p>{{channel?.lastMessage?.index}}</p> -->
+        <div *ngIf="lastMessage?.body">
+          <p>{{lastMessage?.body}}</p>
+        </div>
+        <div *ngIf="!lastMessage?.body">
           <p>Loading...</p>
+        </div>
       </div>
+      <ng-template #noMessages>
+        <div>
+          <p>No messages yet!</p>
+        </div>
+      </ng-template>
+
+      <p *ngIf="channel?.lastMessage; else noMess" class="text-muted"><small>{{lastAuthorName}} sent on
+          {{channel?.lastMessage?.timestamp | date:'short'}}</small></p>
+      <ng-template #noMess>
+        <p class="text-muted"><small>Created on {{channel?.dateUpdated | date:'short'}}</small></p>
+      </ng-template>
     </div>
-    <ng-template #noMessages>
-      <div>
-        <p>No messages yet!</p>
-      </div>
-    </ng-template>
-
-    <p *ngIf="channel?.lastMessage; else noMess" class="text-muted"><small>{{lastAuthorName}} sent on {{channel?.lastMessage?.timestamp | date:'short'}}</small></p>
-    <ng-template #noMess>
-      <p class="text-muted"><small>Created on {{channel?.dateUpdated | date:'short'}}</small></p>
-    </ng-template>
-
   </div>
+
 
 </div>

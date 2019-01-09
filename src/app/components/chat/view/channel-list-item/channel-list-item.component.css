@@ -2,7 +2,24 @@
     cursor: pointer;
 }
 
+
 img{
     border-radius: 50%;
+    background-color:#e6e6e6;
     overflow: hidden;
+}
+
+.unreadColor{
+    background-color:#c9ffc9;
+}
+
+.mainImage{
+    width:100px;
+    height:100px;
+}
+@media only screen and (max-width: 337px) {
+    .mainImage{
+        width:75px;
+        height:75px;
+    }
 }
