@@ -39,6 +39,7 @@ export class ChannelComponent implements OnInit {
               this.activeChannel = this.activeChannel[0];
               //fetch our initial messages
               this.activeChannel.getMessages().then((messages) => {
+                this.isLoading = false;
                 if (messages && messages.items && messages.items.length > 0) {
                   this.messages = messages.items;
 
@@ -49,7 +50,6 @@ export class ChannelComponent implements OnInit {
 
                   this.updateLastSeen();
                 }
-                this.isLoading = false;
               })
 
 

@@ -1,5 +1,5 @@
 #mainRow{
-    width:750px;
+    max-width:750px;
     margin:auto;
 
     /* height: 450px; */
@@ -7,6 +7,10 @@
     overflow-x:hidden;
 
     background-color:white;
+}
+#mainRow > :first-child {
+    margin-top: auto !important;
+    /* use !important to prevent breakage from child margin settings */
 }
 
 #textArea{
@@ -16,4 +20,8 @@
 }
 
 #loading{
+}
+
+#input{
+    min-height:100px;
 }

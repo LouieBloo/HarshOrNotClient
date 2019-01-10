@@ -15,7 +15,6 @@ export class SingleMessageComponent implements OnInit {
   constructor(private auth:AuthService) { }
 
   ngOnInit() {
-    console.log(this.message);
     this.isMyMessage = this.auth.getUserID() == this.message.author ? true : false;
   }
 
